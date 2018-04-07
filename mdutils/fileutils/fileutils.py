@@ -8,6 +8,7 @@
 #
 # SPDX-License-Identifier:   BSD-3-Clause
 
+
 class NewFile(object):
     """NewFile class creates a new file of MarkDown extension.
 
@@ -15,6 +16,7 @@ class NewFile(object):
     - Create a file.
     - Rewrite all the file with new data.
     - Write at the end of the file."""
+
     def __init__(self, name):
         self.file_name = name + '.md'
         self.file = open(self.file_name, 'w+', encoding='UTF-8')
@@ -31,4 +33,4 @@ class NewFile(object):
 
 if __name__ == '__main__':
     new_file = NewFile('Example')
-    new_file.add(data="# Some Text Example")
+    new_file.rewrite_all_file(data="# Some Text Example")
