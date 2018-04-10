@@ -23,10 +23,16 @@ class NewFile(object):
         self.file.close()
 
     def rewrite_all_file(self, data):
+        """Rewrite all the data of a Markdown file by ``data``.
+
+        - **data:** is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'w', encoding='utf-8') as self.file:
             self.file.write(data)
 
     def append_end(self, data):
+        """Write at the last position of a Markdown file.
+
+        - **data:** is a string."""
         with open(self.file_name, 'a') as self.file:
             self.file.write(data)
 

@@ -18,6 +18,7 @@ from mdutils.fileutils.fileutils import NewFile
 
 
 class Header(object):
+    """Contain the main methods to define Headers on a Markdown file."""
     @staticmethod
     def level_1(title):
         return '# ' + title
@@ -43,11 +44,13 @@ class Header(object):
         return '\n\n###### ' + title
 
 
-
-
-
 class TableOfContents(object):
     def _loop_trought(self, elements, tab=''):
+        """Method that go trough a list of elements that contain strings and other list and return a string \
+        reade to be written inside a markdown file in order to create a table of contents.
+
+        - **elements**: contain all the headers defined on the main class.
+        - **tab:** Inserts tabulations."""
         elements_to_string = ""
         for item in elements:
             if isinstance(item, list):
@@ -68,7 +71,6 @@ class TableOfContents(object):
         return table_of_contents
 
 
-
 class MdUtils:
     def __init__(self, file_name, title="", author=""):
         self.file_name = file_name
@@ -84,7 +86,7 @@ class MdUtils:
         return md_file
 
     def new_header(self, level, title):
-        if level == 1:                                          # Check header's level
+        if level == 1:  # Check header's level
             return self.header.level_1(title)
         elif level == 2:
             self._add_new_item_table_of_content(level, title)  # Add Header level 2 to print in a table of contents
@@ -119,7 +121,6 @@ class MdUtils:
     def new_table_of_contents(self):
         table = TableOfContents().create_table_of_contents(self._table_titles)
         self.markdown_file.append_end(table)
-
 
 
 if __name__ == '__main__':
