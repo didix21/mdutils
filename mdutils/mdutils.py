@@ -24,23 +24,49 @@ class Header(object):
 
     @staticmethod
     def level_2(title):
-        return '## ' + title
+        return '\n\n## ' + title
 
     @staticmethod
     def level_3(title):
-        return '### ' + title
+        return '\n\n### ' + title
 
     @staticmethod
     def level_4(title):
-        return '#### ' + title
+        return '\n\n#### ' + title
 
     @staticmethod
     def level_5(title):
-        return '##### ' + title
+        return '\n\n##### ' + title
 
     @staticmethod
     def level_6(title):
-        return '###### ' + title
+        return '\n\n###### ' + title
+
+
+
+
+
+class TableOfContents(object):
+    def _loop_trought(self, elements, tab=''):
+        elements_to_string = ""
+        for item in elements:
+            if isinstance(item, list):
+                if item != []:
+                    if tab == '\t':
+                        elements_to_string += self._loop_trought(item, tab='\t\t')
+                    else:
+                        elements_to_string += self._loop_trought(item, tab='\t')
+            else:
+                elements_to_string += '\n' + tab + '* [' + item + '](#' + item.lower().replace(' ', '-') + ')'
+
+        return elements_to_string
+
+    def create_table_of_contents(self, array_of_title_contents):
+        table_of_contents = "\n\n"
+        table_of_contents += self._loop_trought(array_of_title_contents)
+
+        return table_of_contents
+
 
 
 class MdUtils:
@@ -49,35 +75,51 @@ class MdUtils:
         self.title = title
         self.author = author
         self.header = Header()
-        self.create_md_file()
+        self.markdown_file = self.create_md_file()
         self._table_titles = []
 
     def create_md_file(self):
         md_file = NewFile(self.file_name)
         md_file.rewrite_all_file(data=self.header.level_1(self.title))
+        return md_file
 
     def new_header(self, level, title):
-        if level == 1:
+        if level == 1:                                          # Check header's level
             return self.header.level_1(title)
         elif level == 2:
-            self._add_new_item_table_of_content(title)
-            return self.header.level_2(title)
+            self._add_new_item_table_of_content(level, title)  # Add Header level 2 to print in a table of contents
+            self.markdown_file.append_end(self.header.level_2(title))
         elif level == 3:
-            self._add_new_item_table_of_content(title)
-            return self.header.level_3(title)
+            self._add_new_item_table_of_content(level, title)  # Add Header level 3 to print in a table of contents
+            self.markdown_file.append_end(self.header.level_3(title))
         elif level == 4:
-            self._add_new_item_table_of_content(title)
-            return self.header.level_4(title)
+            self._add_new_item_table_of_content(level, title)  # Add Header level 4 to print in a table of contents
+            self.markdown_file.append_end(self.header.level_4(title))
         elif level == 5:
-            self._add_new_item_table_of_content(title)
-            return self.header.level_5(title)
+            self.markdown_file.append_end(self.header.level_5(title))
         elif level == 6:
-            self._add_new_item_table_of_content(title)
-            return self.header.level_6(title)
+            self.markdown_file.append_end(self.header.level_6(title))
 
-    def _add_new_item_table_of_content(self, item):
-        self._table_titles.append(item)
-        self._table_titles[-1].append([])
+    def _add_new_item_table_of_content(self, level, item):
+        if level == 2:
+            self._table_titles.append(item)
+            self._table_titles.append([])
+        elif level == 3:
+            self._table_titles[-1].append(item)
+            self._table_titles[-1].append([])
+        elif level == 4:
+            self._table_titles[-1][-1].append(item)
+            self._table_titles[-1][-1].append([])
+        elif level == 5:
+            self._table_titles[-1][-1][-1].append(item)
+            self._table_titles[-1][-1][-1].append([])
+        elif level == 6:
+            self._table_titles[-1][-1][-1][-1].append(item)
+
+    def new_table_of_contents(self):
+        table = TableOfContents().create_table_of_contents(self._table_titles)
+        self.markdown_file.append_end(table)
+
 
 
 if __name__ == '__main__':
