@@ -9,6 +9,7 @@
 # SPDX-License-Identifier:   BSD-3-Clause
 
 
+# noinspection SpellCheckingInspection
 class Header(object):
     """Contain the main methods to define Headers on a Markdown file.
 
@@ -53,22 +54,23 @@ class Header(object):
         return title + '\n' + ''.join(['-' for _ in title])
 
     def choose_header(self, level, title, style='atx'):
+        # noinspection SpellCheckingInspection
         """ This method choose the style and the header level.
 
-            :Examples:
-            >>> from mdutils.tools.tools import Header
-            >>> createHeaders = Header()
-            >>> createHeaders.choose_header(level=1, title='New Header', style='atx')
-            "# New Header"
+                    :Examples:
+                    >>> from mdutils.tools.tools import Header
+                    >>> createHeaders = Header()
+                    >>> createHeaders.choose_header(level=1, title='New Header', style='atx')
+                    "# New Header"
 
-            >>> createHeaders.choose_header(level=1, title='Another Header 1', style='setext')
-            "Another Header 1\\n----------------"
+                    >>> createHeaders.choose_header(level=1, title='Another Header 1', style='setext')
+                    "Another Header 1\\n----------------"
 
-        :param level: Header Level, For Atx-style 1 til 6. For Setext-style 1 and 2 header levels.
-        :param title: Header Title.
-        :param style: Header Style atx or setext.
-        :return:
-        """
+                :param level: Header Level, For Atx-style 1 til 6. For Setext-style 1 and 2 header levels.
+                :param title: Header Title.
+                :param style: Header Style atx or setext.
+                :return:
+                """
         if style.lower() == 'atx':
             if level == 1:
                 return self.atx_level_1(title)
@@ -90,7 +92,7 @@ class Header(object):
 
 
 class TableOfContents(object):
-    def _loop_trought(self, elements, tab=''):
+    def _loop_through(self, elements, tab=''):
         """Method that go trough a list of elements that contain strings and other list and return a string \
         reade to be written inside a markdown file in order to create a table of contents.
 
@@ -101,9 +103,9 @@ class TableOfContents(object):
             if isinstance(item, list):
                 if item:
                     if tab == '\t':
-                        elements_to_string += self._loop_trought(item, tab='\t\t')
+                        elements_to_string += self._loop_through(item, tab='\t\t')
                     else:
-                        elements_to_string += self._loop_trought(item, tab='\t')
+                        elements_to_string += self._loop_through(item, tab='\t')
             else:
                 elements_to_string += '\n' + tab + '* [' + item + '](#' + item.lower().replace(' ', '-') + ')'
 
@@ -111,7 +113,7 @@ class TableOfContents(object):
 
     def create_table_of_contents(self, array_of_title_contents):
         table_of_contents = ""
-        table_of_contents += self._loop_trought(array_of_title_contents)
+        table_of_contents += self._loop_through(array_of_title_contents)
 
         return table_of_contents
 
