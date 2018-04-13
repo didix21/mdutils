@@ -148,17 +148,16 @@ class Table(object):
         self.rows = rows
         table = ''
         column_align_string = self._align(columns, text_align)
-
+        n_row = 0                                               # New Row, its value is 1 when is set row align
         for r in range(rows):
-            for c in range(columns):
-                if r == 1:
-                    table += column_align_string
-                else:
-                    if c != columns - 1:
-                        table += '| ' + text[c + r]
-                    else:
-                        table += ' |'
+            if r == 1:
+                table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
+                n_row = 1
+            else:
+                table += '|' + ''.join([text[c + r + n_row] + '|' for c in range(columns)])
             table += '\n'
+
+        return table
 
 
 class TextUtils(object):
