@@ -23,8 +23,7 @@ The different features availables are:
 from mdutils.fileutils.fileutils import NewFile
 from mdutils.tools.tools import Header
 from mdutils.tools.tools import TableOfContents
-
-
+from mdutils.tools.tools import Table
 
 
 class MdUtils:
@@ -85,6 +84,11 @@ class MdUtils:
         """ Add a table of contents of the Header Levels 2, 3 and 4."""
         table = TableOfContents().create_table_of_contents(self._table_titles)
         self.markdown_file.append_after_second_line(table)
+
+    def create_table(self, columns, rows, text, text_align='center'):
+        new_table = Table()
+        text_table = new_table.create_table(columns, rows, text, text_align)
+        self.markdown_file.append_end(text_table)
 
 
 if __name__ == '__main__':
