@@ -49,6 +49,7 @@ class NewFile(object):
             self.file.write(data)                               # Write data
             self.file.write('\n' + file_data[len(first_line + second_line):])
 
+
 if __name__ == '__main__':
     new_file = NewFile('Example')
     new_file.rewrite_all_file(data="# Some Text Example")
