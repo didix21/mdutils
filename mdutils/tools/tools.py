@@ -184,3 +184,34 @@ class TextUtils(object):
     @staticmethod
     def text_color(text, color="black"):
         return '<font color="' + color + '">' + text + '</font>'
+
+    def text_format(self, text, bold_italics_code='', color='black'):
+        """ Text format helps to write multiple text format such as bold, italics and color.
+
+        :examples:
+        >>> from mdutils.tools import tools.TextUtils
+        >>> textUtils = TextUtils()
+        >>> textUtils.text_format("Some Text Here", bold_italics_code='bi', color='red')
+        >>> '_**<font color="black">red</font>**_'
+
+        :param text: it is a string in which will be added the mew format
+        :param bold_italics_code: using b: bold, i: italics and c: inline_code. You can change text format.
+        :param color: Can change text color. For example: 'red', 'green, 'orange'...
+        :return: return a string with the new text format.
+        """
+        if color != 'black':
+            new_text_format = self.text_color(color)
+        else:
+            new_text_format = text
+
+        if bold_italics_code:
+            for i in range(len(bold_italics_code)):
+                char = bold_italics_code[i]
+                if char == 'b':
+                    new_text_format = self.bold(new_text_format)
+                elif char == 'c':
+                    new_text_format = self.inline_code(new_text_format)
+                elif char == 'i':
+                    new_text_format = self.italics(new_text_format)
+
+        return new_text_format
