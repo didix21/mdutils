@@ -27,26 +27,38 @@ from mdutils.tools import tools
 class MdUtils:
     """This class give some basic methods that helps the creation of Markdown files.
 
-    Long description will be written.
+    The different __init__ variables are:
 
+    - **file_name:** it is the name of the Markdown file.
+    - **author:** it is the author fo the Markdown file.
+    - **header:** it is an instance of Header Class.
+    - **textUtils:** it is an instance of TextUtils Class.
+    - **title:** it is the title of the Markdown file. It is written with Setext-style.
+    - **table_of_contents:** it is the table of contents, it can be optionally created.
+    - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
     def __init__(self, file_name, title="", author=""):
-        self.file_name = file_name
+        """
 
+        :param file_name: it is the name of the Markdown file.
+        :param title: it is the title of the Markdown file. It is written with Setext-style.
+        :param author: it is the author fo the Markdown file.
+        """
+        self.file_name = file_name
         self.author = author
         self.header = tools.Header()
         self.textUtils = tools.TextUtils()
         self.title = self.header.choose_header(level=1, title=title, style='setext')
         self.table_of_contents = ""
-        self.data_text = ""
+        self.file_data_text = ""
         self._table_titles = []
 
     def create_md_file(self):
-        """ It creates a new Markdown file"""
+        """ It creates a new Markdown file.
+        :return: return an instance of a NewFile."""
         md_file = NewFile(self.file_name)
-        md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.data_text)
-
+        md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
         return md_file
 
     def new_header(self, level, title, style='atx'):
@@ -65,7 +77,8 @@ class MdUtils:
         :param style: Header style, could be ``'atx'`` or ``'setext'``. By default **atx* style is chosen.
         """
         self._add_new_item_table_of_content(level, title)
-        self.data_text += self.header.choose_header(level, title, style)
+        self.file_data_text += self.header.choose_header(level, title, style)
+        return self.header.choose_header(level, title, style)
 
     def _add_new_item_table_of_content(self, level, item):
         if level == 1:
@@ -85,13 +98,17 @@ class MdUtils:
     def create_table(self, columns, rows, text, text_align='center'):
         new_table = tools.Table()
         text_table = new_table.create_table(columns, rows, text, text_align)
-        self.data_text += text_table
+        self.file_data_text += text_table
 
         return text_table
 
     def add_new_paragraph(self, text=''):
-        self.data_text += '\n' + text + '\n'
-        return self.data_text
+        """ Add a new paragraph to Markdown file. The text is saved to the global class variable file_data_text.
+        :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
+        :return: return a string '\n' + text + '\n'. Not necessary to take it, if only has to be written to the file.
+        """
+        self.file_data_text += '\n' + text + '\n'
+        return self.file_data_text
 
 
 if __name__ == '__main__':
