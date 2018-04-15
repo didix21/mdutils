@@ -32,6 +32,6 @@ md_file.new_header(4, "Test 3.0.1")
 md_file.new_header(3, "Test 3.1")
 md_file.new_header(2, "Test 4")
 
-md_file.new_table_of_contents()
+print(repr(md_file.new_table_of_contents()))
 
 md_file.create_md_file()
