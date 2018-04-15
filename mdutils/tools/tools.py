@@ -20,38 +20,38 @@ class Header(object):
     # ********************************************************************
     @staticmethod
     def atx_level_1(title):
-        return '\n\n# ' + title
+        return '\n# ' + title + '\n'
 
     @staticmethod
     def atx_level_2(title):
-        return '\n\n## ' + title
+        return '\n## ' + title + '\n'
 
     @staticmethod
     def atx_level_3(title):
-        return '\n\n### ' + title
+        return '\n### ' + title + '\n'
 
     @staticmethod
     def atx_level_4(title):
-        return '\n\n#### ' + title
+        return '\n#### ' + title + '\n'
 
     @staticmethod
     def atx_level_5(title):
-        return '\n\n##### ' + title
+        return '\n##### ' + title + '\n'
 
     @staticmethod
     def atx_level_6(title):
-        return '\n\n###### ' + title
+        return '\n###### ' + title + '\n'
 
     # ********************************************************************
     # *                          Setext-Style                            *
     # ********************************************************************
     @staticmethod
     def setext_level_1(title):
-        return title + '\n' + ''.join(['=' for _ in title])
+        return '\n' + title + '\n' + ''.join(['=' for _ in title]) + '\n'
 
     @staticmethod
     def setext_level_2(title):
-        return title + '\n' + ''.join(['-' for _ in title])
+        return '\n' + title + '\n' + ''.join(['-' for _ in title]) + '\n'
 
     def choose_header(self, level, title, style='atx'):
         # noinspection SpellCheckingInspection
@@ -114,6 +114,7 @@ class TableOfContents(object):
     def create_table_of_contents(self, array_of_title_contents):
         table_of_contents = ""
         table_of_contents += self._loop_through(array_of_title_contents)
+        table_of_contents += '\n'
 
         return table_of_contents
 
@@ -146,15 +147,18 @@ class Table(object):
     def create_table(self, columns, rows, text, text_align='center'):
         self.columns = columns
         self.rows = rows
-        table = ''
+        table = '\n'
         column_align_string = self._align(columns, text_align)
-        n_row = 0                                               # New Row, its value is 1 when is set row align
+        index = 0
         for r in range(rows):
             if r == 1:
                 table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
-                n_row = 1
             else:
-                table += '|' + ''.join([text[c + r + n_row] + '|' for c in range(columns)])
+                table += '|'
+                for c in range(columns):
+                    table += text[index] + '|'
+                    index += 1
+
             table += '\n'
 
         return table
