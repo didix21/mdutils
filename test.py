@@ -20,7 +20,7 @@ text_array = ['**Test**', '**Descripción**', '**Estado**',
 
 
 md_file.new_header(1, "Results Tests")
-print(repr(md_file.create_table(3, 15, text_array)))
+print(repr(md_file.create_table(3, 14, text_array)))
 md_file.new_header(1, "Test Details")
 md_file.add_new_paragraph("All test will be written at the following lines.")
 md_file.new_header(2, "Test 1")
@@ -32,6 +32,6 @@ md_file.new_header(4, "Test 3.0.1")
 md_file.new_header(3, "Test 3.1")
 md_file.new_header(2, "Test 4")
 
-print(repr(md_file.new_table_of_contents()))
+print(repr(md_file.new_table_of_contents(depth=1)))
 
 md_file.create_md_file()

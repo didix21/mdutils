@@ -118,21 +118,23 @@ class Header(object):
 
 
 class TableOfContents(object):
-    def _loop_through(self, elements, tab=''):
+    def _loop_through(self, elements, tab='', depth=1):
         """Method that go through a list of elements that contain strings and other list and return a string.
 
         The returned string is ready to be written inside a markdown file in order to create a table of contents.
 
         :param elements: contain all the headers defined on the main class.
         :param tab: Inserts tabulations.
+        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possibly values 1 or 2.
         :type elements: list
         :type tab: str
+        :type depth: int
         :rtype: str
         """
         elements_to_string = ""
         for item in elements:
             if isinstance(item, list):
-                if item:
+                if item and depth >= 2:
                     if tab == '\t':
                         elements_to_string += self._loop_through(item, tab='\t\t')
                     else:
@@ -142,9 +144,19 @@ class TableOfContents(object):
 
         return elements_to_string
 
-    def create_table_of_contents(self, array_of_title_contents):
+    def create_table_of_contents(self, array_of_title_contents, depth=1):
+        """This method can create a table of contents using an array of the different titles. The deep can be changed.
+        Only accepts 1 or 2.
+
+        :param array_of_title_contents: a string list with the different headers.
+        :type array_of_title_contents: list
+        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possibly values 1 or 2.
+        :type depth: int
+        :return: return a string ready to be written to a Markdown file.
+        :rtype: str
+        """
         table_of_contents = ""
-        table_of_contents += self._loop_through(array_of_title_contents)
+        table_of_contents += self._loop_through(array_of_title_contents, depth=depth)
         table_of_contents += '\n'
 
         return table_of_contents
