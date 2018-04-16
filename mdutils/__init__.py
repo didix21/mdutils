@@ -1,2 +1,2 @@
-from mdutils.fileutils.fileutils import NewFile
+from mdutils.mdutils import MdUtils
 
