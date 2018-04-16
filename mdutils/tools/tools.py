@@ -53,6 +53,32 @@ class Header(object):
     def setext_level_2(title):
         return '\n' + title + '\n' + ''.join(['-' for _ in title]) + '\n'
 
+    @staticmethod
+    def header_anchor(text, link=""):
+        """Creates an internal link of a defined Header level 1 or level 2 in the markdown file.
+
+        Giving a text string an text link you can create an internal link of already existing header. If the ``link``
+        string does not contain '#', it will creates an automatic link of the type ``#title-1``.
+
+        :param text: it is the text that will be displayed.
+        :param link: it is the internal link.
+        :return: ``'[text](#link)'``
+        :type text: str
+        :type link: str
+        :rtype: string
+
+        **Example:** [Title 1](#title-1)
+        """
+        if link:
+            if link[0] != '#':
+                link = link.lower().replace(' ', '-')
+            else:
+                link = '#' + link
+        else:
+            link = '#' + text.lower().replace(' ', '-')
+
+        return '[' + text + '](' + link + ')'
+
     def choose_header(self, level, title, style='atx'):
         # noinspection SpellCheckingInspection
         """ This method choose the style and the header level.
@@ -61,10 +87,10 @@ class Header(object):
                     >>> from mdutils.tools.tools import Header
                     >>> createHeaders = Header()
                     >>> createHeaders.choose_header(level=1, title='New Header', style='atx')
-                    "# New Header"
+                    '\n# New Header\n'
 
-                    >>> createHeaders.choose_header(level=1, title='Another Header 1', style='setext')
-                    "Another Header 1\\n----------------"
+                    >>> createHeaders.choose_header(level=2, title='Another Header 1', style='setext')
+                    '\nAnother Header 1\n----------------\n'
 
                 :param level: Header Level, For Atx-style 1 til 6. For Setext-style 1 and 2 header levels.
                 :param title: Header Title.
@@ -93,11 +119,16 @@ class Header(object):
 
 class TableOfContents(object):
     def _loop_through(self, elements, tab=''):
-        """Method that go trough a list of elements that contain strings and other list and return a string \
-        reade to be written inside a markdown file in order to create a table of contents.
+        """Method that go through a list of elements that contain strings and other list and return a string.
 
-        - **elements**: contain all the headers defined on the main class.
-        - **tab:** Inserts tabulations."""
+        The returned string is ready to be written inside a markdown file in order to create a table of contents.
+
+        :param elements: contain all the headers defined on the main class.
+        :param tab: Inserts tabulations.
+        :type elements: list
+        :type tab: str
+        :rtype: str
+        """
         elements_to_string = ""
         for item in elements:
             if isinstance(item, list):
@@ -127,6 +158,20 @@ class Table(object):
 
     @staticmethod
     def _align(columns, text_align):
+        """ This private method it is in charfe of aligning text of a table.
+
+        - notes: more information about `text_align`
+
+        :param columns: it is the number of columns.
+        :param text_align: it is a string giving information about the alignment that is wanted.  text_align can take
+                           the following parameters: ``'center'``, ``'right'`` and ``'left'``.
+        :return: returns a string of type ``'| :---: | :---: | :---: |'``.
+        :type columns: int
+        :type text_align: str
+        :rtype: str
+
+        .. note:
+        """
 
         column_align_string = ''
 
@@ -150,7 +195,7 @@ class Table(object):
         table = '\n'
         column_align_string = self._align(columns, text_align)
         index = 0
-        for r in range(rows):
+        for r in range(rows + 2):
             if r == 1:
                 table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
             else:
@@ -182,27 +227,64 @@ class TextUtils(object):
         return '`' + text + '`'
 
     @staticmethod
+    def center_text(text):
+        return '<center>' + text + '</center>'
+
+    @staticmethod
     def text_color(text, color="black"):
-        return '<font color="' + color + '">' + text + '</font>'
+        """Using this method can change text color.
 
-    def text_format(self, text, bold_italics_code='', color='black'):
-        """ Text format helps to write multiple text format such as bold, italics and color.
+        :param text: it is the text that will be changed its color.
+        :param color: it is the text color: ``'orange'``, ``'blue'``, ``'red'``...
+        :return: ``'<font color='color'> 'text' </font>'``
+        :type text: str
+        :type color: str
+        :rtype: string
+        """
 
-        :examples:
-        >>> from mdutils.tools import tools.TextUtils
-        >>> textUtils = TextUtils()
-        >>> textUtils.text_format("Some Text Here", bold_italics_code='bi', color='red')
-        >>> '_**<font color="black">red</font>**_'
+        return '<font color="' + color + '"> ' + text + ' </font>'
+
+    @staticmethod
+    def text_external_link(text, link=''):
+        """ Using this method can be created an external link of a file or a web page.
+
+        :param text: Text to be displayed.
+        :type text: str
+        :param link: External Link.
+        :type link: str
+        :return: return a string like this: ``'[Text to be shown](https://write.link.com)'``
+        :rtype: str"""
+
+        return '[' + text + '](' + link + ')'
+
+    def text_format(self, text, bold_italics_code='', color='black', align=''):
+        """Text format helps to write multiple text format such as bold, italics and color.
 
         :param text: it is a string in which will be added the mew format
-        :param bold_italics_code: using b: bold, i: italics and c: inline_code. You can change text format.
+        :param bold_italics_code: using `'b'`: **bold**, `'i'`: _italics_ and `'c'`: `inline_code`.
         :param color: Can change text color. For example: 'red', 'green, 'orange'...
+        :param align: Using this parameter you can align text.
         :return: return a string with the new text format.
+        :type text: str
+        :type bold_italics_code: str
+        :type color: str
+        :type align: str
+        :rtype: str
+
+        :Example:
+
+        >>> from mdutils.tools import tools.TextUtils
+        >>> textUtils = TextUtils()
+        >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red', align='center')
+        '_**<center><font color='red'> Some Text Here </font></center>**_'
         """
         if color != 'black':
-            new_text_format = self.text_color(color)
+            new_text_format = self.text_color(text, color)
         else:
             new_text_format = text
+
+        if align == 'center':
+            new_text_format = self.center_text(new_text_format)
 
         if bold_italics_code:
             for i in range(len(bold_italics_code)):
@@ -215,3 +297,7 @@ class TextUtils(object):
                     new_text_format = self.italics(new_text_format)
 
         return new_text_format
+
+    if __name__ == "__main__":
+        import doctest
+        doctest.testmod()
