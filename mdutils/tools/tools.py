@@ -69,10 +69,15 @@ class Header(object):
 
         **Example:** [Title 1](#title-1)
         """
-        if link[0] != '#':
-            link = link.lower().replace(' ', '-')
+        if link:
+            if link[0] != '#':
+                link = link.lower().replace(' ', '-')
+            else:
+                link = '#' + link
+        else:
+            link = '#' + text.lower().replace(' ', '-')
 
-        return '[' + text + '](#' + link + ')'
+        return '[' + text + '](' + link + ')'
 
     def choose_header(self, level, title, style='atx'):
         # noinspection SpellCheckingInspection
