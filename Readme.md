@@ -1,1 +1,18 @@
-['Test', 'Descripción', 'Estado', 'Test 1', 'Carga de configuración correcta', 'OK', 'Test 2', 'Lectura de Configuración', '', 'Test 3', 'Lectura de Soporte', '', 'Test 4', 'Modificación de entradas y lectura de salidas de cantón', '', 'Test 5', 'Lectura de estados de Pedal de Rearme y Aviso', '', 'Test 6', 'Actualización de datos de unidades de vía', '', 'Test 7', 'Fallos en carga de configuración - Campo IdApp Erróneo', '', 'Test 8', 'Fallos en carga de configuración - Campo VersTAbla Erróneo', '', 'Test 9', 'Fallos en carga de configuración - Campo IdUc Erróneo', '', 'Test 10', 'Fallos en carga de configuración - Campo Addresses Erróneo', '', 'Test 11', 'Fallos en carga de configuración - Campo NumTc Erróneo', '', 'Test 12', 'Fallos en carga de configuración - Campo NumUv Erróneo', '', 'Test 13', 'Fallos en carga de configuración - Campo CRC Erróneo', '', 'Test 14', 'Fallos en carga de configuración - Campo IdTc Erróneo', '', 'Test 15', 'Fallos en carga de configuración - Campo TC - Type erróneo', '', 'Test 16', 'Fallos en carga de configuración - Campo TC - NumUVs erróneo', '', 'Test 17', 'Fallos en carga de configuración - Campo TC - NumUVsNormalizacion erróneo', '', 'Test 18', 'Fallos en carga de configuración - Campo TC - IdUVsNormalizacion erróneo', '', 'Test 19', 'Fallos en carga de configuración - Campo TC - NormType erróneo', '', 'Test 20', 'Fallos en carga de configuración - Campo TC - RtType erróneo', '', 'Test 21', 'Fallos en carga de configuración - Campo TC - AveriaType erróneo', '', 'Test 23', 'Fallos en carga de configuración - Campo UV - IdUv Erróneo', '', 'Test 24', 'Fallos en carga de configuración - Campo UV - UvType Erróneo', '', 'Test 25', 'Fallos en carga de configuración - Campo UV - Tc no configurado', '', 'Test 26', 'Fallos en las comunicaciones - Mensaje GetSop no válido', '', 'Test 27', 'Fallos en las comunicaciones - Mensaje SetCnf no válido', '', 'Test 28', 'Fallos en las comunicaciones - Mensaje GetCnf no válido', '', 'Test 29', 'Fallos en las comunicaciones - Mensaje SetGetTcIO no válido', '', 'Test 30', 'Fallos en las comunicaciones - Mensaje GetPrAv no válido', '', 'Test 31', 'Fallos en las comunicaciones - Mensaje SetUvData no válido', '', 'Test 32', 'Fallos en Procesos - Activar proceso de Normalización desde Avería', '', 'Test 33', 'Fallos en Procesos - Activar proceso de Normalización desde Servicio', '']
+# mdutils
+This package contains all of this utils necessary to create a Markdown file while you are executing python code. This
+ package it is useful when you are interested in save data on file and give format to it at the same time.
+ 
+ ## Featerues
+
+- Create a Markdown file.
+- Create headers (1, 2, 3 til... 6).
+- Create automatic table of contents.
+- Give format to text: **bold**, _italics_ , `inline code`, <font color='orange'> change text color </font>...
+- Insert internal links `[Text to be displayed](#text-to-be-displayed)` or external links `[external link]
+(https://external.link.es)`
+- Create tables
+
+## Thinks to do
+
+- Insert images, align them...
+
