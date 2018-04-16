@@ -87,10 +87,10 @@ class Header(object):
                     >>> from mdutils.tools.tools import Header
                     >>> createHeaders = Header()
                     >>> createHeaders.choose_header(level=1, title='New Header', style='atx')
-                    '\n# New Header\n'
+                    '\\n# New Header\\n'
 
                     >>> createHeaders.choose_header(level=2, title='Another Header 1', style='setext')
-                    '\nAnother Header 1\n----------------\n'
+                    '\\nAnother Header 1\\n----------------\\n'
 
                 :param level: Header Level, For Atx-style 1 til 6. For Setext-style 1 and 2 header levels.
                 :param title: Header Title.
@@ -273,10 +273,10 @@ class TextUtils(object):
 
         :Example:
 
-        >>> from mdutils.tools import tools.TextUtils
+        >>> from mdutils.tools.tools import TextUtils
         >>> textUtils = TextUtils()
         >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red', align='center')
-        '_**<center><font color='red'> Some Text Here </font></center>**_'
+        '_**<center><font color="red"> Some Text Here </font></center>**_'
         """
         if color != 'black':
             new_text_format = self.text_color(text, color)
