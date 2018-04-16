@@ -88,12 +88,20 @@ class MdUtils:
             self._table_titles[-1].append(item)
             self._table_titles[-1].append([])
 
-    def new_table_of_contents(self, table_title="Table of contents"):
+    def new_table_of_contents(self, table_title="Table of contents", marker=''):
         """ Add a table of contents of the Header Levels 2, 3 and 4."""
-        self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
-        self.table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles)
 
-        return self.table_of_contents
+        if marker:
+            self.table_of_contents = ""
+            marker_table_of_contents = self.header.choose_header(level=1, title=table_title, style='setext')
+            marker_table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles)
+            self.file_data_text = self.place_text_using_marker(marker_table_of_contents, marker)
+        else:
+            marker_table_of_contents = ""
+            self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
+            self.table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles)
+
+        return self.table_of_contents + marker_table_of_contents
 
     def create_table(self, columns, rows, text, text_align='center', marker=''):
         new_table = tools.Table()
