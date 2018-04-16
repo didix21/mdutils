@@ -227,6 +227,10 @@ class TextUtils(object):
         return '`' + text + '`'
 
     @staticmethod
+    def center_text(text):
+        return '<center>' + text + '</center>'
+
+    @staticmethod
     def text_color(text, color="black"):
         """Using this method can change text color.
 
@@ -253,28 +257,34 @@ class TextUtils(object):
 
         return '[' + text + '](' + link + ')'
 
-    def text_format(self, text, bold_italics_code='', color='black'):
+    def text_format(self, text, bold_italics_code='', color='black', align=''):
         """Text format helps to write multiple text format such as bold, italics and color.
 
         :param text: it is a string in which will be added the mew format
         :param bold_italics_code: using `'b'`: **bold**, `'i'`: _italics_ and `'c'`: `inline_code`.
         :param color: Can change text color. For example: 'red', 'green, 'orange'...
+        :param align: Using this parameter you can align text.
         :return: return a string with the new text format.
         :type text: str
         :type bold_italics_code: str
         :type color: str
+        :type align: str
+        :rtype: str
 
         :Example:
 
         >>> from mdutils.tools import tools.TextUtils
         >>> textUtils = TextUtils()
-        >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red')
-        '_**<font color='red'> Some Text Here </font>**_'
+        >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red', align='center')
+        '_**<center><font color='red'> Some Text Here </font></center>**_'
         """
         if color != 'black':
             new_text_format = self.text_color(text, color)
         else:
             new_text_format = text
+
+        if align == 'center':
+            new_text_format = self.center_text(new_text_format)
 
         if bold_italics_code:
             for i in range(len(bold_italics_code)):

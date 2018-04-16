@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94246e1b-afbc-4cb4-9862-f312c650b313" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mdutils_develop.iml" afterPath="$PROJECT_DIR$/.idea/mdutils_develop.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Test/test_tools/test_table.py" afterPath="$PROJECT_DIR$/Test/test_tools/test_table.py" />
-      <change beforePath="$PROJECT_DIR$/Testing_md.py" afterPath="$PROJECT_DIR$/Testing_md.py" />
+      <change beforePath="$PROJECT_DIR$/mdutils/mdutils.py" afterPath="$PROJECT_DIR$/mdutils/mdutils.py" />
       <change beforePath="$PROJECT_DIR$/mdutils/tools/tools.py" afterPath="$PROJECT_DIR$/mdutils/tools/tools.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,14 +18,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="mdutils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mdutils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mdutils/mdutils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-              <folding>
-                <element signature="e#493#540#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="413">
+              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,29 +31,25 @@
       <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mdutils/tools/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="171" column="31" lean-forward="false" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="311">
+              <caret line="265" column="8" lean-forward="false" selection-start-line="265" selection-start-column="8" selection-end-line="265" selection-end-column="62" />
+              <folding>
+                <element signature="e#310#4060#0" expanded="false" />
+                <element signature="e#4098#5321#0" expanded="false" />
+                <element signature="e#5350#7106#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_mdUtils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/test_mdUtils.py">
+      <file leaf-file-name="test_header.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/test_tools/test_header.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-488">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_table.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Test/test_tools/test_table.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="617">
-              <caret line="55" column="64" lean-forward="false" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
-              <folding />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,7 +85,6 @@
         <option value="$PROJECT_DIR$/mdutils/textutils/textutils.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/mdutils/fileutils/fileutils.py" />
-        <option value="$PROJECT_DIR$/mdutils/mdutils.py" />
         <option value="$PROJECT_DIR$/Test.md" />
         <option value="$PROJECT_DIR$/Testing_md.py" />
         <option value="$PROJECT_DIR$/Testing_md.md" />
@@ -104,8 +94,9 @@
         <option value="$PROJECT_DIR$/mdutils/tools/__init__.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/mdutils/__init__.py" />
-        <option value="$PROJECT_DIR$/mdutils/tools/tools.py" />
         <option value="$PROJECT_DIR$/Test/test_tools/test_table.py" />
+        <option value="$PROJECT_DIR$/mdutils/tools/tools.py" />
+        <option value="$PROJECT_DIR$/mdutils/mdutils.py" />
       </list>
     </option>
   </component>
@@ -137,34 +128,6 @@
             <path>
               <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-              <item name="mdutils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-              <item name="mdutils" type="462c0819:PsiDirectoryNode" />
-              <item name="fileutils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-              <item name="mdutils" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mdutils_dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mdutils_dev" type="462c0819:PsiDirectoryNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-              <item name="test_tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -440,7 +403,35 @@
       <option name="project" value="LOCAL" />
       <updated>1523866251211</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Solved import errors.">
+      <created>1523868385513</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1523868385513</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added methods create_marker and place_text_using_marker. Methods implemented on create_table.">
+      <created>1523873942506</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1523873942506</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Deleted create_itnernal_link method and created a new one named header_anchor">
+      <created>1523875337350</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1523875337350</updated>
+    </task>
+    <task id="LOCAL-00024" summary="It is not necessary to give a link value. Anchor can be directly created using the text's value">
+      <created>1523885916125</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1523885916125</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -480,12 +471,13 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13277134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32940018" sideWeight="0.5021075" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32940018" sideWeight="0.49789253" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32940018" sideWeight="0.50842994" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.49789253" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.49789253" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40935007" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.49578503" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32940018" sideWeight="0.4915701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3945268" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -494,7 +486,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -522,7 +513,10 @@
     <MESSAGE value="Changed __init__.py, now calls MdUtils." />
     <MESSAGE value="Updated setup.py" />
     <MESSAGE value="Solved import errors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved import errors." />
+    <MESSAGE value="Added methods create_marker and place_text_using_marker. Methods implemented on create_table." />
+    <MESSAGE value="Deleted create_itnernal_link method and created a new one named header_anchor" />
+    <MESSAGE value="It is not necessary to give a link value. Anchor can be directly created using the text's value" />
+    <option name="LAST_COMMIT_MESSAGE" value="It is not necessary to give a link value. Anchor can be directly created using the text's value" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -543,7 +537,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -561,7 +555,7 @@
         <state relative-caret-position="1462">
           <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -587,7 +581,7 @@
         <state relative-caret-position="1533">
           <caret line="75" column="38" lean-forward="false" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -621,7 +615,7 @@
         <state relative-caret-position="1554">
           <caret line="74" column="13" lean-forward="false" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -647,7 +641,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -665,7 +659,7 @@
         <state relative-caret-position="1302">
           <caret line="62" column="29" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
           <folding>
-            <element signature="e#493#540#0" expanded="true" />
+            <element signature="e#493#540#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,7 +752,7 @@
         <state relative-caret-position="34">
           <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -806,20 +800,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mdutils/mdutils.py">
+    <entry file="file://$PROJECT_DIR$/Test/test_tools/test_table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="e#493#540#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mdutils/tools/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="171" column="31" lean-forward="false" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
+        <state relative-caret-position="901">
+          <caret line="55" column="64" lean-forward="false" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -832,10 +816,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/test_tools/test_table.py">
+    <entry file="file://$PROJECT_DIR$/Test/test_tools/test_header.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="55" column="64" lean-forward="false" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
+        <state relative-caret-position="-488">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mdutils/tools/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="265" column="8" lean-forward="false" selection-start-line="265" selection-start-column="8" selection-end-line="265" selection-end-column="62" />
+          <folding>
+            <element signature="e#310#4060#0" expanded="false" />
+            <element signature="e#4098#5321#0" expanded="false" />
+            <element signature="e#5350#7106#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mdutils/mdutils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding />
         </state>
       </provider>
