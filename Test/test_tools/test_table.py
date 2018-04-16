@@ -53,9 +53,7 @@ class TestTable(TestCase):
                       'Test 12', 'Fallos en carga de configuración - Campo NumUv Erróneo',
                       md_file.textUtils.text_color("NOK", 'red'),
                       'Test 13', 'Fallos en carga de configuración - Campo CRC Erróneo',
-                      md_file.textUtils.text_color("NOK", 'red'),
-                      'Test 14', 'Fallos en carga de configuración - Campo IdTc Erróneo',
                       md_file.textUtils.text_color("NOK", 'red')]
 
-        self.assertEqual(table.create_table(columns=3, rows=15, text=text_array), result_table)
+        self.assertEqual(table.create_table(columns=3, rows=13, text=text_array), result_table)
 

@@ -169,7 +169,7 @@ class Table(object):
         table = '\n'
         column_align_string = self._align(columns, text_align)
         index = 0
-        for r in range(rows):
+        for r in range(rows + 2):
             if r == 1:
                 table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
             else:
@@ -267,7 +267,7 @@ class TextUtils(object):
         '_**<font color='red'> Some Text Here </font>**_'
         """
         if color != 'black':
-            new_text_format = self.text_color(color)
+            new_text_format = self.text_color(text, color)
         else:
             new_text_format = text
 
