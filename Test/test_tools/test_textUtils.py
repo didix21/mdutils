@@ -1,6 +1,8 @@
 from unittest import TestCase
 from mdutils.tools.tools import TextUtils
 
+__author__ = 'didix21'
+__project__ = 'MdUtils'
 
 class TestTextUtils(TestCase):
     def test_bold(self):

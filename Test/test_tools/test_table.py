@@ -2,6 +2,8 @@ from unittest import TestCase
 from mdutils.tools.tools import Table
 from mdutils.mdutils import MdUtils
 
+__author__ = 'didix21'
+__project__ = 'MdUtils'
 
 class TestTable(TestCase):
     def test_create_table(self):

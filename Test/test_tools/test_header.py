@@ -1,6 +1,8 @@
 from unittest import TestCase
 from mdutils.tools.tools import Header
 
+__author__ = 'didix21'
+__project__ = 'MdUtils'
 
 class TestHeader(TestCase):
 

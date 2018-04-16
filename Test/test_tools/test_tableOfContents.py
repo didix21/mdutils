@@ -1,6 +1,8 @@
 from unittest import TestCase
 from mdutils.tools.tools import TableOfContents
 
+__author__ = 'didix21'
+__project__ = 'MdUtils'
 
 class TestTableOfContents(TestCase):
 
