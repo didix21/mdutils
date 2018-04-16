@@ -95,10 +95,13 @@ class MdUtils:
 
         return self.table_of_contents
 
-    def create_table(self, columns, rows, text, text_align='center'):
+    def create_table(self, columns, rows, text, text_align='center', marker=''):
         new_table = tools.Table()
         text_table = new_table.create_table(columns, rows, text, text_align)
-        self.file_data_text += text_table
+        if marker:
+            self.file_data_text = self.place_text_using_marker(text_table, marker)
+        else:
+            self.file_data_text += text_table
 
         return text_table
 
@@ -109,6 +112,32 @@ class MdUtils:
         """
         self.file_data_text += '\n' + text + '\n'
         return self.file_data_text
+
+    def create_marker(self, text_marker):
+        """This will add a marker to file_data_text in order to add after some text.
+
+        :param text_marker: marker name.
+        :type text_marker: str
+        :return return the marker.
+        :rtype: str
+        """
+
+        new_marker = '##--[' + text_marker + ']--##'
+        self.file_data_text += new_marker
+        return new_marker
+
+    def place_text_using_marker(self, text, marker):
+        """It replace a previous marker created with ``create_marker`` with a text string.
+
+        :param text: the new string that will replace the marker.
+        :type text: str
+        :param marker: the marker that has to be replaced.
+        :type marker: str
+        :return: return a new file_data_text with the replace marker.
+        :rtype: str
+        """
+        return self.file_data_text.replace(marker, text)
+
 
 
 if __name__ == '__main__':
