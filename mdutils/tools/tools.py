@@ -53,6 +53,27 @@ class Header(object):
     def setext_level_2(title):
         return '\n' + title + '\n' + ''.join(['-' for _ in title]) + '\n'
 
+    @staticmethod
+    def header_anchor(text, link=""):
+        """Creates an internal link of a defined Header level 1 or level 2 in the markdown file.
+
+        Giving a text string an text link you can create an internal link of already existing header. If the ``link``
+        string does not contain '#', it will creates an automatic link of the type ``#title-1``.
+
+        :param text: it is the text that will be displayed.
+        :param link: it is the internal link.
+        :return: ``'[text](#link)'``
+        :type text: str
+        :type link: str
+        :rtype: string
+
+        **Example:** [Title 1](#title-1)
+        """
+        if link[0] != '#':
+            link = link.lower().replace(' ', '-')
+
+        return '[' + text + '](#' + link + ')'
+
     def choose_header(self, level, title, style='atx'):
         # noinspection SpellCheckingInspection
         """ This method choose the style and the header level.
@@ -213,27 +234,6 @@ class TextUtils(object):
         """
 
         return '<font color="' + color + '"> ' + text + ' </font>'
-
-    @staticmethod
-    def text_internal_link(text, link=""):
-        """Creates an internal link of a defined Header level 1 or level 2 in the markdown file.
-
-        Giving a text string an text link you can create an internal link of already existing header. If the ``link``
-        string does not contain '#', it will creates an automatic link of the type ``#title-1``.
-
-        :param text: it is the text that will be displayed.
-        :param link: it is the internal link.
-        :return: ``'[text](#link)'``
-        :type text: str
-        :type link: str
-        :rtype: string
-
-        **Example:** [Title 1](#title-1)
-        """
-        if link[0] != '#':
-            link = link.lower().replace(' ', '-')
-
-        return '[' + text + '](#' + link + ')'
 
     @staticmethod
     def text_external_link(text, link=''):
