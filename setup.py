@@ -10,7 +10,7 @@ setup(name='mdutils',
       classifiers=['Development Status :: 1 - Beta',
                    'Programming Language :: Python :: 3.6'],
       platforms=['Python 3.6'],
-      packages=['mdutils','mdutils.tools'],
+      packages=['mdutils', 'mdutils.tools'],
       # Depndent Packages
       include_package_data=True,
       zip_safe=False)
