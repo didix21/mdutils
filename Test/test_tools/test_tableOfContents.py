@@ -17,4 +17,4 @@ class TestTableOfContents(TestCase):
                  '* [Test 4](#test-4)\n'
 
         table_of_contents = TableOfContents()
-        self.assertEqual(table_of_contents.create_table_of_contents(array_of_contents), result)
+        self.assertEqual(table_of_contents.create_table_of_contents(array_of_contents, depth=2), result)

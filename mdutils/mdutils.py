@@ -55,7 +55,7 @@ class MdUtils:
         self._table_titles = []
 
     def create_md_file(self):
-        """ It creates a new Markdown file.
+        """It creates a new Markdown file.
         :return: return an instance of a NewFile."""
         md_file = NewFile(self.file_name)
         md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
@@ -88,18 +88,31 @@ class MdUtils:
             self._table_titles[-1].append(item)
             self._table_titles[-1].append([])
 
-    def new_table_of_contents(self, table_title="Table of contents", marker=''):
-        """ Add a table of contents of the Header Levels 2, 3 and 4."""
+    def new_table_of_contents(self, table_title="Table of contents", depth=1, marker=''):
+        """Table of contents can be created if Headers of 'atx' style have been defined.
+
+        This method allows to create a table of contents and define a title for it. Moreover, `depth` allows user to
+        define if headers of level 1 and 2 or only level 1 have to be placed on the table of contents.
+
+        :param table_title: The table content's title, by default "Table of contents"
+        :type table_title: str
+        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possibly values 1 or 2.
+        :type depth: int
+        :param marker: allows to place the table of contents using a marker.
+        :type marker: str
+        :return: a string with the data is returned.
+        :rtype: str
+        """
 
         if marker:
             self.table_of_contents = ""
             marker_table_of_contents = self.header.choose_header(level=1, title=table_title, style='setext')
-            marker_table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles)
+            marker_table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles, depth)
             self.file_data_text = self.place_text_using_marker(marker_table_of_contents, marker)
         else:
             marker_table_of_contents = ""
             self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
-            self.table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles)
+            self.table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles, depth)
 
         return self.table_of_contents + marker_table_of_contents
 
