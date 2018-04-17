@@ -179,6 +179,9 @@ class MdUtils:
 
         return self.file_data_text
 
+    def write(self, text=''):
+        self.file_data_text += text
+
     def create_marker(self, text_marker):
         """This will add a marker to file_data_text in order to add after some text.
 
