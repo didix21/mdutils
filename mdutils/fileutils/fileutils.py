@@ -9,18 +9,20 @@
 # SPDX-License-Identifier:   BSD-3-Clause
 
 
-class NewFile(object):
-    """NewFile class creates a new file of MarkDown extension.
+class MarkDownFile(object):
+    """MarkDownFile class creates a new file of MarkDown extension.
 
     Features available are:
     - Create a file.
     - Rewrite all the file with new data.
     - Write at the end of the file."""
 
-    def __init__(self, name):
-        self.file_name = name + '.md'
-        self.file = open(self.file_name, 'w+', encoding='UTF-8')
-        self.file.close()
+    def __init__(self, name=''):
+        """Creates a markdown file if name is not empty."""
+        if name:
+            self.file_name = name + '.md'
+            self.file = open(self.file_name, 'w+', encoding='UTF-8')
+            self.file.close()
 
     def rewrite_all_file(self, data):
         """Rewrite all the data of a Markdown file by ``data``.
@@ -49,7 +51,24 @@ class NewFile(object):
             self.file.write(data)                               # Write data
             self.file.write('\n' + file_data[len(first_line + second_line):])
 
+    @staticmethod
+    def read_file(file_name):
+        """Read a Markdown file using a file name. Not necessary to put *.md extension.
+
+        :param file_name: Markdown file's name.
+        :type file_name: str
+        :return: return all file's data.
+        :rtype: str"""
+
+        if file_name.find('.md') == -1:
+            file_name += '.md'
+
+        with open(file_name, 'r', encoding='utf-8') as file:
+            file_data = file.read()
+
+        return file_data
+
 
 if __name__ == '__main__':
-    new_file = NewFile('Example')
+    new_file = MarkDownFile('Example')
     new_file.rewrite_all_file(data="# Some Text Example")

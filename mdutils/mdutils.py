@@ -20,7 +20,7 @@ The available features are:
     * Insert Images.
     * Insert Code.
 """
-from mdutils.fileutils.fileutils import NewFile
+from mdutils.fileutils.fileutils import MarkDownFile
 from mdutils.tools import tools
 
 
@@ -56,10 +56,23 @@ class MdUtils:
 
     def create_md_file(self):
         """It creates a new Markdown file.
-        :return: return an instance of a NewFile."""
-        md_file = NewFile(self.file_name)
+        :return: return an instance of a MarkDownFile."""
+        md_file = MarkDownFile(self.file_name)
         md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
         return md_file
+
+    def read_md_file(self, file_name):
+        """Reads a Markdown file and save it to global class `file_data_text`.
+
+        :param file_name: Markdown file's name that has to be read.
+        :type file_name: str
+        :return: optionally returns the file data content.
+        :rtype: str
+        """
+        file_data = MarkDownFile().read_file(file_name)
+        self.file_data_text += file_data
+
+        return file_data
 
     def new_header(self, level, title, style='atx'):
         """ Add a new header to the Markdown file.
