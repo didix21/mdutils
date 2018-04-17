@@ -9,6 +9,7 @@ __pycache__/
 # Others
 Test.md
 .idea*
+.idea/workspace.xml
 
 # Distribution / packaging
 .Python
