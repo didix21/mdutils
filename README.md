@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
 
 # mdutils
-This package contains all of this utils necessary to create a Markdown file while you are executing python code. This
- package it is useful when you are interested in save data on file and give format to it at the same time.
+This package contains all necessary utils to create a Markdown file while you are executing python code. This
+ package it is useful when you are interested in save data on files and give format to it at the same time.
  
  ## Features
 
