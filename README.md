@@ -4,7 +4,7 @@
 This package contains all of this utils necessary to create a Markdown file while you are executing python code. This
  package it is useful when you are interested in save data on file and give format to it at the same time.
  
- ## Featerues
+ ## Features
 
 - Create a Markdown file.
 - Create headers (1, 2, 3 til... 6).
