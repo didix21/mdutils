@@ -45,17 +45,17 @@ class TestMdUtils(TestCase):
         # Testing Depth 1
         table_of_contents_result = md_file.new_table_of_contents(table_title="Index", depth=1)
         table_of_content_expected = table_of_content_title \
-                                    + '\n* [' + list_headers[0] + '](#' + list_headers[0].lower().replace(' ', '-') \
-                                    + ')' \
-                                    + '\n* [' + list_headers[2] + '](#' + list_headers[2].lower().replace(' ', '-') \
-                                    + ')\n'
+            + '\n* [' + list_headers[0] + '](#' + list_headers[0].lower().replace(' ', '-') \
+            + ')' \
+            + '\n* [' + list_headers[2] + '](#' + list_headers[2].lower().replace(' ', '-') \
+            + ')\n'
         self.assertEqual(table_of_contents_result, table_of_content_expected)
         # Testing created file
         md_file.create_md_file()
         data_file_result = MdUtils('').read_md_file('Test_file')
         data_file_expected = MdUtils('').new_header(1, "Testing table of contents", 'setext') \
-                             + md_file.table_of_contents \
-                             + md_file.file_data_text
+            + md_file.table_of_contents \
+            + md_file.file_data_text
         self.assertEqual(data_file_result, data_file_expected)
         os.remove('Test_file.md')
 
@@ -84,8 +84,8 @@ class TestMdUtils(TestCase):
         md_file.create_md_file()
         data_file_result = MdUtils('').read_md_file('Test_file')
         data_file_expected = MdUtils('').new_header(1, "Testing table of contents", 'setext') \
-                             + md_file.table_of_contents \
-                             + md_file.file_data_text
+            + md_file.table_of_contents \
+            + md_file.file_data_text
         self.assertEqual(data_file_result, data_file_expected)
         os.remove('Test_file.md')
 
