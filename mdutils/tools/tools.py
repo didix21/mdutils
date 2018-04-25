@@ -13,6 +13,15 @@
 class Header(object):
     """Contain the main methods to define Headers on a Markdown file.
 
+    **Features available:**
+
+    * Create Markdown Titles: _atx_ and _setext_ formats are available.
+    * Create Header Hanchors.
+    * Auto generate a table of contents.
+    * Create Tables.
+    * **Bold**, *italics*, ``inline_code`` text converters.
+    * Align text to center.
+    * Add color to text.
     """
 
     # ********************************************************************
@@ -228,32 +237,56 @@ class TextUtils(object):
 
     @staticmethod
     def bold(text):
+        """Bold text converter.
+
+        :param text: a text string.
+        :type text: str
+        :return: a string like this example: ``'**text**'``
+        :rtype: str"""
         return '**' + text + '**'
 
     @staticmethod
     def italics(text):
+        """Italics text converter.
+
+        :param text: a text string.
+        :type text: str
+        :return: a string like this example: ``'_text_'``
+        :rtype: str"""
         return '_' + text + '_'
 
     @staticmethod
     def inline_code(text):
+        """Inline code text converter.
+
+        :param text: a text string.
+        :type text: str
+        :return: a string like this example: ``'`text`'``
+        :rtype: str"""
         return '`' + text + '`'
 
     @staticmethod
     def center_text(text):
+        """Place a text string to center.
+
+        :param text: a text string.
+        :type text: str
+        :return: a string like this exampple: ``'<center>text</center>'``
+        """
         return '<center>' + text + '</center>'
 
     @staticmethod
     def text_color(text, color="black"):
-        """Using this method can change text color.
+        """Change text color.
 
         :param text: it is the text that will be changed its color.
         :param color: it is the text color: ``'orange'``, ``'blue'``, ``'red'``...
-        :return: ``'<font color='color'> 'text' </font>'``
+                      or a **RGB** color such as ``'#ffce00'``.
+        :return: a string like this one: ``'<font color='color'> 'text' </font>'``
         :type text: str
         :type color: str
-        :rtype: string
+        :rtype: str
         """
-
         return '<font color="' + color + '"> ' + text + ' </font>'
 
     @staticmethod
