@@ -17,17 +17,18 @@ The available features are:
     * Create paragraph.
     * Generate tables of different sizes.
     * Insert Links.
-    * Insert Images.
     * Insert Code.
+    * Place text anywhere using a marker.
 """
 from mdutils.fileutils.fileutils import MarkDownFile
 from mdutils.tools import tools
 
 
 class MdUtils:
-    """This class give some basic methods that helps the creation of Markdown files.
+    """This class give some basic methods that helps the creation of Markdown files while you are executing a python
+    code.
 
-    The different __init__ variables are:
+    The ``__init__`` variables are:
 
     - **file_name:** it is the name of the Markdown file.
     - **author:** it is the author fo the Markdown file.
@@ -42,8 +43,11 @@ class MdUtils:
         """
 
         :param file_name: it is the name of the Markdown file.
+        :type file_name: str
         :param title: it is the title of the Markdown file. It is written with Setext-style.
+        :type title: str
         :param author: it is the author fo the Markdown file.
+        :type author: str
         """
         self.file_name = file_name
         self.author = author
@@ -79,15 +83,18 @@ class MdUtils:
             **Examples:**
             ``new_header(level=2, title='Header Title', style='atx')``
             This will write a new level 2 Atx-style header on file_name.md:
-                * ## Header Title
+                * ``\\n'## Header Title\\n'``
             ``new_header(level=2, title='Header Title', style='setext')``
             This will write a new level 2 Setext-style header on file_name.md:
-                * Header Title
-                '-------------'
+               * ``\\n'Header Title\\n``
+                 ``-------------\\n'``
 
-        :param level: Header level
-        :param title: Header title
-        :param style: Header style, could be ``'atx'`` or ``'setext'``. By default **atx* style is chosen.
+        :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
+        :type level: int
+        :param title: Header title.
+        :type title: str
+        :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
+        :type style: str
         """
         self._add_new_item_table_of_content(level, title)
         self.file_data_text += self.header.choose_header(level, title, style)
@@ -106,10 +113,11 @@ class MdUtils:
 
         This method allows to create a table of contents and define a title for it. Moreover, `depth` allows user to
         define if headers of level 1 and 2 or only level 1 have to be placed on the table of contents.
+        If no marker is defined, the table of contents will be placed automatically after the file's title.
 
         :param table_title: The table content's title, by default "Table of contents"
         :type table_title: str
-        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possibly values 1 or 2.
+        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possible values 1 or 2.
         :type depth: int
         :param marker: allows to place the table of contents using a marker.
         :type marker: str
@@ -130,6 +138,22 @@ class MdUtils:
         return self.table_of_contents + marker_table_of_contents
 
     def create_table(self, columns, rows, text, text_align='center', marker=''):
+        """This method helps to create a table.
+
+        :param columns: this variable defines how many columns will have the table.
+        :type columns: int
+        :param rows: this variable defines how many rows will have the table.
+        :type rows: int
+        :param text: it is a list containing all the strings which will be placed in the table.
+        :type text: list
+        :param text_align: allows to align all the cells to the ``'right'``, ``'left'`` or ``'center'``.
+                            By default: ``'center'``.
+        :type text_align: str
+        :param marker: using ``create_marker`` method can place the table anywhere of the markdown file.
+        :type marker: str
+        :return: can return the table created as a string.
+        :rtype: str
+        """
         new_table = tools.Table()
         text_table = new_table.create_table(columns, rows, text, text_align)
         if marker:
@@ -151,6 +175,7 @@ class MdUtils:
         :param align: Using this parameter you can align text.
         :type align: str
         :return: return a string '\n' + text + '\n'. Not necessary to take it, if only has to be written to the file.
+        :rtype: str
         """
         if bold_italics_code or color != 'black' or align:
             self.file_data_text += '\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align)
@@ -171,6 +196,7 @@ class MdUtils:
         :param align: Using this parameter you can align text.
         :type align: str
         :return: return a string '\n' + text + '\n'. Not necessary to take it, if only has to be written to the file.
+        :rtype: str
         """
         if bold_italics_code or color != 'black' or align:
             self.file_data_text += self.textUtils.text_format(text, bold_italics_code, color, align) + '  \n'
