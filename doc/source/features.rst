@@ -17,6 +17,6 @@ Markdown
 - Create tables.
 - Create a table of contents
 
-Features to develop
--------------------
+Things to do
+------------
 - Add images: align, size...
