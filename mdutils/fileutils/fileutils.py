@@ -14,11 +14,11 @@ class MarkDownFile(object):
 
     Features available are:
     - Create a file.
-    - Rewrite all the file with new data.
+    - Rewrite a file with new data.
     - Write at the end of the file."""
 
     def __init__(self, name=''):
-        """Creates a markdown file if name is not empty."""
+        """Creates a markdown file, if name is not empty."""
         if name:
             self.file_name = name + '.md'
             self.file = open(self.file_name, 'w+', encoding='UTF-8')
@@ -53,7 +53,7 @@ class MarkDownFile(object):
 
     @staticmethod
     def read_file(file_name):
-        """Read a Markdown file using a file name. Not necessary to put *.md extension.
+        """Read a Markdown file using a file name. It is not necessary to add *.md extension.
 
         :param file_name: Markdown file's name.
         :type file_name: str
