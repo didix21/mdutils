@@ -17,8 +17,9 @@ creating Markdown files.
    :maxdepth: 2
    :caption: Contents:
 
-    features
-    modules
+   features
+   installation
+   modules
 
 
 
