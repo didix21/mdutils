@@ -1,9 +1,18 @@
+# Python
+#
+# This module implements tests for Table class.
+#
+# This file is part of mdutils. https://github.com/didix21/mdutils
+#
+# MIT License: (C) 2018 Dídac Coll
+
 from unittest import TestCase
 from mdutils.tools.tools import Table
 from mdutils.mdutils import MdUtils
 
 __author__ = 'didix21'
 __project__ = 'MdUtils'
+
 
 class TestTable(TestCase):
     def test_create_table(self):

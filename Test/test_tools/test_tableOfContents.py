@@ -1,8 +1,17 @@
+# Python
+#
+# This module implements tests for TableOfContents class.
+#
+# This file is part of mdutils. https://github.com/didix21/mdutils
+#
+# MIT License: (C) 2018 Dídac Coll
+
 from unittest import TestCase
 from mdutils.tools.tools import TableOfContents
 
 __author__ = 'didix21'
 __project__ = 'MdUtils'
+
 
 class TestTableOfContents(TestCase):
 
