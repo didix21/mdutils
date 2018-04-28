@@ -20,5 +20,5 @@ setup(name='mdutils',
                    'Programming Language :: Python :: 3.6',
                    'Topic :: Utilities',
                    'Topic :: Software Development :: Documentation',
-                   'Topic :: Text Processing :: Markup'
+                   'Topic :: Text Processing :: Markup',
                    'License :: OSI Approved :: MIT License'])
