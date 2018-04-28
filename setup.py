@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='mdutils',
-      version='1.0.0b1',
+      version=1.0,
       license='MIT',
       author='Didac Coll',
       author_email='didaccoll_93@hotmail.com',
