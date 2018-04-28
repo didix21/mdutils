@@ -1,17 +1,11 @@
-# mdutils [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
+======================
+mdutils |build-status|
+======================
 
-Table of Contents
-=================
-- [Overview](#overview)
-- [Features](#features)
-    - [Writing and Reading Files](#writing-and-reading-files)
-    - [Markdown](#markdown)
-    
-- [Installation](#installation)
-- [Thinks to do](#things-to-do)
+.. contents:: Table of Contents
 
 Overview
-=======
+========
 This Python package contains a set of basic tools that can help to create a markdown file while running a Python code.
 Thus, if you are executing a Python code and you save the result in a txt file, Why do not give it some format? So
 Using files such as Markdown can give a great look to those results. In this way, mdutils will make things easy on
@@ -43,11 +37,16 @@ Markdown
 Installation
 ============
 Use pip to install mdutils:
-```bash
-$ pip install mdutils
-```
+.. code:: bash
+
+    $ pip install mdutils
+
 
 Things to do
 ============
 - Add images: align, size...
 - Implement more tests.
+
+.. |build-status| image:: https://travis-ci.org/didix21/mdutils.svg?branch=master
+    :target: https://travis-ci.org/didix21/mdutils
+    :alt: Build status
