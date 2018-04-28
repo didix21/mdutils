@@ -4,9 +4,7 @@
 #
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
-# (C) 2018 Dídac Coll
-#
-# SPDX-License-Identifier:   BSD-3-Clause
+# MIT License: (C) 2018 Dídac Coll
 
 
 # noinspection SpellCheckingInspection
