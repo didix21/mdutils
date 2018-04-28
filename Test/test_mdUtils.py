@@ -1,3 +1,11 @@
+# Python
+#
+# This module implements tests for MdUtils class.
+#
+# This file is part of mdutils. https://github.com/didix21/mdutils
+#
+# MIT License: (C) 2018 Dídac Coll
+
 from unittest import TestCase
 from mdutils.mdutils import MdUtils
 
