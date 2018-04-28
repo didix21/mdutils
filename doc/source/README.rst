@@ -14,7 +14,7 @@ creating Markdown files.
 - Project Homepage: https://github.com/didix21/mdutils
 - Download Page: https://pypi.python.org/pypi/mdutils
 
-MIT License, (C) 2018 Dídac Coll <didaccoll_93@hotmail.com>
+MIT License, (C) 2018 Didac Coll <didaccoll_93@hotmail.com>
 
 Features
 ========
@@ -37,6 +37,7 @@ Markdown
 Installation
 ============
 Use pip to install mdutils:
+
 .. code:: bash
 
     $ pip install mdutils
