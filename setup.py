@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='mdutils',
       version=1.0,
-      license='BSD',
+      license='MIT',
       author='Didac Coll',
       author_email='didaccoll_93@hotmail.com',
       maintainer='Dídac Coll',
@@ -20,4 +20,4 @@ setup(name='mdutils',
                    'Programming Language :: Python :: 3.6',
                    'Topic :: Utilities',
                    'Topic :: Software Development :: Documentation',
-                   'License :: OSI Approved :: BSD License'])
+                   'License :: OSI Approved :: MIT License'])
