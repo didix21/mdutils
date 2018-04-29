@@ -1,4 +1,6 @@
-# mdutils [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
+# mdutils 
+[![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
+[![Documentation Status](https://readthedocs.org/projects/mdutils/badge/?version=latest)](http://mdutils.readthedocs.io/en/latest/?badge=latest)
 
 Table of Contents
 =================
@@ -19,6 +21,7 @@ creating Markdown files.
 
 - Project Homepage: https://github.com/didix21/mdutils
 - Download Page: https://pypi.python.org/pypi/mdutils
+- Documentation: http://mdutils.readthedocs.io/en/latest/
 
 MIT License, (C) 2018 Dídac Coll <didaccoll_93@hotmail.com>
 
