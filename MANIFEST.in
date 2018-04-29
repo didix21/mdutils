@@ -1,8 +1,0 @@
-# Documentation
-recursive-include doc/build/html *
-
-# Include the README
-include README.md
-
-# Include the license file
-include LICENSE.txt
