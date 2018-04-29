@@ -21,6 +21,7 @@ creating Markdown files.
 
 - Project Homepage: https://github.com/didix21/mdutils
 - Download Page: https://pypi.python.org/pypi/mdutils
+- Documentation: http://mdutils.readthedocs.io/en/latest/
 
 MIT License, (C) 2018 Dídac Coll <didaccoll_93@hotmail.com>
 
