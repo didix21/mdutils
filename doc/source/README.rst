@@ -1,6 +1,7 @@
-======================
-mdutils |build-status|
-======================
+=======
+mdutils
+=======
+|build-status| |documentation-status|
 
 .. contents:: Table of Contents
 
@@ -51,3 +52,7 @@ Things to do
 .. |build-status| image:: https://travis-ci.org/didix21/mdutils.svg?branch=master
     :target: https://travis-ci.org/didix21/mdutils
     :alt: Build status
+
+.. |documentation-status| image:: https://readthedocs.org/projects/mdutils/badge/?version=latest
+    :target: http://mdutils.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
