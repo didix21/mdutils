@@ -1,6 +1,3 @@
-# Documentation
-recursive-include doc/build/html *
-
 # Include the README
 include README.md
 
