@@ -66,5 +66,5 @@ class TestTable(TestCase):
                       'Test 13', 'Fallos en carga de configuración - Campo CRC Erróneo',
                       md_file.textUtils.text_color("NOK", 'red')]
 
-        self.assertEqual(table.create_table(columns=3, rows=13, text=text_array), result_table)
+        self.assertEqual(table.create_table(columns=3, rows=14, text=text_array), result_table)
 
