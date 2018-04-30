@@ -272,13 +272,17 @@ class Table(object):
 
             :Example:
             >>> from mdutils.tools.tools import Table
-            >>> text_list = ['List of Items', 'Description', 'Result', \
-                             'Item 1', 'Description of item 1', '10', \
-                             'Item 2', 'Description of item 2', '0']
+            >>> text_list = ['List of Items', 'Description', 'Result', 'Item 1', 'Description of item 1', '10', 'Item 2', 'Description of item 2', '0']
             >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
             >>> print(repr(table))
             '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
 
+
+        .. csv-table:: **Table result on Markdown**
+           :header: "List of Items", "Description", "Results"
+
+           "Item 1", "Description of Item 1", 10
+           "Item 2", "Description of Item 2", 0
 
         :param int columns: number of columns of the table.
         :param int rows: number of rows of the table.
