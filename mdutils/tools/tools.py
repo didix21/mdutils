@@ -420,6 +420,7 @@ class TextUtils(object):
 
         return new_text_format
 
-    if __name__ == "__main__":
-        import doctest
-        doctest.testmod()
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
