@@ -94,11 +94,19 @@ class MdUtils:
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
         """
+
         self._add_new_item_table_of_content(level, title)
         self.file_data_text += self.header.choose_header(level, title, style)
         return self.header.choose_header(level, title, style)
 
     def _add_new_item_table_of_content(self, level, item):
+        """Automatically add new atx headers to the table of contents.
+
+        :param level: add til 2 levels. Only can take 1 or 2.
+        :type level: int
+        :param item: items to add.
+        :type item: list or str
+        """
         if level == 1:
             self._table_titles.append(item)
             self._table_titles.append([])
@@ -152,6 +160,7 @@ class MdUtils:
         :return: can return the table created as a string.
         :rtype: str
         """
+
         new_table = tools.Table()
         text_table = new_table.create_table(columns, rows, text, text_align)
         if marker:
@@ -177,6 +186,7 @@ class MdUtils:
                     the file.
         :rtype: str
         """
+
         if bold_italics_code or color != 'black' or align:
             self.file_data_text += '\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align)
         else:
@@ -200,6 +210,7 @@ class MdUtils:
                     file.
         :rtype: str
         """
+
         if bold_italics_code or color != 'black' or align:
             self.file_data_text += self.textUtils.text_format(text, bold_italics_code, color, align) + '  \n'
         else:
@@ -213,6 +224,7 @@ class MdUtils:
         :param text: a text a string.
         :type text: str
         """
+
         self.file_data_text += text
 
     def create_marker(self, text_marker):
