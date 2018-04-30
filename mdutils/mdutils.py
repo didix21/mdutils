@@ -146,6 +146,18 @@ class MdUtils:
     def create_table(self, columns, rows, text, text_align='center', marker=''):
         """This method helps to create a table.
 
+            Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
+            ``columns * rows`` operations has to correspond to the number of elements of ``text`` list argument.
+
+            :Example:
+            >>> from mdutils.tools.tools import Table
+            >>> text_list = ['List of Items', 'Description', 'Result', \
+                             'Item 1', 'Description of item 1', '10', \
+                             'Item 2', 'Description of item 2', '0']
+            >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
+            >>> print(repr(table))
+            '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
+
         :param columns: this variable defines how many columns will have the table.
         :type columns: int
         :param rows: this variable defines how many rows will have the table.
@@ -235,7 +247,7 @@ class MdUtils:
 
         :param text_marker: marker name.
         :type text_marker: str
-        :return: return a marker of the following shape: ``'##--[' + text_marker + ']--##'``
+        :return: return a marker of the following form: ``'##--[' + text_marker + ']--##'``
         :rtype: str
         """
 
