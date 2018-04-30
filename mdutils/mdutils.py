@@ -162,17 +162,19 @@ class MdUtils:
         return text_table
 
     def add_new_paragraph(self, text='', bold_italics_code='', color='black', align=''):
-        """ Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
+        """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
         :type text: str
-        :param bold_italics_code: bold_italics_code: using `'b'`: **bold**, `'i'`: _italics_ and `'c'`: `inline_code`.
+        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
+                                    ``'c'``: ``inline_code``.
         :type bold_italics_code: str
-        :param color: Can change text color. For example: 'red', 'green, 'orange'...
+        :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
-        :return: return a string '\n' + text + '\n'. Not necessary to take it, if only has to be written to the file.
+        :return: return a string ``'\\n' + text + '\\n'``. Not necessary to take it, if only has to be written to
+                    the file.
         :rtype: str
         """
         if bold_italics_code or color != 'black' or align:
@@ -183,17 +185,19 @@ class MdUtils:
         return self.file_data_text
 
     def new_line(self, text='', bold_italics_code='', color='black', align=''):
-        """ Add a new line to Markdown file. The text is saved to the global variable file_data_text.
+        """Add a new line to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
         :type text: str
-        :param bold_italics_code: bold_italics_code: using `'b'`: **bold**, `'i'`: _italics_ and `'c'`: `inline_code`.
+        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
+                                    ``'c'``: ``inline_code``..
         :type bold_italics_code: str
-        :param color: Can change text color. For example: 'red', 'green, 'orange'...
+        :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
-        :return: return a string '\n' + text + '\n'. Not necessary to take it, if only has to be written to the file.
+        :return: return a string ``'\\n' + text + '\\n'``. Not necessary to take it, if only has to be written to the
+                    file.
         :rtype: str
         """
         if bold_italics_code or color != 'black' or align:
@@ -204,14 +208,22 @@ class MdUtils:
         return self.file_data_text
 
     def write(self, text=''):
+        """Write text in ``file_Data_text`` string.
+
+        :param text: a text a string.
+        :type text: str
+        """
         self.file_data_text += text
 
     def create_marker(self, text_marker):
-        """This will add a marker to file_data_text in order to add after some text.
+        """This will add a marker to ``file_data_text`` and returns the marker result.
+
+            Markers allows to place them to the string data text and they can be replaced by a peace of text using
+            ``place_text_using_marker`` method.
 
         :param text_marker: marker name.
         :type text_marker: str
-        :return return the marker.
+        :return: return a marker of the following shape: ``'##--[' + text_marker + ']--##'``
         :rtype: str
         """
 
@@ -221,6 +233,9 @@ class MdUtils:
 
     def place_text_using_marker(self, text, marker):
         """It replace a previous marker created with ``create_marker`` with a text string.
+
+            This method is going to search for the ``marker`` argument, which has been created previously using
+            ``create_marker`` method, in ``file_data_text`` string.
 
         :param text: the new string that will replace the marker.
         :type text: str
