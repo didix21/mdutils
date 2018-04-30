@@ -13,7 +13,7 @@ class Header(object):
 
     **Features available:**
 
-    * Create Markdown Titles: _atx_ and _setext_ formats are available.
+    * Create Markdown Titles: *atx* and *setext* formats are available.
     * Create Header Hanchors.
     * Auto generate a table of contents.
     * Create Tables.
@@ -27,26 +27,68 @@ class Header(object):
     # ********************************************************************
     @staticmethod
     def atx_level_1(title):
+        """Return a atx level 1 header. 
+        
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n#' + title + '\\n'``
+        :rtype: str
+        """
+        
         return '\n# ' + title + '\n'
 
     @staticmethod
     def atx_level_2(title):
+        """Return a atx level 2 header. 
+
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n##' + title + '\\n'``
+        :rtype: str
+        """
+
         return '\n## ' + title + '\n'
 
     @staticmethod
     def atx_level_3(title):
+        """Return a atx level 3 header. 
+
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n###' + title + '\\n'``
+        :rtype: str
+        """
+
         return '\n### ' + title + '\n'
 
     @staticmethod
     def atx_level_4(title):
+        """Return a atx level 4 header. 
+
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n####' + title + '\\n'``
+        :rtype: str
+        """
+
         return '\n#### ' + title + '\n'
 
     @staticmethod
     def atx_level_5(title):
+        """Return a atx level 5 header. 
+
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n#####' + title + '\\n'``
+        :rtype: str
+        """
+
         return '\n##### ' + title + '\n'
 
     @staticmethod
     def atx_level_6(title):
+        """Return a atx level 6 header. 
+
+        :param str title: text title. 
+        :return: a header title of form: ``'\\n######' + title + '\\n'``
+        :rtype: str
+        """
+
         return '\n###### ' + title + '\n'
 
     # ********************************************************************
@@ -54,10 +96,24 @@ class Header(object):
     # ********************************************************************
     @staticmethod
     def setext_level_1(title):
+        """Return a setext level 1 header.
+
+        :param str title: text title.
+        :return: a header titlte of form: ``'\\n' + title +'\\n==========\\n'``.
+        :rtype: str
+        """
+
         return '\n' + title + '\n' + ''.join(['=' for _ in title]) + '\n'
 
     @staticmethod
     def setext_level_2(title):
+        """Return a setext level 1 header.
+
+                :param str title: text title.
+                :return: a header titlte of form: ``'\\n' + title +'\\n------------\\n'``.
+                :rtype: str
+        """
+
         return '\n' + title + '\n' + ''.join(['-' for _ in title]) + '\n'
 
     @staticmethod
@@ -88,7 +144,7 @@ class Header(object):
 
     def choose_header(self, level, title, style='atx'):
         # noinspection SpellCheckingInspection
-        """ This method choose the style and the header level.
+        """This method choose the style and the header level.
 
                     :Examples:
                     >>> from mdutils.tools.tools import Header
@@ -128,7 +184,7 @@ class TableOfContents(object):
     def _loop_through(self, elements, tab='', depth=1):
         """Method that go through a list of elements that contain strings and other list and return a string.
 
-        The returned string is ready to be written inside a markdown file in order to create a table of contents.
+        The returned string is ready to be written in a markdown file in order to create a table of contents.
 
         :param elements: contain all the headers defined on the main class.
         :param tab: Inserts tabulations.
@@ -209,6 +265,29 @@ class Table(object):
         return column_align_string
 
     def create_table(self, columns, rows, text, text_align='center'):
+        """This method takes a list of strings and creates a table.
+
+            Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
+            ``columns * rows`` operations has to correspond to the number of elements of ``text`` list argument.
+
+            :Example:
+            >>> from mdutils.tools.tools import Table
+            >>> text_list = ['List of Items', 'Description', 'Result', \
+                             'Item 1', 'Description of item 1', '10', \
+                             'Item 2', 'Description of item 2', '0']
+            >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
+            >>> print(repr(table))
+            '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
+
+
+        :param int columns: number of columns of the table.
+        :param int rows: number of rows of the table.
+        :param text: a list of strings.
+        :type text: list of str
+        :param str text_align: text align argument. Values available are: ``'right'``, ``'center'``, and ``'left'``.
+        :return: a markdown table.
+        :rtype: str
+        """
         self.columns = columns
         self.rows = rows
         table = '\n'
