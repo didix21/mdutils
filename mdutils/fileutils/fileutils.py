@@ -11,9 +11,9 @@ class MarkDownFile(object):
     """MarkDownFile class creates a new file of MarkDown extension.
 
     Features available are:
-    - Create a file.
-    - Rewrite a file with new data.
-    - Write at the end of the file."""
+        - Create a file.
+        - Rewrite a file with new data.
+        - Write at the end of the file."""
 
     def __init__(self, name=''):
         """Creates a markdown file, if name is not empty.
