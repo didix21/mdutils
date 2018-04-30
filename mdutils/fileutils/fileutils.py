@@ -16,7 +16,8 @@ class MarkDownFile(object):
     - Write at the end of the file."""
 
     def __init__(self, name=''):
-        """Creates a markdown file, if name is not empty."""
+        """Creates a markdown file, if name is not empty.
+        :param str name: file name"""
         if name:
             self.file_name = name + '.md'
             self.file = open(self.file_name, 'w+', encoding='UTF-8')
@@ -25,21 +26,21 @@ class MarkDownFile(object):
     def rewrite_all_file(self, data):
         """Rewrite all the data of a Markdown file by ``data``.
 
-        :param data: is a string containing all the data that is written in the markdown file."""
+        :param str data: is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'w', encoding='utf-8') as self.file:
             self.file.write(data)
 
     def append_end(self, data):
         """Write at the last position of a Markdown file.
 
-        :param data: is a string containing all the data that is written in the markdown file."""
+        :param str data: is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'a', encoding='utf-8') as self.file:
             self.file.write(data)
 
     def append_after_second_line(self, data):
         """Write after the file's first line.
 
-        :param data: is a string containing all the data that is written in the markdown file."""
+        :param str data: is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'r+', encoding='utf-8') as self.file:
             file_data = self.file.read()                        # Save all the file's content
             self.file.seek(0, 0)                                # Place file pointer at the beginning
