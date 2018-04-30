@@ -269,7 +269,3 @@ class MdUtils:
         :rtype: str
         """
         return self.file_data_text.replace(marker, text)
-
-
-if __name__ == '__main__':
-    header = tools.Header()

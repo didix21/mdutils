@@ -293,7 +293,7 @@ class Table(object):
         table = '\n'
         column_align_string = self._align(columns, text_align)
         index = 0
-        for r in range(rows + 2):
+        for r in range(rows + 1):
             if r == 1:
                 table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
             else:
@@ -420,6 +420,7 @@ class TextUtils(object):
 
         return new_text_format
 
-    if __name__ == "__main__":
-        import doctest
-        doctest.testmod()
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
