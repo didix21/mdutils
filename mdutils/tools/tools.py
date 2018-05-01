@@ -267,22 +267,8 @@ class Table(object):
     def create_table(self, columns, rows, text, text_align='center'):
         """This method takes a list of strings and creates a table.
 
-            Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
-            ``columns * rows`` operations has to correspond to the number of elements of ``text`` list argument.
-
-            :Example:
-            >>> from mdutils.tools.tools import Table
-            >>> text_list = ['List of Items', 'Description', 'Result', 'Item 1', 'Description of item 1', '10', 'Item 2', 'Description of item 2', '0']
-            >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
-            >>> print(repr(table))
-            '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
-
-
-        .. csv-table:: **Table result on Markdown**
-           :header: "List of Items", "Description", "Results"
-
-           "Item 1", "Description of Item 1", 10
-           "Item 2", "Description of Item 2", 0
+            Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows.
+            The ``columns * rows`` operations has to correspond to the number of elements of ``text`` list argument.
 
         :param int columns: number of columns of the table.
         :param int rows: number of rows of the table.
@@ -291,6 +277,23 @@ class Table(object):
         :param str text_align: text align argument. Values available are: ``'right'``, ``'center'``, and ``'left'``.
         :return: a markdown table.
         :rtype: str
+
+
+        :Example:
+        >>> from mdutils.tools.tools import Table
+        >>> text_list = ['List of Items', 'Description', 'Result', 'Item 1', 'Description of item 1', '10', 'Item 2', 'Description of item 2', '0']
+        >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
+        >>> print(repr(table))
+        '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
+
+
+            .. csv-table:: **Table result on Markdown**
+               :header: "List of Items", "Description", "Results"
+
+               "Item 1", "Description of Item 1", 10
+               "Item 2", "Description of Item 2", 0
+
+
         """
         self.columns = columns
         self.rows = rows
