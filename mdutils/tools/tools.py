@@ -7,7 +7,6 @@
 # MIT License: (C) 2018 Dídac Coll
 
 
-# noinspection SpellCheckingInspection
 class Header(object):
     """Contain the main methods to define Headers on a Markdown file.
 
@@ -173,11 +172,19 @@ class Header(object):
                 return self.atx_level_5(title)
             elif level == 6:
                 return self.atx_level_6(title)
+            else:
+                raise ValueError("For 'atx' style, level's expected value: 1, 2, 3, 4, 5 or 6, but level = "
+                                 + str(level))
         elif style.lower() == 'setext':
             if level == 1:
                 return self.setext_level_1(title)
             elif level == 2:
                 return self.setext_level_2(title)
+            else:
+                raise ValueError("For 'setext' style, level's expected value: 1, 2, 3, 4, 5 or 6, but level = "
+                                 + str(level))
+        else:
+            raise ValueError("style's expected value: 'atx' or 'setext', but style = " + style.lower())
 
 
 class TableOfContents(object):
@@ -197,7 +204,7 @@ class TableOfContents(object):
         elements_to_string = ""
         for item in elements:
             if isinstance(item, list):
-                if item and depth >= 2:
+                if item and depth == 2:
                     if tab == '\t':
                         elements_to_string += self._loop_through(item, tab='\t\t')
                     else:
@@ -218,11 +225,13 @@ class TableOfContents(object):
         :return: return a string ready to be written to a Markdown file.
         :rtype: str
         """
-        table_of_contents = ""
-        table_of_contents += self._loop_through(array_of_title_contents, depth=depth)
-        table_of_contents += '\n'
-
-        return table_of_contents
+        if depth in (1, 2):
+            table_of_contents = ""
+            table_of_contents += self._loop_through(array_of_title_contents, depth=depth)
+            table_of_contents += '\n'
+            return table_of_contents
+        else:
+            raise ValueError("depth's expected value: 1 or 2, but depth = " + str(depth))
 
 
 class Table(object):
@@ -300,18 +309,26 @@ class Table(object):
         table = '\n'
         column_align_string = self._align(columns, text_align)
         index = 0
-        for r in range(rows + 1):
-            if r == 1:
-                table += column_align_string                    # Row align, Example: '| :---: | :---: | ... | \n'
+        if columns * rows == len(text):
+            if text_align.lower() in ('right', 'center', 'left'):
+                for r in range(rows + 1):
+                    if r == 1:
+                        table += column_align_string              # Row align, Example: '| :---: | :---: | ... | \n'
+                    else:
+                        table += '|'
+                        for c in range(columns):
+                            table += text[index] + '|'
+                            index += 1
+
+                    table += '\n'
+
+                return table
+
             else:
-                table += '|'
-                for c in range(columns):
-                    table += text[index] + '|'
-                    index += 1
-
-            table += '\n'
-
-        return table
+                raise ValueError("text_align's expected value: 'right', 'center' or 'left', but text_align = "
+                                 + text_align.lower())
+        else:
+            raise ValueError("columns * rows is not equal to text length")
 
 
 class TextUtils(object):
@@ -424,6 +441,8 @@ class TextUtils(object):
                     new_text_format = self.inline_code(new_text_format)
                 elif char == 'i':
                     new_text_format = self.italics(new_text_format)
+                else:
+                    raise ValueError("unexpected bold_italics_code value")
 
         return new_text_format
 
