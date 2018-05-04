@@ -78,14 +78,6 @@ class MdUtils:
 
     def new_header(self, level, title, style='atx'):
         """ Add a new header to the Markdown file.
-            **Examples:**
-            ``new_header(level=2, title='Header Title', style='atx')``
-            This will write a new level 2 Atx-style header on file_name.md:
-                * ``\\n'## Header Title\\n'``
-            ``new_header(level=2, title='Header Title', style='setext')``
-            This will write a new level 2 Setext-style header on file_name.md:
-               * ``\\n'Header Title\\n``
-                 ``-------------\\n'``
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
         :type level: int
@@ -93,6 +85,24 @@ class MdUtils:
         :type title: str
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
+
+
+        The example below consist in creating two types Headers examples:
+
+        :Example:
+        >>> mdfile = MdUtils("Header_Example")
+        >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx'))
+        '\\n## Header Level 2 Title\\n'
+        >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
+        '\\nHeader Title\\n-------------\\n'
+
+        The previous example generates a markdown file with the following content:
+
+        Header Level 2 Title
+        --------------------
+
+        Header Title
+        ------------
         """
 
         self._add_new_item_table_of_content(level, title)
@@ -200,7 +210,7 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
-        :return: return a string ``'\\n' + text + '\\n'``. Not necessary to take it, if only has to be written to
+        :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
         :rtype: str
         """
@@ -246,7 +256,8 @@ class MdUtils:
         self.file_data_text += text
 
     def create_marker(self, text_marker):
-        """This will add a marker to ``file_data_text`` and returns the marker result.
+        """This will add a marker to ``file_data_text`` and returns the marker result in order to be used whenever
+            you need.
 
             Markers allows to place them to the string data text and they can be replaced by a peace of text using
             ``place_text_using_marker`` method.
