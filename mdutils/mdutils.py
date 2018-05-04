@@ -95,14 +95,6 @@ class MdUtils:
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
-
-        The previous example generates a markdown file with the following content:
-
-        Header Level 2 Title
-        --------------------
-
-        Header Title
-        ------------
         """
 
         self._add_new_item_table_of_content(level, title)
