@@ -143,7 +143,7 @@ class MdUtils:
 
         return self.table_of_contents + marker_table_of_contents
 
-    def create_table(self, columns, rows, text, text_align='center', marker=''):
+    def new_table(self, columns, rows, text, text_align='center', marker=''):
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
@@ -167,7 +167,7 @@ class MdUtils:
         :Example:
         >>> from mdutils.tools.tools import Table
         >>> text_list = ['List of Items', 'Description', 'Result', 'Item 1', 'Description of item 1', '10', 'Item 2', 'Description of item 2', '0']
-        >>> table = Table().create_table(columns=3, rows=3, text=text_list, text_align='center')
+        >>> table = Table().new_table(columns=3, rows=3, text=text_list, text_align='center')
         >>> print(repr(table))
         '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
 
@@ -188,7 +188,7 @@ class MdUtils:
 
         return text_table
 
-    def add_new_paragraph(self, text='', bold_italics_code='', color='black', align=''):
+    def new_paragraph(self, text='', bold_italics_code='', color='black', align=''):
         """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.

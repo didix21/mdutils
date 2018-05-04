@@ -97,5 +97,5 @@ class TestMdUtils(TestCase):
         self.assertEqual(data_file_result, data_file_expected)
         os.remove('Test_file.md')
 
-    def test_create_table(self):
+    def test_new_table(self):
         pass
