@@ -43,8 +43,21 @@ mdFile.new_paragraph("mdutils has a method which can create new line breaks. Let
 mdFile.new_line("This is an example of line break which has been created with ``new_line`` method.")
 mdFile.new_paragraph("As ``new_paragraph``, ``new_line`` allows users to give format to text using "
                      "``bold_italics_code`` and ``color`` parameters:")
-mdFile.new_line("This is an inline code with color", bold_italics_code='c', color='blue')
+mdFile.new_line("This is an inline code which contains color, bold and italics text and it is centered",
+                bold_italics_code='cib', color='blue', align='center')
 
+mdFile.new_paragraph("''write'' method write text in markdown file with no format and without jump lines ('\\n'): ")
+mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write: "
+             "**bold**, _italics_, ``inline_code``...")
+
+mdFile.new_header(2, "Create a Table")
+mdFile.new_paragraph("The library implements a method called ``new_table`` that can create table using a list of "
+                     "strings. This method only needs, the number of rows and columns that your table must have.")
+list_of_strings = ["Items", "Descriptions", "Data"]
+for x in range(5):
+    list_of_strings.extend(["Item " + str(x), "Description Item " + str(x), str(x)])
+mdFile.new_line()
+mdFile.new_table(columns=3, rows=6, text=list_of_strings)
 
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)

@@ -9,6 +9,7 @@ Contents
 * [What you can do](#what-you-can-do)
 	* [Create Headers](#create-headers)
 	* [Paragraph and Text Format](#paragraph-and-text-format)
+	* [Create a Table](#create-a-table)
 
 # Overview
 
@@ -31,10 +32,24 @@ mdutils allows you to create paragraph, line breaks or simply writing text:
 
 Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
 
-_**<font color="purple"> This is an example of text in which has been added color, bold and italics text. </font>**_
+<font color="purple"> _**This is an example of text in which has been added color, bold and italics text.**_ </font>
 
 mdutils has a method which can create new line breaks. Lets see it.  
 This is an example of line break which has been created with ``new_line`` method.
 
 As ``new_paragraph``, ``new_line`` allows users to give format to text using ``bold_italics_code`` and ``color`` parameters:  
-<font color="blue">``This is an inline code with color``</font>
+<center><font color="blue"> _**``This is an inline code which contains color, bold and italics text and it is centered``**_ </font></center>
+
+''write'' method write text in markdown file with no format and without jump lines ('\n'): The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``...
+## Create a Table
+
+
+The library implements a method called ``new_table`` that can create table using a list of strings. This method only needs, the number of rows and columns that your table must have.  
+
+|Items|Descriptions|Data|
+| :---: | :---: | :---: |
+|Item 0|Description Item 0|0|
+|Item 1|Description Item 1|1|
+|Item 2|Description Item 2|2|
+|Item 3|Description Item 3|3|
+|Item 4|Description Item 4|4|
