@@ -429,13 +429,6 @@ class TextUtils(object):
             if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
                 if 'c' in bold_italics_code:
                     new_text_format = self.inline_code(new_text_format)
-                    bold_italics_code.replace('c', '')
-                if 'b' in bold_italics_code:
-                    new_text_format = self.bold(new_text_format)
-                    bold_italics_code.replace('b', '')
-                if 'i' in bold_italics_code:
-                    new_text_format = self.italics(new_text_format)
-                    bold_italics_code.replace('i', '')
             else:
                 raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
 
@@ -444,6 +437,15 @@ class TextUtils(object):
 
         if align == 'center':
             new_text_format = self.center_text(new_text_format)
+
+        if bold_italics_code:
+            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
+                if 'b' in bold_italics_code:
+                    new_text_format = self.bold(new_text_format)
+                if 'i' in bold_italics_code:
+                    new_text_format = self.italics(new_text_format)
+            else:
+                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
 
         return new_text_format
 

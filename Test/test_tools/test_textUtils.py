@@ -44,12 +44,12 @@ class TestTextUtils(TestCase):
         color = 'red'
         text = 'Text Format'
         text_color_center_c = TextUtils().inline_code(text)
-        text_color_center_cb = TextUtils().bold(text_color_center_c)
-        text_color_center_cbi = TextUtils().italics(text_color_center_cb)
-        text_color = TextUtils().text_color(text_color_center_cbi, color)
+        text_color = TextUtils().text_color(text_color_center_c, color)
         text_color_center = TextUtils().center_text(text_color)
+        text_color_center_cb = TextUtils().bold(text_color_center)
+        text_color_center_cbi = TextUtils().italics(text_color_center_cb)
 
-        expects = text_color_center
+        expects = text_color_center_cbi
         obtains = TextUtils().text_format(text, bold_italics_code='bci', color='red', align='center')
 
         self.assertEqual(obtains, expects)
