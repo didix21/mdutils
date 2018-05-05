@@ -99,3 +99,17 @@ class TestMdUtils(TestCase):
 
     def test_new_table(self):
         pass
+
+    def test_new_paragraph(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        created_value = md_file.new_paragraph("This is a new paragraph created using new_paragraph method.")
+        expected_value = '\n\nThis is a new paragraph created using new_paragraph method.'
+        self.assertEqual(created_value, expected_value)
+        os.remove('Test_file.md')
+
+    def test_new_line(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        created_value = md_file.new_line("This is a new line created using new_line method.")
+        expected_value = '  \nThis is a new line created using new_line method.'
+        self.assertEqual(created_value, expected_value)
+        os.remove('Test_file.md')
