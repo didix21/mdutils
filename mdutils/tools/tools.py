@@ -362,9 +362,9 @@ class TextUtils(object):
 
         :param text: a text string.
         :type text: str
-        :return: a string like this example: ``'`text`'``
+        :return: a string like this example: ``'``text``'``
         :rtype: str"""
-        return '`' + text + '`'
+        return '``' + text + '``'
 
     @staticmethod
     def center_text(text):
@@ -425,28 +425,25 @@ class TextUtils(object):
         '_**<center><font color="red"> Some Text Here </font></center>**_'
         """
         new_text_format = text
-
-        if bold_italics_code:                                   #
-            for i in range(len(bold_italics_code)):
-                char = bold_italics_code[i]
-                if char == 'c':
-                    new_text_format = self.inline_code(text)
+        if bold_italics_code:
+            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
+                if 'c' in bold_italics_code:
+                    new_text_format = self.inline_code(new_text_format)
+                    bold_italics_code.replace('c', '')
+                if 'b' in bold_italics_code:
+                    new_text_format = self.bold(new_text_format)
+                    bold_italics_code.replace('b', '')
+                if 'i' in bold_italics_code:
+                    new_text_format = self.italics(new_text_format)
+                    bold_italics_code.replace('i', '')
+            else:
+                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
 
         if color != 'black':
-            new_text_format = self.text_color(text, color)
+            new_text_format = self.text_color(new_text_format, color)
 
         if align == 'center':
             new_text_format = self.center_text(new_text_format)
-
-        if bold_italics_code:
-            for i in range(len(bold_italics_code)):
-                char = bold_italics_code[i]
-                if char == 'b':
-                    new_text_format = self.bold(new_text_format)
-                elif char == 'i':
-                    new_text_format = self.italics(new_text_format)
-                else:
-                    raise ValueError("unexpected bold_italics_code value")
 
         return new_text_format
 
