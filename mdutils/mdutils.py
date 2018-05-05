@@ -226,15 +226,15 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
-        :return: return a string ``'\\n' + text + '\\n'``. Not necessary to take it, if only has to be written to the
+        :return: return a string ``'\\n' + text``. Not necessary to take it, if only has to be written to the
                     file.
         :rtype: str
         """
 
         if bold_italics_code or color != 'black' or align:
-            self.file_data_text += self.textUtils.text_format(text, bold_italics_code, color, align) + '  \n'
+            self.file_data_text += '  \n' + self.textUtils.text_format(text, bold_italics_code, color, align)
         else:
-            self.file_data_text += text + '  \n'
+            self.file_data_text += '  \n' + text
 
         return self.file_data_text
 
