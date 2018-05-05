@@ -424,10 +424,16 @@ class TextUtils(object):
         >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red', align='center')
         '_**<center><font color="red"> Some Text Here </font></center>**_'
         """
+        new_text_format = text
+
+        if bold_italics_code:                                   #
+            for i in range(len(bold_italics_code)):
+                char = bold_italics_code[i]
+                if char == 'c':
+                    new_text_format = self.inline_code(text)
+
         if color != 'black':
             new_text_format = self.text_color(text, color)
-        else:
-            new_text_format = text
 
         if align == 'center':
             new_text_format = self.center_text(new_text_format)
@@ -437,8 +443,6 @@ class TextUtils(object):
                 char = bold_italics_code[i]
                 if char == 'b':
                     new_text_format = self.bold(new_text_format)
-                elif char == 'c':
-                    new_text_format = self.inline_code(new_text_format)
                 elif char == 'i':
                     new_text_format = self.italics(new_text_format)
                 else:
