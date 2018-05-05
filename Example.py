@@ -19,13 +19,32 @@ mdFile.new_paragraph("This is an example of markdown file created using mdutils 
                      "python code.")
 mdFile.new_paragraph()
 
+# Available Features
 mdFile.new_header(level=1, title="What you can do")
+
+# Headers
 mdFile.new_header(level=2, title="Create Headers")
 mdFile.new_paragraph("Using ``new_header`` method you can create headers of different levels depending on the style."
-                     "There are two available styles: 'atx' and 'setext'.")
+                     "There are two available styles: 'atx' and 'setext'. The first one, it has til 6 different header "
+                     "levels and levels 1 and 2 of this style are added automatically to the table of contents. The"
+                     "'setext' style only has two levels of headers and they are not added to the table of contents.")
+mdFile.new_paragraph()  # Add two jump lines
 
-mdFile.new_paragraph("The first one, it has til 6 different header"
-                     "levels and levels 1 and 2 of this style are added automatically to the table of contents. ")
+# Paragraph and Text format
+mdFile.new_header(level=2, title="Paragraph and Text Format")
+mdFile.new_paragraph("mdutils allows you to create paragraph, line breaks or simply writing text:")
+mdFile.new_paragraph("Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. "
+                     "This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method "
+                     "make your live easy because it can give format to the text. Lets see an example:")
+mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.",
+                     bold_italics_code='bi', color='purple')
+
+mdFile.new_paragraph("mdutils has a method which can create new line breaks. Lets see it.")
+mdFile.new_line("This is an example of line break which has been created with ``new_line`` method.")
+mdFile.new_paragraph("As ``new_paragraph``, ``new_line`` allows users to give format to text using "
+                     "``bold_italics_code`` and ``color`` parameters:")
+mdFile.new_line("This is an inline code with color", bold_italics_code='c', color='blue')
+
 
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)
