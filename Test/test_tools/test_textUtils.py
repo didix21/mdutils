@@ -23,7 +23,7 @@ class TestTextUtils(TestCase):
         self.assertEqual(TextUtils().italics('Italics Example'), expects)
 
     def test_inline_code(self):
-        expects = '`Inline Code Example`'
+        expects = '``Inline Code Example``'
         self.assertEqual(TextUtils().inline_code('Inline Code Example'), expects)
 
     def test_center_text(self):
@@ -43,13 +43,13 @@ class TestTextUtils(TestCase):
     def test_text_format(self):
         color = 'red'
         text = 'Text Format'
-        text_color = TextUtils().text_color(text, color)
+        text_color_center_c = TextUtils().inline_code(text)
+        text_color_center_cb = TextUtils().bold(text_color_center_c)
+        text_color_center_cbi = TextUtils().italics(text_color_center_cb)
+        text_color = TextUtils().text_color(text_color_center_cbi, color)
         text_color_center = TextUtils().center_text(text_color)
-        text_color_center_b = TextUtils().bold(text_color_center)
-        text_color_center_bc = TextUtils().inline_code(text_color_center_b)
-        text_color_center_bci = TextUtils().italics(text_color_center_bc)
 
-        expects = text_color_center_bci
+        expects = text_color_center
         obtains = TextUtils().text_format(text, bold_italics_code='bci', color='red', align='center')
 
         self.assertEqual(obtains, expects)
