@@ -238,14 +238,33 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text=''):
+    def write(self, text='', bold_italics_code='', color='', align='', marker=''):
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
         :type text: str
+        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
+                                    ``'c'``: ``inline_code``..
+        :type bold_italics_code: str
+        :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
+        :type color: str
+        :param align: Using this parameter you can align text.
+        :type align: str
+        :param marker: allows to replace a marker on some point of the file by the text.
+        :type marker: str
         """
 
-        self.file_data_text += text
+        if bold_italics_code or color or align:
+            new_text = self.textUtils.text_format(text, bold_italics_code, color, align)
+        else:
+            new_text = text
+
+        if marker:
+            self.file_data_text = self.place_text_using_marker(new_text, marker)
+        else:
+            self.file_data_text += new_text
+
+        return new_text
 
     def create_marker(self, text_marker):
         """This will add a marker to ``file_data_text`` and returns the marker result in order to be used whenever
