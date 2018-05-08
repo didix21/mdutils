@@ -112,3 +112,17 @@ class TestMdUtils(TestCase):
         expected_value = '  \nThis is a new line created using new_line method.'
         self.assertEqual(created_value, expected_value)
 
+    def test_insert_code(self):
+        md_file = MdUtils(file_name='Test_file')
+        code = ("mdFile.new_header(level=1, title='Atx Header 1')\n"
+                "mdFile.new_header(level=2, title='Atx Header 2')\n"
+                "mdFile.new_header(level=3, title='Atx Header 3')\n"
+                "mdFile.new_header(level=4, title='Atx Header 4')\n"
+                "mdFile.new_header(level=5, title='Atx Header 5')\n"
+                "mdFile.new_header(level=6, title='Atx Header 6')\n")
+        expects = '\n\n```\n' + code + '```'
+        self.assertEqual(md_file.insert_code(code), expects)
+        language = 'python'
+        expects = '\n\n```' + language + '\n' + code + '```'
+        self.assertEqual(md_file.insert_code(code, language), expects)
+
