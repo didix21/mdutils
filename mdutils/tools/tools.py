@@ -362,9 +362,9 @@ class TextUtils(object):
 
         :param text: a text string.
         :type text: str
-        :return: a string like this example: ``'`text`'``
+        :return: a string like this example: ``'``text``'``
         :rtype: str"""
-        return '`' + text + '`'
+        return '``' + text + '``'
 
     @staticmethod
     def center_text(text):
@@ -424,25 +424,28 @@ class TextUtils(object):
         >>> textUtils.text_format(text='Some Text Here', bold_italics_code='bi', color='red', align='center')
         '_**<center><font color="red"> Some Text Here </font></center>**_'
         """
+        new_text_format = text
+        if bold_italics_code:
+            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
+                if 'c' in bold_italics_code:
+                    new_text_format = self.inline_code(new_text_format)
+            else:
+                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
+
         if color != 'black':
-            new_text_format = self.text_color(text, color)
-        else:
-            new_text_format = text
+            new_text_format = self.text_color(new_text_format, color)
 
         if align == 'center':
             new_text_format = self.center_text(new_text_format)
 
         if bold_italics_code:
-            for i in range(len(bold_italics_code)):
-                char = bold_italics_code[i]
-                if char == 'b':
+            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
+                if 'b' in bold_italics_code:
                     new_text_format = self.bold(new_text_format)
-                elif char == 'c':
-                    new_text_format = self.inline_code(new_text_format)
-                elif char == 'i':
+                if 'i' in bold_italics_code:
                     new_text_format = self.italics(new_text_format)
-                else:
-                    raise ValueError("unexpected bold_italics_code value")
+            else:
+                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
 
         return new_text_format
 
