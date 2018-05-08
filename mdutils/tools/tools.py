@@ -354,7 +354,7 @@ class TextUtils(object):
         :type text: str
         :return: a string like this example: ``'_text_'``
         :rtype: str"""
-        return '_' + text + '_'
+        return '*' + text + '*'
 
     @staticmethod
     def inline_code(text):

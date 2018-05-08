@@ -238,7 +238,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text='', bold_italics_code='', color='', align='', marker=''):
+    def write(self, text='', bold_italics_code='', color='black', align='', marker=''):
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
