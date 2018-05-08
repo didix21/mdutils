@@ -28,6 +28,26 @@ mdFile.new_paragraph("Using ``new_header`` method you can create headers of diff
                      "There are two available styles: 'atx' and 'setext'. The first one, it has til 6 different header "
                      "levels and levels 1 and 2 of this style are added automatically to the table of contents. The"
                      "'setext' style only has two levels of headers and they are not added to the table of contents.")
+
+mdFile.insert_code("mdFile.new_header(level=1, title='Atx Header 1')\n"
+                   "mdFile.new_header(level=2, title='Atx Header 2')\n"
+                   "mdFile.new_header(level=3, title='Atx Header 3')\n"
+                   "mdFile.new_header(level=4, title='Atx Header 4')\n"
+                   "mdFile.new_header(level=5, title='Atx Header 5')\n"
+                   "mdFile.new_header(level=6, title='Atx Header 6')", language='python')
+
+mdFile.new_header(level=1, title='Atx Header 1', add_table_of_contents='n')
+mdFile.new_header(level=2, title='Atx Header 2', add_table_of_contents='n')
+mdFile.new_header(level=3, title='Atx Header 3')
+mdFile.new_header(level=4, title='Atx Header 4')
+mdFile.new_header(level=5, title='Atx Header 5')
+mdFile.new_header(level=6, title='Atx Header 6')
+
+mdFile.insert_code("mdFile.new_header(level=1, title='Setext Header 1', style='setext')\n"
+                   "mdFile.new_header(level=2, title='Setext Header 2', style='setext')", language='python')
+
+mdFile.new_header(level=1, title='Setext Header 1', style='setext', add_table_of_contents='n')
+mdFile.new_header(level=2, title='Setext Header 2', style='setext', add_table_of_contents='n')
 mdFile.new_paragraph()  # Add two jump lines
 
 # Paragraph and Text format

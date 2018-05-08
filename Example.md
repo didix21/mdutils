@@ -24,6 +24,38 @@ This is an example of markdown file created using mdutils python package. In thi
 
 Using ``new_header`` method you can create headers of different levels depending on the style.There are two available styles: 'atx' and 'setext'. The first one, it has til 6 different header levels and levels 1 and 2 of this style are added automatically to the table of contents. The'setext' style only has two levels of headers and they are not added to the table of contents.
 
+```python
+mdFile.new_header(level=1, title='Atx Header 1')
+mdFile.new_header(level=2, title='Atx Header 2')
+mdFile.new_header(level=3, title='Atx Header 3')
+mdFile.new_header(level=4, title='Atx Header 4')
+mdFile.new_header(level=5, title='Atx Header 5')
+mdFile.new_header(level=6, title='Atx Header 6')
+```
+# Atx Header 1
+
+## Atx Header 2
+
+### Atx Header 3
+
+#### Atx Header 4
+
+##### Atx Header 5
+
+###### Atx Header 6
+
+
+```python
+mdFile.new_header(level=1, title='Setext Header 1', style='setext')
+mdFile.new_header(level=2, title='Setext Header 2', style='setext')
+```
+Setext Header 1
+===============
+
+Setext Header 2
+---------------
+
+
 
 ## Paragraph and Text Format
 
