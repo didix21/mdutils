@@ -7,7 +7,9 @@ Contents
 
 * [Overview](#overview)
 * [What you can do](#what-you-can-do)
+	* [Create Markdown files](#create-markdown-files)
 	* [Create Headers](#create-headers)
+	* [Table of Contents](#table-of-contents)
 	* [Paragraph and Text Format](#paragraph-and-text-format)
 	* [Create a Table](#create-a-table)
 
@@ -19,6 +21,18 @@ This is an example of markdown file created using mdutils python package. In thi
 
 # What you can do
 
+## Create Markdown files
+
+
+It is the last command that has to be called.
+
+```python
+import Mdutils
+
+
+mdFile = MdUtils(file_name='Example',title='This is a Markdown File Example')
+mdFile.create_md_file()
+```
 ## Create Headers
 
 
@@ -57,10 +71,25 @@ Setext Header 2
 
 
 
+## Table of Contents
+
+
+If you have defined some headers of level 1 and 2, you can create a table of contents invokingthe following command (Normally, the method will be called at the end of the code before calling``create_md_file()``)
+
+```python
+mdFile.new_table_of_contents(table_title='Contents', depth=2)
+```
 ## Paragraph and Text Format
 
 
 mdutils allows you to create paragraph, line breaks or simply writing text:
+
+```python
+mdFile.new_paragraph(Using ``new_paragraph`` method you can add very easily a new paragraph 
+			on your markdown file. This example of paragraph has been added using this method. Moreover,
+			``new_paragraph`` method make your live easy because it can give format to the text. Lets 
+			see an example:)
+```
 
 Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
 
@@ -73,9 +102,9 @@ As ``new_paragraph``, ``new_line`` allows users to give format to text using ``b
 ***<center>``This is an inline code which contains bold and italics text and it is centered``</center>***
 
 ''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you cangive format to text: The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``... or use the following available parameters:  
-- ***``bold_italics_code``***
-- <font color="green"> color </font>
-- <center>center</center>
+- ***``bold_italics_code``*** <---------------------------------  ``mdFile.write('bold_italics_code', bold_italics_code='bic')``
+- <font color="green"> color </font> <---------------------------------  ``mdFile.write('color', color='green')``
+- <center>center</center> <-----------  ``mdFile.write('center', align='center')``
 
 ## Create a Table
 
