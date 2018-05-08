@@ -403,6 +403,22 @@ class TextUtils(object):
 
         return '[' + text + '](' + link + ')'
 
+    @staticmethod
+    def insert_code(code, language=''):
+        """This method allows to insert a peace of code.
+
+        :param code: code string.
+        :type code:str
+        :param language: code language: python. c++, c#...
+        :type language: str
+        :return: markdown style.
+        :rtype: str
+        """
+        if language == '':
+            return '```\n' + code + '```'
+        else:
+            return '```' + language + '\n' + code + '```'
+
     def text_format(self, text, bold_italics_code='', color='black', align=''):
         """Text format helps to write multiple text format such as bold, italics and color.
 

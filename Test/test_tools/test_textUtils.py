@@ -40,6 +40,19 @@ class TestTextUtils(TestCase):
         expects = '[' + text + '](' + link + ')'
         self.assertEqual(TextUtils().text_external_link(text, link), expects)
 
+    def test_insert_code(self):
+        code = ("mdFile.new_header(level=1, title='Atx Header 1')\n"
+                "mdFile.new_header(level=2, title='Atx Header 2')\n"
+                "mdFile.new_header(level=3, title='Atx Header 3')\n"
+                "mdFile.new_header(level=4, title='Atx Header 4')\n"
+                "mdFile.new_header(level=5, title='Atx Header 5')\n"
+                "mdFile.new_header(level=6, title='Atx Header 6')\n")
+        expects = '```\n' + code + '```'
+        self.assertEqual(TextUtils().insert_code(code), expects)
+        language = 'python'
+        expects = '```' + language + '\n' + code + '```'
+        self.assertEqual(TextUtils().insert_code(code, language), expects)
+
     def test_text_format(self):
         color = 'red'
         text = 'Text Format'

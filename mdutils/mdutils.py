@@ -266,6 +266,20 @@ class MdUtils:
 
         return new_text
 
+    def insert_code(self, code, language=''):
+        """This method allows to insert a peace of code on a markdown file.
+
+        :param code: code string.
+        :type code: str
+        :param language: code language: python. c++, c#...
+        :type language: str
+        :return:
+        :rtype: str
+        """
+        md_code = '\n\n' + self.textUtils.insert_code(code, language)
+        self.file_data_text += md_code
+        return md_code
+
     def create_marker(self, text_marker):
         """This will add a marker to ``file_data_text`` and returns the marker result in order to be used whenever
             you need.
