@@ -47,10 +47,10 @@ class TestTextUtils(TestCase):
                 "mdFile.new_header(level=4, title='Atx Header 4')\n"
                 "mdFile.new_header(level=5, title='Atx Header 5')\n"
                 "mdFile.new_header(level=6, title='Atx Header 6')\n")
-        expects = '```\n' + code + '```'
+        expects = '```\n' + code + '\n```'
         self.assertEqual(TextUtils().insert_code(code), expects)
         language = 'python'
-        expects = '```' + language + '\n' + code + '```'
+        expects = '```' + language + '\n' + code + '\n```'
         self.assertEqual(TextUtils().insert_code(code, language), expects)
 
     def test_text_format(self):

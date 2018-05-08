@@ -415,9 +415,9 @@ class TextUtils(object):
         :rtype: str
         """
         if language == '':
-            return '```\n' + code + '```'
+            return '```\n' + code + '\n```'
         else:
-            return '```' + language + '\n' + code + '```'
+            return '```' + language + '\n' + code + '\n```'
 
     def text_format(self, text, bold_italics_code='', color='black', align=''):
         """Text format helps to write multiple text format such as bold, italics and color.
