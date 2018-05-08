@@ -9,7 +9,7 @@ Table of Contents
     - [Writing and Reading Files](#writing-and-reading-files)
     - [Markdown](#markdown)    
 - [Installation](#installation)
-- [Thinks to do](#things-to-do)
+- [Things to do](#things-to-do)
 
 Overview
 =======
