@@ -19,7 +19,7 @@ class TestTextUtils(TestCase):
         self.assertEqual(TextUtils().bold('Bold Example'), expects)
 
     def test_italics(self):
-        expects = '_Italics Example_'
+        expects = '*Italics Example*'
         self.assertEqual(TextUtils().italics('Italics Example'), expects)
 
     def test_inline_code(self):
