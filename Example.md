@@ -40,7 +40,7 @@ This is an example of line break which has been created with ``new_line`` method
 As ``new_paragraph``, ``new_line`` allows users to give format to text using ``bold_italics_code`` and ``color`` parameters:  
 ***<center>``This is an inline code which contains bold and italics text and it is centered``</center>***
 
-''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you cangive format to text: The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``... oruse:  
+''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you cangive format to text: The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``... or use the following available parameters:  
 - ***``bold_italics_code``***
 - <font color="green"> color </font>
 - <center>center</center>

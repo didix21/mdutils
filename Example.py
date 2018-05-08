@@ -50,8 +50,8 @@ mdFile.new_paragraph("''write'' method write text in markdown file without jump 
                      "and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can"
                      "give format to text: ")
 mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write: "
-             "**bold**, _italics_, ``inline_code``... or")
-mdFile.write("use:  \n")
+             "**bold**, _italics_, ``inline_code``... or ")
+mdFile.write("use the following available parameters:  \n")
 mdFile.write('- ');  mdFile.write('bold_italics_code', bold_italics_code='bic'); mdFile.write('\n')
 mdFile.write('- ');  mdFile.write('color', color='green'); mdFile.write('\n')
 mdFile.write('- ');  mdFile.write('center', align='center'); mdFile.write('\n')
