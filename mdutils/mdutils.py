@@ -76,7 +76,7 @@ class MdUtils:
 
         return file_data
 
-    def new_header(self, level, title, style='atx'):
+    def new_header(self, level, title, style='atx', add_table_of_contents='y'):
         """ Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
@@ -85,19 +85,21 @@ class MdUtils:
         :type title: str
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
-
+        :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
+                                        table of contents, setting this parameter to 'n'.
+        :type add_table_of_contents: str
 
         The example below consist in creating two types Headers examples:
 
         :Example:
         >>> mdfile = MdUtils("Header_Example")
-        >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx'))
+        >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx', add_table_of_contents='y'))
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
         """
-
-        self._add_new_item_table_of_content(level, title)
+        if add_table_of_contents == 'y':
+            self._add_new_item_table_of_content(level, title)
         self.file_data_text += self.header.choose_header(level, title, style)
         return self.header.choose_header(level, title, style)
 
