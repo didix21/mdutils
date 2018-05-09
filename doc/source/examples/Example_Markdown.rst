@@ -1,3 +1,4 @@
+=====================
 Markdown File Example
 =====================
 
@@ -106,7 +107,10 @@ Paragraph and Text Format
 -------------------------
 
 mdutils allows you to create paragraph, line breaks or simply write
-text: ### New Paragraph Method
+text:
+
+New Paragraph Method
+~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
@@ -124,8 +128,22 @@ because it can give format to the text. Lets see an example:
 
     mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
 
-*** This is an example of text in which has been added color, bold and
-italics text. *** ### New Line Method
+.. raw:: html
+
+    <font color="purple"><b><i>
+
+    This is an example of text in which has been added color, bold and
+    italics text.
+
+.. raw:: html
+
+    </b></i></font>
+
+
+--------------
+
+New Line Method
+~~~~~~~~~~~~~~~
 
 ``mdutils`` has a method which can create new line breaks. Lets see it.
 
@@ -143,17 +161,16 @@ using ``bold_italics_code`` and ``color`` parameters:
 
     mdFile.new_line("This is an inline code which contains bold and italics text and it is centered", bold_italics_code='cib', align='center')
 
-\**\*
 
 .. raw:: html
 
-   <center>
+   <center><b><i><code>
 
-``This is an inline code which contains bold and italics text and it is centered``
+    This is an inline code which contains bold and italics text and it is centered
 
 .. raw:: html
 
-   </center>
+   </code></i></b></center>
 
 --------------
 
@@ -184,14 +201,33 @@ use the following available parameters:
     mdFile.write('  \n')
     mdFile.write('Align Text to center', align='center')
 
-***``bold_italics_code``***
- Text color
+.. raw:: html
+
+    <b><i><code>
+
+    bold_italics_code
+
+.. raw:: html
+
+    </code></i></b><br/>
+
+
+.. raw:: html
+
+    <font color="green">
+
+    Text color
+
+.. raw:: html
+
+    </font>
+
 
 .. raw:: html
 
    <center>
 
-Align Text to center
+    Align Text to center
 
 .. raw:: html
 
