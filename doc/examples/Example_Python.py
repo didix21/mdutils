@@ -9,7 +9,7 @@
 
 from mdutils.mdutils import MdUtils
 
-mdFile = MdUtils(file_name='Example', title='Markdown File Example')
+mdFile = MdUtils(file_name='Example_Markdown', title='Markdown File Example')
 
 mdFile.new_header(level=1, title='Overview')    # style is set 'atx' format by default.
 
@@ -32,7 +32,7 @@ mdFile.new_paragraph("It is the last command that has to be called.")
 mdFile.insert_code("import Mdutils\n"
                    "\n"
                    "\n"
-                   "mdFile = MdUtils(file_name=\'Example\',title=\'This is a Markdown File Example\')\n"
+                   "mdFile = MdUtils(file_name=\'Example_Markdown\',title=\'Markdown File Example\')\n"
                    "mdFile.create_md_file()", language='python')
 
 # ********************************************************************************************************************

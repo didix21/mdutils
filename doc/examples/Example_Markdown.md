@@ -32,7 +32,7 @@ It is the last command that has to be called.
 import Mdutils
 
 
-mdFile = MdUtils(file_name='Example',title='This is a Markdown File Example')
+mdFile = MdUtils(file_name='Example_Markdown',title='Markdown File Example')
 mdFile.create_md_file()
 ```
 ## Create Headers
