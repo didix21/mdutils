@@ -76,7 +76,7 @@ This is an example of markdown file created using mdutils python package. In thi
 
 **IMPORTANT:** some features available on this library have no effect with the GitHub Markdown CSS. Some of them are: coloring text, centering text...
 
-The Python file has been generated this file can be found [here](./doc/examples/Example_code.md).
+The Python file has been generated this file can be found [here](doc/source/examples/Example_Python.md).
 
 
 # This is what you can do
