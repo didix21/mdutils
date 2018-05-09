@@ -13,6 +13,8 @@ Welcome to mdutils's documentation!
    overview
    features
    installation
+   ./examples/Example_Markdown.rst
+   ./examples/Example_Python.rst
    modules
 
 
