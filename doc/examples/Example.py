@@ -9,14 +9,16 @@
 
 from mdutils.mdutils import MdUtils
 
-mdFile = MdUtils(file_name='Example', title='This is a Markdown File Example')
+mdFile = MdUtils(file_name='Example', title='Markdown File Example')
 
 mdFile.new_header(level=1, title='Overview')    # style is set 'atx' format by default.
 
-mdFile.new_paragraph("This is an example of markdown file created using mdutils python package. In this example you"
+mdFile.new_paragraph("This is an example of markdown file created using mdutils python package. In this example you "
                      "are going to see how to create a markdown file using this library. Moreover, you're "
-                     "finding the available features which makes easy create this type of files while you are running"
-                     "python code.")
+                     "finding the available features which makes easy the creation of this type of files while you "
+                     "are running Python code.")
+mdFile.new_paragraph("**IMPORTANT:** some features available on this library have no effect with the GitHub Markdown "
+                     "CSS. Some of them are: coloring text, centering text...")
 mdFile.new_paragraph()
 
 # Available Features
@@ -37,10 +39,11 @@ mdFile.insert_code("import Mdutils\n"
 # ***************************************************** Headers ******************************************************
 # ********************************************************************************************************************
 mdFile.new_header(level=2, title="Create Headers")
-mdFile.new_paragraph("Using ``new_header`` method you can create headers of different levels depending on the style."
-                     "There are two available styles: 'atx' and 'setext'. The first one, it has til 6 different header "
-                     "levels and levels 1 and 2 of this style are added automatically to the table of contents. The"
-                     "'setext' style only has two levels of headers and they are not added to the table of contents.")
+mdFile.new_paragraph("Using ``new_header`` method you can create headers of different levels depending on the style. "
+                     "There are two available styles: 'atx' and 'setext'. The first one has til 6 different header "
+                     "levels. Atx's levels 1 and 2 are automatically added to the table of contents unless the "
+                     "parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levels" 
+                     "of headers.")
 
 mdFile.insert_code("mdFile.new_header(level=1, title='Atx Header 1')\n"
                    "mdFile.new_header(level=2, title='Atx Header 2')\n"
@@ -67,8 +70,8 @@ mdFile.new_paragraph()  # Add two jump lines
 # ******************************************** Create a table of contents ********************************************
 # ********************************************************************************************************************
 mdFile.new_header(level=2, title='Table of Contents')
-mdFile.new_paragraph("If you have defined some headers of level 1 and 2, you can create a table of contents invoking"
-                     "the following command (Normally, the method will be called at the end of the code before calling"
+mdFile.new_paragraph("If you have defined some headers of level 1 and 2, you can create a table of contents invoking "
+                     "the following command (Normally, the method will be called at the end of the code before calling "
                      "``create_md_file()``)")
 mdFile.insert_code("mdFile.new_table_of_contents(table_title='Contents', depth=2)", language='python')
 
@@ -76,16 +79,16 @@ mdFile.insert_code("mdFile.new_table_of_contents(table_title='Contents', depth=2
 # ******************************************** Paragraph and Text format *********************************************
 # ********************************************************************************************************************
 mdFile.new_header(level=2, title="Paragraph and Text Format")
-mdFile.new_paragraph("mdutils allows you to create paragraph, line breaks or simply writing text:")
+mdFile.new_paragraph("mdutils allows you to create paragraph, line breaks or simply write text:")
 # *************************************************** Paragraph ******************************************************
 mdFile.new_header(3, "New Paragraph Method")
 
-mdFile.insert_code("mdFile.new_paragraph(\"Using ``new_paragraph`` method you can add very easily a new paragraph\" \n"
+mdFile.insert_code("mdFile.new_paragraph(\"Using ``new_paragraph`` method you can very easily add a new paragraph\" \n"
                    "\t\t\t\t\t \" This example of paragraph has been added using this method. Moreover,\"\n"
                    "\t\t\t\t\t \"``new_paragraph`` method make your live easy because it can give format\" \n"
                    "\t\t\t\t\t \" to the text. Lets see an example:\")", language='python')
 
-mdFile.new_paragraph("Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. "
+mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph on your markdown file. "
                      "This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method "
                      "make your live easy because it can give format to the text. Lets see an example:")
 
@@ -105,15 +108,15 @@ mdFile.new_paragraph("As ``new_paragraph``, ``new_line`` allows users to give fo
                      "``bold_italics_code`` and ``color`` parameters:")
 
 mdFile.insert_code("mdFile.new_line(\"This is an inline code which contains bold and italics text and it is centered\","
-                   "bold_italics_code='cib', align='center')", language='python')
+                   " bold_italics_code='cib', align='center')", language='python')
 
 mdFile.new_line("This is an inline code which contains bold and italics text and it is centered",
                 bold_italics_code='cib', align='center')
 # ************************************************** write **********************************************************
 mdFile.new_header(3, "Write Method")
-mdFile.new_paragraph("''write'' method write text in markdown file without jump lines ('\\n') and as ``new_paragraph`` "
-                     "and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can "
-                     "give format to text: ")
+mdFile.new_paragraph("``write`` method writes text in a markdown file without jump lines ``'\\n'`` and as "
+                     "``new_paragraph`` and ``new_line``, you can give format to text using the arguments "
+                     "``bold_italics_code``, ``color`` and ``align``: ")
 
 mdFile.insert_code("mdFile.write(\"The following text has been written with ``write`` method. You can use markdown "
                    "directives to write:\"\n"
@@ -144,8 +147,8 @@ mdFile.write('  \n')
 # ********************************************************************************************************************
 mdFile.new_header(2, "Create a Table")
 mdFile.new_paragraph("The library implements a method called ``new_table`` that can create tables using a list of "
-                     "strings. This method only needs, the number of rows and columns that your table must have. "
-                     "Optinally you can align the content of the table using the parameter ``text_align``")
+                     "strings. This method only needs: the number of rows and columns that your table must have. "
+                     "Optionally you can align the content of the table using the parameter ``text_align``")
 
 mdFile.insert_code("list_of_strings = [\"Items\", \"Descriptions\", \"Data\"]\n"
                    "for x in range(5):\n"

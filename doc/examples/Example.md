@@ -1,6 +1,6 @@
 
-This is a Markdown File Example
-===============================
+Markdown File Example
+=====================
 
 Contents
 ========
@@ -16,7 +16,9 @@ Contents
 # Overview
 
 
-This is an example of markdown file created using mdutils python package. In this example youare going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy create this type of files while you are runningpython code.
+This is an example of markdown file created using mdutils python package. In this example you are going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy the creation of this type of files while you are running Python code.
+
+**IMPORTANT:** some features available on this library have no effect with the GitHub Markdown CSS. Some of them are: coloring text, centering text...
 
 
 # This is what you can do
@@ -36,7 +38,7 @@ mdFile.create_md_file()
 ## Create Headers
 
 
-Using ``new_header`` method you can create headers of different levels depending on the style.There are two available styles: 'atx' and 'setext'. The first one, it has til 6 different header levels and levels 1 and 2 of this style are added automatically to the table of contents. The'setext' style only has two levels of headers and they are not added to the table of contents.
+Using ``new_header`` method you can create headers of different levels depending on the style. There are two available styles: 'atx' and 'setext'. The first one has til 6 different header levels. Atx's levels 1 and 2 are automatically added to the table of contents unless the parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levelsof headers.
 
 ```python
 mdFile.new_header(level=1, title='Atx Header 1')
@@ -74,7 +76,7 @@ Setext Header 2
 ## Table of Contents
 
 
-If you have defined some headers of level 1 and 2, you can create a table of contents invokingthe following command (Normally, the method will be called at the end of the code before calling``create_md_file()``)
+If you have defined some headers of level 1 and 2, you can create a table of contents invoking the following command (Normally, the method will be called at the end of the code before calling ``create_md_file()``)
 
 ```python
 mdFile.new_table_of_contents(table_title='Contents', depth=2)
@@ -82,18 +84,18 @@ mdFile.new_table_of_contents(table_title='Contents', depth=2)
 ## Paragraph and Text Format
 
 
-mdutils allows you to create paragraph, line breaks or simply writing text:
+mdutils allows you to create paragraph, line breaks or simply write text:
 ### New Paragraph Method
 
 
 ```python
-mdFile.new_paragraph("Using ``new_paragraph`` method you can add very easily a new paragraph" 
+mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph" 
 					 " This example of paragraph has been added using this method. Moreover,"
 					 "``new_paragraph`` method make your live easy because it can give format" 
 					 " to the text. Lets see an example:")
 ```
 
-Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
+Using ``new_paragraph`` method you can very easily add a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
 
 ```python
 mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
@@ -113,13 +115,13 @@ This is an example of line break which has been created with ``new_line`` method
 As ``new_paragraph``, ``new_line`` allows users to give format to text using ``bold_italics_code`` and ``color`` parameters:
 
 ```python
-mdFile.new_line("This is an inline code which contains bold and italics text and it is centered",bold_italics_code='cib', align='center')
+mdFile.new_line("This is an inline code which contains bold and italics text and it is centered", bold_italics_code='cib', align='center')
 ```  
 ***<center>``This is an inline code which contains bold and italics text and it is centered``</center>***
 ### Write Method
 
 
-''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can give format to text: 
+``write`` method writes text in a markdown file without jump lines ``'\n'`` and as ``new_paragraph`` and ``new_line``, you can give format to text using the arguments ``bold_italics_code``, ``color`` and ``align``: 
 
 ```python
 mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write:"
@@ -145,7 +147,7 @@ mdFile.write('Align Text to center', align='center')
 ## Create a Table
 
 
-The library implements a method called ``new_table`` that can create tables using a list of strings. This method only needs, the number of rows and columns that your table must have. Optinally you can align the content of the table using the parameter ``text_align``
+The library implements a method called ``new_table`` that can create tables using a list of strings. This method only needs: the number of rows and columns that your table must have. Optionally you can align the content of the table using the parameter ``text_align``
 
 ```python
 list_of_strings = ["Items", "Descriptions", "Data"]
