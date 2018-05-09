@@ -6,7 +6,7 @@ Contents
 ========
 
 * [Overview](#overview)
-* [What you can do](#what-you-can-do)
+* [This is what you can do](#this-is-what-you-can-do)
 	* [Create Markdown files](#create-markdown-files)
 	* [Create Headers](#create-headers)
 	* [Table of Contents](#table-of-contents)
@@ -19,7 +19,7 @@ Contents
 This is an example of markdown file created using mdutils python package. In this example youare going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy create this type of files while you are runningpython code.
 
 
-# What you can do
+# This is what you can do
 
 ## Create Markdown files
 
@@ -83,33 +83,76 @@ mdFile.new_table_of_contents(table_title='Contents', depth=2)
 
 
 mdutils allows you to create paragraph, line breaks or simply writing text:
+### New Paragraph Method
+
 
 ```python
-mdFile.new_paragraph(Using ``new_paragraph`` method you can add very easily a new paragraph 
-			on your markdown file. This example of paragraph has been added using this method. Moreover,
-			``new_paragraph`` method make your live easy because it can give format to the text. Lets 
-			see an example:)
+mdFile.new_paragraph("Using ``new_paragraph`` method you can add very easily a new paragraph" 
+					 " This example of paragraph has been added using this method. Moreover,"
+					 "``new_paragraph`` method make your live easy because it can give format" 
+					 " to the text. Lets see an example:")
 ```
 
 Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
 
-***<font color="purple"> This is an example of text in which has been added color, bold and italics text. </font>***
+```python
+mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
+```
 
-mdutils has a method which can create new line breaks. Lets see it.  
+***<font color="purple"> This is an example of text in which has been added color, bold and italics text. </font>***
+### New Line Method
+
+
+``mdutils`` has a method which can create new line breaks. Lets see it.
+
+```python
+mdFile.new_line("This is an example of line break which has been created with ``new_line`` method.")
+```  
 This is an example of line break which has been created with ``new_line`` method.
 
-As ``new_paragraph``, ``new_line`` allows users to give format to text using ``bold_italics_code`` and ``color`` parameters:  
+As ``new_paragraph``, ``new_line`` allows users to give format to text using ``bold_italics_code`` and ``color`` parameters:
+
+```python
+mdFile.new_line("This is an inline code which contains bold and italics text and it is centered",bold_italics_code='cib', align='center')
+```  
 ***<center>``This is an inline code which contains bold and italics text and it is centered``</center>***
+### Write Method
 
-''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you cangive format to text: The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``... or use the following available parameters:  
-- ***``bold_italics_code``*** <---------------------------------  ``mdFile.write('bold_italics_code', bold_italics_code='bic')``
-- <font color="green"> color </font> <---------------------------------  ``mdFile.write('color', color='green')``
-- <center>center</center> <-----------  ``mdFile.write('center', align='center')``
 
+''write'' method write text in markdown file without jump lines ('\n') and as ``new_paragraph`` and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can give format to text: 
+
+```python
+mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write:"
+			 "**bold**, _italics_, ``inline_code``... or ")
+mdFile.write("use the following available parameters:  \n")
+```
+
+The following text has been written with ``write`` method. You can use markdown directives to write: **bold**, _italics_, ``inline_code``... or use the following available parameters:  
+
+
+```python
+mdFile.write('  \n')
+mdFile.write('bold_italics_code', bold_italics_code='bic')
+mdFile.write('  \n')
+mdFile.write('Text color', color='green')
+mdFile.write('  \n')
+mdFile.write('Align Text to center', align='center')
+```  
+***``bold_italics_code``***  
+<font color="green"> Text color </font>  
+<center>Align Text to center</center>
 ## Create a Table
 
 
-The library implements a method called ``new_table`` that can create table using a list of strings. This method only needs, the number of rows and columns that your table must have.  
+The library implements a method called ``new_table`` that can create tables using a list of strings. This method only needs, the number of rows and columns that your table must have. Optinally you can align the content of the table using the parameter ``text_align``
+
+```python
+list_of_strings = ["Items", "Descriptions", "Data"]
+for x in range(5):
+	list_of_strings.extend(["Item " + str(x), "Description Item " + str(x), str(x)])
+mdFile.new_line()
+mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
+```  
 
 |Items|Descriptions|Data|
 | :---: | :---: | :---: |

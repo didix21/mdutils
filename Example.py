@@ -20,7 +20,7 @@ mdFile.new_paragraph("This is an example of markdown file created using mdutils 
 mdFile.new_paragraph()
 
 # Available Features
-mdFile.new_header(level=1, title="What you can do")
+mdFile.new_header(level=1, title="This is what you can do")
 
 # ********************************************************************************************************************
 # ***************************************************** Markdown *****************************************************
@@ -77,53 +77,86 @@ mdFile.insert_code("mdFile.new_table_of_contents(table_title='Contents', depth=2
 # ********************************************************************************************************************
 mdFile.new_header(level=2, title="Paragraph and Text Format")
 mdFile.new_paragraph("mdutils allows you to create paragraph, line breaks or simply writing text:")
+# *************************************************** Paragraph ******************************************************
+mdFile.new_header(3, "New Paragraph Method")
 
-mdFile.insert_code("mdFile.new_paragraph(Using ``new_paragraph`` method you can add very easily a new paragraph \n"
-                   "\t\t\ton your markdown file. This example of paragraph has been added using this method. Moreover,\n"
-                   "\t\t\t``new_paragraph`` method make your live easy because it can give format to the text. Lets \n"
-                   "\t\t\tsee an example:)", language='python')
+mdFile.insert_code("mdFile.new_paragraph(\"Using ``new_paragraph`` method you can add very easily a new paragraph\" \n"
+                   "\t\t\t\t\t \" This example of paragraph has been added using this method. Moreover,\"\n"
+                   "\t\t\t\t\t \"``new_paragraph`` method make your live easy because it can give format\" \n"
+                   "\t\t\t\t\t \" to the text. Lets see an example:\")", language='python')
 
 mdFile.new_paragraph("Using ``new_paragraph`` method you can add very easily a new paragraph on your markdown file. "
                      "This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method "
                      "make your live easy because it can give format to the text. Lets see an example:")
+
+mdFile.insert_code("mdFile.new_paragraph(\"This is an example of text in which has been added color, "
+                   "bold and italics text.\", bold_italics_code='bi', color='purple')", language='python')
+
 mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.",
                      bold_italics_code='bi', color='purple')
+# ************************************************* New Line *********************************************************
+mdFile.new_header(3, "New Line Method")
 
-mdFile.new_paragraph("mdutils has a method which can create new line breaks. Lets see it.")
+mdFile.new_paragraph("``mdutils`` has a method which can create new line breaks. Lets see it.")
+mdFile.insert_code("mdFile.new_line(\"This is an example of line break which has been created with ``new_line`` "
+                   "method.\")", language='python')
 mdFile.new_line("This is an example of line break which has been created with ``new_line`` method.")
 mdFile.new_paragraph("As ``new_paragraph``, ``new_line`` allows users to give format to text using "
                      "``bold_italics_code`` and ``color`` parameters:")
+
+mdFile.insert_code("mdFile.new_line(\"This is an inline code which contains bold and italics text and it is centered\","
+                   "bold_italics_code='cib', align='center')", language='python')
+
 mdFile.new_line("This is an inline code which contains bold and italics text and it is centered",
                 bold_italics_code='cib', align='center')
-
+# ************************************************** write **********************************************************
+mdFile.new_header(3, "Write Method")
 mdFile.new_paragraph("''write'' method write text in markdown file without jump lines ('\\n') and as ``new_paragraph`` "
-                     "and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can"
+                     "and ``new_line`` using the arguments ``bold_italics_code``, ``color`` and ``align`` you can "
                      "give format to text: ")
-mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write: "
+
+mdFile.insert_code("mdFile.write(\"The following text has been written with ``write`` method. You can use markdown "
+                   "directives to write:\"\n"
+                   "\t\t\t \"**bold**, _italics_, ``inline_code``... or \")\n"
+                   "mdFile.write(\"use the following available parameters:  \\n\")", language='python')
+
+mdFile.write("\n\nThe following text has been written with ``write`` method. You can use markdown directives to write: "
              "**bold**, _italics_, ``inline_code``... or ")
 mdFile.write("use the following available parameters:  \n")
 
-mdFile.write('- ')
-mdFile.write('bold_italics_code', bold_italics_code='bic')
-mdFile.write(" <---------------------------------  ``mdFile.write('bold_italics_code', bold_italics_code='bic')``")
-mdFile.write('\n')
-mdFile.write('- ')
-mdFile.write('color', color='green')
-mdFile.write(" <---------------------------------  ``mdFile.write('color', color='green')``")
-mdFile.write('\n')
-mdFile.write('- ')
-mdFile.write('center', align='center')
-mdFile.write(" <-----------  ``mdFile.write('center', align='center')``")
-mdFile.write('\n')
+mdFile.insert_code("mdFile.write('  \\n')\n"
+                   "mdFile.write('bold_italics_code', bold_italics_code='bic')\n"
+                   "mdFile.write('  \\n')\n"
+                   "mdFile.write('Text color', color='green')\n"
+                   "mdFile.write('  \\n')\n"
+                   "mdFile.write('Align Text to center', align='center')", language='python')
 
+mdFile.write('  \n')
+mdFile.write('bold_italics_code', bold_italics_code='bic')
+mdFile.write('  \n')
+mdFile.write('Text color', color='green')
+mdFile.write('  \n')
+mdFile.write('Align Text to center', align='center')
+
+# ********************************************************************************************************************
+# ************************************************* Create a Table ***************************************************
+# ********************************************************************************************************************
 mdFile.new_header(2, "Create a Table")
-mdFile.new_paragraph("The library implements a method called ``new_table`` that can create table using a list of "
-                     "strings. This method only needs, the number of rows and columns that your table must have.")
+mdFile.new_paragraph("The library implements a method called ``new_table`` that can create tables using a list of "
+                     "strings. This method only needs, the number of rows and columns that your table must have. "
+                     "Optinally you can align the content of the table using the parameter ``text_align``")
+
+mdFile.insert_code("list_of_strings = [\"Items\", \"Descriptions\", \"Data\"]\n"
+                   "for x in range(5):\n"
+                   "\tlist_of_strings.extend([\"Item \" + str(x), \"Description Item \" + str(x), str(x)])\n"
+                   "mdFile.new_line()\n"
+                   "mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')", language='python')
+
 list_of_strings = ["Items", "Descriptions", "Data"]
 for x in range(5):
     list_of_strings.extend(["Item " + str(x), "Description Item " + str(x), str(x)])
 mdFile.new_line()
-mdFile.new_table(columns=3, rows=6, text=list_of_strings)
+mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
 
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)
