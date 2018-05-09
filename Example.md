@@ -140,7 +140,8 @@ mdFile.write('Align Text to center', align='center')
 ```  
 ***``bold_italics_code``***  
 <font color="green"> Text color </font>  
-<center>Align Text to center</center>
+<center>Align Text to center</center>  
+
 ## Create a Table
 
 

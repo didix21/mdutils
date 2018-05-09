@@ -137,6 +137,7 @@ mdFile.write('  \n')
 mdFile.write('Text color', color='green')
 mdFile.write('  \n')
 mdFile.write('Align Text to center', align='center')
+mdFile.write('  \n')
 
 # ********************************************************************************************************************
 # ************************************************* Create a Table ***************************************************
