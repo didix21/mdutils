@@ -76,7 +76,7 @@ class MdUtils:
 
         return file_data
 
-    def new_header(self, level, title, style='atx'):
+    def new_header(self, level, title, style='atx', add_table_of_contents='y'):
         """ Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
@@ -85,19 +85,21 @@ class MdUtils:
         :type title: str
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
-
+        :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
+                                        table of contents, setting this parameter to 'n'.
+        :type add_table_of_contents: str
 
         The example below consist in creating two types Headers examples:
 
         :Example:
         >>> mdfile = MdUtils("Header_Example")
-        >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx'))
+        >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx', add_table_of_contents='y'))
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
         """
-
-        self._add_new_item_table_of_content(level, title)
+        if add_table_of_contents == 'y':
+            self._add_new_item_table_of_content(level, title)
         self.file_data_text += self.header.choose_header(level, title, style)
         return self.header.choose_header(level, title, style)
 
@@ -238,7 +240,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text='', bold_italics_code='', color='', align='', marker=''):
+    def write(self, text='', bold_italics_code='', color='black', align='', marker=''):
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
@@ -265,6 +267,20 @@ class MdUtils:
             self.file_data_text += new_text
 
         return new_text
+
+    def insert_code(self, code, language=''):
+        """This method allows to insert a peace of code on a markdown file.
+
+        :param code: code string.
+        :type code: str
+        :param language: code language: python. c++, c#...
+        :type language: str
+        :return:
+        :rtype: str
+        """
+        md_code = '\n\n' + self.textUtils.insert_code(code, language)
+        self.file_data_text += md_code
+        return md_code
 
     def create_marker(self, text_marker):
         """This will add a marker to ``file_data_text`` and returns the marker result in order to be used whenever
