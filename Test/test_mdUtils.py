@@ -120,9 +120,9 @@ class TestMdUtils(TestCase):
                 "mdFile.new_header(level=4, title='Atx Header 4')\n"
                 "mdFile.new_header(level=5, title='Atx Header 5')\n"
                 "mdFile.new_header(level=6, title='Atx Header 6')\n")
-        expects = '\n\n```\n' + code + '```'
+        expects = '\n\n```\n' + code + '\n```'
         self.assertEqual(md_file.insert_code(code), expects)
         language = 'python'
-        expects = '\n\n```' + language + '\n' + code + '```'
+        expects = '\n\n```' + language + '\n' + code + '\n```'
         self.assertEqual(md_file.insert_code(code, language), expects)
 
