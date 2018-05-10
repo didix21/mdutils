@@ -1,4 +1,4 @@
-# mdutils 
+# mdutils
 [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
 [![Documentation Status](https://readthedocs.org/projects/mdutils/badge/?version=latest)](http://mdutils.readthedocs.io/en/latest/?badge=latest)
 
@@ -15,8 +15,8 @@ Table of Contents
 Overview
 =======
 This Python package contains a set of basic tools that can help to create a markdown file while running a Python code.
-Thus, if you are executing a Python code and you save the result in a txt file, Why do not give it some format? So
-Using files such as Markdown can give a great look to those results. In this way, mdutils will make things easy on
+Thus, if you are executing a Python code and you save the result in a text file, Why not format it? So
+using files such as Markdown can give a great look to those results. In this way, mdutils will make things easy for
 creating Markdown files.
 
 - Project Homepage: https://github.com/didix21/mdutils
@@ -27,7 +27,7 @@ MIT License, (C) 2018 Dídac Coll <didaccoll_93@hotmail.com>
 
 Features
 ========
-There are some different features available on that version of mdutils:
+These are the following available features:
 
 Writing and Reading Files
 -------------------------
@@ -38,10 +38,12 @@ Writing and Reading Files
 Markdown
 --------
 - Implemented method to give format to the text: bold, italics, change color...
+- Align text.
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
-- Create a table of contents
+- Create a table of contents.
 
+**NOTE:** some available features will depen on which CSS you are using. For example, GitHub do not allows to give color to text.
 
 Installation
 ============
@@ -49,11 +51,6 @@ Use pip to install mdutils:
 ```bash
 $ pip install mdutils
 ```
-
-Things to do
-============
-- Add images: align, size...
-- Implement more tests.
 
 Markdown File Example
 =====================
@@ -84,7 +81,7 @@ The Python file has been generated this file can be found [here](doc/source/exam
 ## Create Markdown files
 
 
-It is the last command that has to be called.
+``create_md_file()`` is the last command that has to be called.
 
 ```python
 import Mdutils
@@ -147,9 +144,9 @@ mdutils allows you to create paragraph, line breaks or simply write text:
 
 
 ```python
-mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph" 
+mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph"
 					 " This example of paragraph has been added using this method. Moreover,"
-					 "``new_paragraph`` method make your live easy because it can give format" 
+					 "``new_paragraph`` method make your live easy because it can give format"
 					 " to the text. Lets see an example:")
 ```
 
@@ -179,7 +176,7 @@ mdFile.new_line("This is an inline code which contains bold and italics text and
 ### Write Method
 
 
-``write`` method writes text in a markdown file without jump lines ``'\n'`` and as ``new_paragraph`` and ``new_line``, you can give format to text using the arguments ``bold_italics_code``, ``color`` and ``align``: 
+``write`` method writes text in a markdown file without jump lines ``'\n'`` and as ``new_paragraph`` and ``new_line``, you can give format to text using the arguments ``bold_italics_code``, ``color`` and ``align``:
 
 ```python
 mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write:"
