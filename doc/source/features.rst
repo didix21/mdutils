@@ -15,8 +15,8 @@ Markdown
 - Implemented method to give format to the text: bold, italics, change color...
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
-- Create a table of contents
+- Create a table of contents.
 
-Things to do
-------------
-- Add images: align, size...
+.. note::
+
+    Some available features will depen on which CSS you are using. For example, GitHub do not allows to give color to text.
