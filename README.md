@@ -81,7 +81,7 @@ The Python file has been generated this file can be found [here](doc/source/exam
 ## Create Markdown files
 
 
-It is the last command that has to be called.
+``create_md_file()`` is the last command that has to be called.
 
 ```python
 import Mdutils

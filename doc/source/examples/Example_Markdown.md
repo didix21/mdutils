@@ -26,7 +26,7 @@ This is an example of markdown file created using mdutils python package. In thi
 ## Create Markdown files
 
 
-It is the last command that has to be called.
+``create_md_file()`` is the last command that has to be called.
 
 ```python
 import Mdutils

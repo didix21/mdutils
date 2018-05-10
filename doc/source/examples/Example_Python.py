@@ -28,7 +28,7 @@ mdFile.new_header(level=1, title="This is what you can do")
 # ***************************************************** Markdown *****************************************************
 # ********************************************************************************************************************
 mdFile.new_header(level=2, title="Create Markdown files")
-mdFile.new_paragraph("It is the last command that has to be called.")
+mdFile.new_paragraph("``create_md_file()`` is the last command that has to be called.")
 mdFile.insert_code("import Mdutils\n"
                    "\n"
                    "\n"

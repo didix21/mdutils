@@ -23,9 +23,11 @@ file using this library. Moreover, you’re finding the available features
 which makes easy the creation of this type of files while you are
 running Python code.
 
-**IMPORTANT:** some features available on this library have no effect
-with the GitHub Markdown CSS. Some of them are: coloring text, centering
-text…
+.. note::
+
+    Some features available on this library have no effect with the GitHub Markdown CSS. Some of them are:
+    coloring text, centering text…
+
 
 This is what you can do
 =======================
@@ -33,7 +35,7 @@ This is what you can do
 Create Markdown files
 ---------------------
 
-It is the last command that has to be called.
+
 
 .. code:: python
 
@@ -42,6 +44,10 @@ It is the last command that has to be called.
 
     mdFile = MdUtils(file_name='Example_Markdown',title='Markdown File Example')
     mdFile.create_md_file()
+
+.. note::
+
+    ``create_md_file()`` is the last command that has to be called.
 
 Create Headers
 --------------
