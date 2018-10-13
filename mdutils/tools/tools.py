@@ -519,14 +519,14 @@ class Link(object):
 
     def __is_inline_style(self):
 
-        if self.reference_name == "inline":
+        if self.style_type == "inline":
             return True
         else:
             return False
 
     def __is_reference_style(self):
 
-        if self.reference_name == "reference":
+        if self.style_type == "reference":
             return True
         else:
             return False
