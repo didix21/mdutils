@@ -532,6 +532,48 @@ class Link(object):
             return False
 
 
+class Reference(object):
+
+    def __init__(self, global_references, link, reference_name):
+        self.references = global_references
+        self.link = link
+        self.reference_name = reference_name
+
+    def add_new_reference_to_global_references(self):
+
+        if self.__is_reference_name_in_global_references():
+
+            self.reference_name = self.__find_a_new_reference_name()
+
+        self.references.update({self.reference_name: self.link})
+
+        return self.references
+
+    def __find_a_new_reference_name(self):
+
+        return self.__rename_reference_name()
+
+    def __get_num_of_matches(self):
+
+        keys = self.references.keys()
+        num_of_similar_matches = keys.count(self.reference_name)
+
+        return num_of_similar_matches
+
+    def __rename_reference_name(self):
+
+        new_name = self.reference_name + str(self.__get_num_of_matches() + 1)
+
+        return new_name
+
+    def __is_reference_name_in_global_references(self):
+
+        if self.reference_name in self.references.keys():
+            return True
+        else:
+            return False
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
