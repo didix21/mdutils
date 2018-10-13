@@ -468,17 +468,22 @@ class TextUtils(object):
 
 class Link(object):
 
-    def __init__(self, title, link, style):
+    def __init__(self, title, link, style, global_references):
 
         self.link = link
         self.title = title
         self.style = style
         self.style_type = ""
         self.reference_name = ""
+        self.global_references = global_references
 
     def new_link(self):
 
         return self.__get_inline_or_reference_link()
+
+    def get_global_references(self):
+
+        return self.global_references
 
     def __get_inline_or_reference_link(self):
 
@@ -495,6 +500,7 @@ class Link(object):
         elif self.__is_reference_style():
 
             self.__extract_reference_name_of_style()
+            self.__update_global_references()
 
             return self.__add_reference_link()
 
@@ -531,6 +537,12 @@ class Link(object):
         else:
             return False
 
+    def __update_global_references(self):
+
+        new_reference = Reference(self.global_references, self.link, self.reference_name)
+        self.global_references = new_reference.get_global_references_updated()
+        self.reference_name = new_reference.get_reference_name()
+
 
 class Reference(object):
 
@@ -539,30 +551,35 @@ class Reference(object):
         self.link = link
         self.reference_name = reference_name
 
-    def add_new_reference_to_global_references(self):
+    def get_global_references_updated(self):
 
-        if self.__is_reference_name_in_global_references():
-
-            self.reference_name = self.__find_a_new_reference_name()
-
-        self.references.update({self.reference_name: self.link})
+        self.__update_global_references()
 
         return self.references
 
+    def get_reference_name(self):
+
+        return self.reference_name
+
+    def __update_global_references(self):
+        if self.__is_reference_name_in_global_references():
+            self.reference_name = self.__find_a_new_reference_name()
+        self.references.update({self.reference_name: self.link})
+
     def __find_a_new_reference_name(self):
 
-        return self.__rename_reference_name()
+        return self.__get_a_new_reference_name()
 
     def __get_num_of_matches(self):
 
-        keys = self.references.keys()
+        keys = str(self.references.keys())
         num_of_similar_matches = keys.count(self.reference_name)
 
         return num_of_similar_matches
 
-    def __rename_reference_name(self):
+    def __get_a_new_reference_name(self):
 
-        new_name = self.reference_name + str(self.__get_num_of_matches() + 1)
+        new_name = str(self.reference_name) + str(self.__get_num_of_matches())
 
         return new_name
 
