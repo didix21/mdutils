@@ -466,6 +466,72 @@ class TextUtils(object):
         return new_text_format
 
 
+class Link(object):
+
+    def __init__(self, title, link, style):
+
+        self.link = link
+        self.title = title
+        self.style = style
+        self.style_type = ""
+        self.reference_name = ""
+
+    def new_link(self):
+
+        return self.__get_inline_or_reference_link()
+
+    def __get_inline_or_reference_link(self):
+
+        self.__analyze_style()
+
+        return self.__check_style_type()
+
+    def __check_style_type(self):
+
+        if self.__is_inline_style():
+
+            return self.__add_inline_link()
+
+        elif self.__is_reference_style():
+
+            self.__extract_reference_name_of_style()
+
+            return self.__add_reference_link()
+
+    def __analyze_style(self):
+
+        if self.style.lower().find("inline") > -1:
+            self.style_type = "inline"
+        elif self.style.lower().find("reference") > -1:
+            self.style_type = "reference"
+
+    def __extract_reference_name_of_style(self):
+
+        self.reference_name = self.style[len("reference") + 1:]
+
+    def __add_inline_link(self):
+
+        return '[' + self.title + '](' + self.link + ')'
+
+    def __add_reference_link(self):
+
+        return '[' + self.title + ']'
+
+    def __is_inline_style(self):
+
+        if self.reference_name == "inline":
+            return True
+        else:
+            return False
+
+    def __is_reference_style(self):
+
+        if self.reference_name == "reference":
+            return True
+        else:
+            return False
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
