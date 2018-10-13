@@ -507,7 +507,7 @@ class Link(object):
 
     def __extract_reference_name_of_style(self):
 
-        self.reference_name = self.style[len("reference") + 1:]
+        self.reference_name = self.style[len("reference-"):]
 
     def __add_inline_link(self):
 
@@ -515,7 +515,7 @@ class Link(object):
 
     def __add_reference_link(self):
 
-        return '[' + self.title + ']'
+        return '[' + self.title + '][' + self.reference_name + ']'
 
     def __is_inline_style(self):
 
