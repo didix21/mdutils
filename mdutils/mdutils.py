@@ -93,7 +93,7 @@ class MdUtils:
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
         :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
-                                        table of contents, setting this parameter to 'n'.
+            table of contents, setting this parameter to 'n'.
         :type add_table_of_contents: str
 
         The example below consist in creating two types Headers examples:
@@ -104,6 +104,7 @@ class MdUtils:
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
+
         """
         if add_table_of_contents == 'y':
             self._add_new_item_table_of_content(level, title)
@@ -117,6 +118,7 @@ class MdUtils:
         :type level: int
         :param item: items to add.
         :type item: list or str
+
         """
         if level == 1:
             self._table_titles.append(item)
@@ -140,6 +142,7 @@ class MdUtils:
         :type marker: str
         :return: a string with the data is returned.
         :rtype: str
+
         """
 
         if marker:
@@ -188,6 +191,7 @@ class MdUtils:
 
                "Item 1", "Description of Item 1", 10
                "Item 2", "Description of Item 2", 0
+
         """
 
         new_table = tools.Table()
@@ -214,6 +218,7 @@ class MdUtils:
         :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
         :rtype: str
+
         """
 
         if bold_italics_code or color != 'black' or align:
@@ -322,6 +327,27 @@ class MdUtils:
         return self.file_data_text.replace(marker, text)
 
     def new_link(self, title, link, style):
+        """Creates a new link in markdown format. Two styles can be chosen using style parameter:
+
+        The inline-style: if ``style="inline"`` then returns: ``'[ + title + '](' + link + ')'``.
+
+        The reference-style: if ``style="reference-link name"`` then returns: ``'[ + title + '][link name]'``, where
+        where link name could be any string which represents the reference name.
+
+            Note:
+                Reference name is saved in a global_reference dictionary where is written at the end of the
+                markdown file after calling ``create_markdown_file()`` method.
+
+        :param title: The title of the link.
+        :type title: str
+        :param link:
+        :type link: str
+        :param style: two options: ``inline`` or ``reference-a reference name``.
+        :type style: str
+        :return: returns the link in markdown format.
+        :rtype: str
+
+        """
 
         link_obj = tools.Link(title, link, style, self.global_references)
 
