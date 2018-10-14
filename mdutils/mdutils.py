@@ -55,6 +55,7 @@ class MdUtils:
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
+        self.global_references = {}
 
     def create_md_file(self):
         """It creates a new Markdown file.
@@ -62,6 +63,12 @@ class MdUtils:
         md_file = MarkDownFile(self.file_name)
         md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
         return md_file
+
+    def __global_references_to_markdown_format(self):
+
+        markdown_references = ""
+        for key in sorted(self.global_references.keys()):
+            markdown_references += '[' + key + '](' + self.global_references[key] + ')\n\n'
 
     def read_md_file(self, file_name):
         """Reads a Markdown file and save it to global class `file_data_text`.
@@ -86,7 +93,7 @@ class MdUtils:
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
         :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
-                                        table of contents, setting this parameter to 'n'.
+            table of contents, setting this parameter to 'n'.
         :type add_table_of_contents: str
 
         The example below consist in creating two types Headers examples:
@@ -97,6 +104,7 @@ class MdUtils:
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
+
         """
         if add_table_of_contents == 'y':
             self.__add_new_item_table_of_content(level, title)
@@ -110,6 +118,7 @@ class MdUtils:
         :type level: int
         :param item: items to add.
         :type item: list or str
+
         """
         if level == 1:
             self._table_titles.append(item)
@@ -133,6 +142,7 @@ class MdUtils:
         :type marker: str
         :return: a string with the data is returned.
         :rtype: str
+
         """
 
         if marker:
@@ -181,6 +191,7 @@ class MdUtils:
 
                "Item 1", "Description of Item 1", 10
                "Item 2", "Description of Item 2", 0
+
         """
 
         new_table = tools.Table()
@@ -207,6 +218,7 @@ class MdUtils:
         :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
         :rtype: str
+
         """
 
         if bold_italics_code or color != 'black' or align:
@@ -316,4 +328,35 @@ class MdUtils:
 
     def ___update_file_data(self, file_data):
         self.file_data_text += file_data
+
+    def new_link(self, title, link, style):
+        """Creates a new link in markdown format. Two styles can be chosen using style parameter:
+
+        The inline-style: if ``style="inline"`` then returns: ``'[ + title + '](' + link + ')'``.
+
+        The reference-style: if ``style="reference-link name"`` then returns: ``'[ + title + '][link name]'``, where
+        where link name could be any string which represents the reference name.
+
+            Note:
+                Reference name is saved in a global_reference dictionary where is written at the end of the
+                markdown file after calling ``create_markdown_file()`` method.
+
+        :param title: The title of the link.
+        :type title: str
+        :param link:
+        :type link: str
+        :param style: two options: ``inline`` or ``reference-a reference name``.
+        :type style: str
+        :return: returns the link in markdown format.
+        :rtype: str
+
+        """
+
+        link_obj = tools.Link(title, link, style, self.global_references)
+
+        self.___update_file_data(link_obj.new_link())
+
+        self.global_references = link_obj.get_global_references()
+
+        return self.file_data_text
 
