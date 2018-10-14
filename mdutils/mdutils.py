@@ -55,6 +55,7 @@ class MdUtils:
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
+        self.global_references = {}
 
     def create_md_file(self):
         """It creates a new Markdown file.
@@ -62,6 +63,12 @@ class MdUtils:
         md_file = MarkDownFile(self.file_name)
         md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
         return md_file
+
+    def __global_references_to_markdown_format(self):
+
+        markdown_references = ""
+        for key in sorted(self.global_references.keys()):
+            markdown_references += '[' + key + '](' + self.global_references[key] + ')\n\n'
 
     def read_md_file(self, file_name):
         """Reads a Markdown file and save it to global class `file_data_text`.
@@ -313,3 +320,13 @@ class MdUtils:
         :rtype: str
         """
         return self.file_data_text.replace(marker, text)
+
+    def new_link(self, title, link, style):
+
+        link_obj = tools.Link(title, link, style, self.global_references)
+
+        self.file_data_text += link_obj.new_link()
+
+        self.global_references = link_obj.get_global_references()
+
+        return self.file_data_text
