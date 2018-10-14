@@ -72,7 +72,7 @@ class MdUtils:
         :rtype: str
         """
         file_data = MarkDownFile().read_file(file_name)
-        self.file_data_text += file_data
+        self.___update_file_data(file_data)
 
         return file_data
 
@@ -99,11 +99,11 @@ class MdUtils:
         '\\nHeader Title\\n-------------\\n'
         """
         if add_table_of_contents == 'y':
-            self._add_new_item_table_of_content(level, title)
-        self.file_data_text += self.header.choose_header(level, title, style)
+            self.__add_new_item_table_of_content(level, title)
+        self.___update_file_data(self.header.choose_header(level, title, style))
         return self.header.choose_header(level, title, style)
 
-    def _add_new_item_table_of_content(self, level, item):
+    def __add_new_item_table_of_content(self, level, item):
         """Automatically add new atx headers to the table of contents.
 
         :param level: add til 2 levels. Only can take 1 or 2.
@@ -188,7 +188,7 @@ class MdUtils:
         if marker:
             self.file_data_text = self.place_text_using_marker(text_table, marker)
         else:
-            self.file_data_text += text_table
+            self.___update_file_data(text_table)
 
         return text_table
 
@@ -210,9 +210,9 @@ class MdUtils:
         """
 
         if bold_italics_code or color != 'black' or align:
-            self.file_data_text += '\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align)
+            self.___update_file_data('\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align))
         else:
-            self.file_data_text += '\n\n' + text
+            self.___update_file_data('\n\n' + text)
 
         return self.file_data_text
 
@@ -234,9 +234,9 @@ class MdUtils:
         """
 
         if bold_italics_code or color != 'black' or align:
-            self.file_data_text += '  \n' + self.textUtils.text_format(text, bold_italics_code, color, align)
+            self.___update_file_data('  \n' + self.textUtils.text_format(text, bold_italics_code, color, align))
         else:
-            self.file_data_text += '  \n' + text
+            self.___update_file_data('  \n' + text)
 
         return self.file_data_text
 
@@ -264,7 +264,7 @@ class MdUtils:
         if marker:
             self.file_data_text = self.place_text_using_marker(new_text, marker)
         else:
-            self.file_data_text += new_text
+            self.___update_file_data(new_text)
 
         return new_text
 
@@ -279,7 +279,7 @@ class MdUtils:
         :rtype: str
         """
         md_code = '\n\n' + self.textUtils.insert_code(code, language)
-        self.file_data_text += md_code
+        self.___update_file_data(md_code)
         return md_code
 
     def create_marker(self, text_marker):
@@ -296,7 +296,7 @@ class MdUtils:
         """
 
         new_marker = '##--[' + text_marker + ']--##'
-        self.file_data_text += new_marker
+        self.___update_file_data(new_marker)
         return new_marker
 
     def place_text_using_marker(self, text, marker):
@@ -313,3 +313,7 @@ class MdUtils:
         :rtype: str
         """
         return self.file_data_text.replace(marker, text)
+
+    def ___update_file_data(self, file_data):
+        self.file_data_text += file_data
+
