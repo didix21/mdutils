@@ -19,27 +19,27 @@ class TestTable(TestCase):
         md_file = MdUtils("file_name")
         table = Table()
         result_table = '\n|**Test**|**Descripción**|**Estado**|\n| :---: | :---: | :---: ' \
-                       '|\n|Test 1|Carga de configuración correcta|<font color="green"> OK </font>|\n' \
-                       '|Test 2|Lectura de Configuración|<font color="red"> NOK </font>|\n' \
-                       '|Test 3|Lectura de Soporte|<font color="green"> OK </font>|\n' \
-                       '|Test 4|Modificación de entradas y lectura de salidas de cantón|<font color="green"> ' \
-                       'OK </font>|'\
-                       '\n|Test 5|Lectura de estados de Pedal de Rearme y Aviso|<font color="green"> OK </font>|\n' \
-                       '|Test 6|Actualización de datos de unidades de vía|<font color="green"> OK </font>|\n' \
-                       '|Test 7|Fallos en carga de configuración - Campo IdApp Erróneo|<font color="green"> ' \
-                       'OK </font>|' \
+                       '|\n|Test 1|Carga de configuración correcta|<font color="green">OK</font>|\n' \
+                       '|Test 2|Lectura de Configuración|<font color="red">NOK</font>|\n' \
+                       '|Test 3|Lectura de Soporte|<font color="green">OK</font>|\n' \
+                       '|Test 4|Modificación de entradas y lectura de salidas de cantón|<font color="green">' \
+                       'OK</font>|'\
+                       '\n|Test 5|Lectura de estados de Pedal de Rearme y Aviso|<font color="green">OK</font>|\n' \
+                       '|Test 6|Actualización de datos de unidades de vía|<font color="green">OK</font>|\n' \
+                       '|Test 7|Fallos en carga de configuración - Campo IdApp Erróneo|<font color="green">' \
+                       'OK</font>|' \
                        '\n' \
                        '|Test 8|Fallos en carga de configuración - Campo VersTAbla Erróneo' \
-                       '|<font color="red"> NOK </font>|'\
-                       '\n|Test 9|Fallos en carga de configuración - Campo IdUc Erróneo|<font color="red"> ' \
-                       'NOK </font>|' \
+                       '|<font color="red">NOK</font>|'\
+                       '\n|Test 9|Fallos en carga de configuración - Campo IdUc Erróneo|<font color="red">' \
+                       'NOK</font>|' \
                        '\n|Test 10|Fallos en carga de configuración - Campo Addresses Erróneo' \
-                       '|<font color="red"> NOK </font>|\n' \
+                       '|<font color="red">NOK</font>|\n' \
                        '|Test 11|Fallos en carga de configuración - Campo NumTc Erróneo' \
-                       '|<font color="red"> NOK </font>|\n' \
+                       '|<font color="red">NOK</font>|\n' \
                        '|Test 12|Fallos en carga de configuración - Campo NumUv Erróneo' \
-                       '|<font color="red"> NOK </font>|\n' \
-                       '|Test 13|Fallos en carga de configuración - Campo CRC Erróneo|<font color="red"> NOK </font>|\n'
+                       '|<font color="red">NOK</font>|\n' \
+                       '|Test 13|Fallos en carga de configuración - Campo CRC Erróneo|<font color="red">NOK</font>|\n'
 
         text_array = ['**Test**', '**Descripción**', '**Estado**',
                       'Test 1', 'Carga de configuración correcta', md_file.textUtils.text_color("OK", 'green'),
