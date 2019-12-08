@@ -31,7 +31,7 @@ class TestTextUtils(TestCase):
         self.assertEqual(TextUtils().center_text('Text Center Alignment Example'), expects)
 
     def test_text_color(self):
-        expects = '<font color="red"> Red Color Example </font>'
+        expects = '<font color="red">Red Color Example</font>'
         self.assertEqual(TextUtils().text_color('Red Color Example', 'red'), expects)
 
     def test_text_external_link(self):

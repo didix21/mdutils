@@ -383,12 +383,12 @@ class TextUtils(object):
         :param text: it is the text that will be changed its color.
         :param color: it is the text color: ``'orange'``, ``'blue'``, ``'red'``...
                       or a **RGB** color such as ``'#ffce00'``.
-        :return: a string like this one: ``'<font color='color'> 'text' </font>'``
+        :return: a string like this one: ``'<font color='color'>'text'</font>'``
         :type text: str
         :type color: str
         :rtype: str
         """
-        return '<font color="' + color + '"> ' + text + ' </font>'
+        return '<font color="' + color + '">' + text + '</font>'
 
     @staticmethod
     def text_external_link(text, link=''):
