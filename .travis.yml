@@ -1,9 +1,15 @@
 language: python
 python:
   - "3.6"
-script: python -m unittest
 branches:
+  except:
   only:
-    - master
+  - /.*/
 
-
+install:
+  - pip install coverage
+  - pip install coveralls
+script:
+  - coverage run -m unittest discover
+after_success:
+  - coveralls
