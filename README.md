@@ -1,6 +1,7 @@
 # mdutils
 [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
 [![Documentation Status](https://readthedocs.org/projects/mdutils/badge/?version=latest)](http://mdutils.readthedocs.io/en/latest/?badge=latest)
+[![Coverage Status](https://coveralls.io/repos/github/didix21/mdutils/badge.svg?branch=add-coveralls)](https://coveralls.io/github/didix21/mdutils?branch=add-coveralls)
 
 Table of Contents
 =================
@@ -9,7 +10,6 @@ Table of Contents
     - [Writing and Reading Files](#writing-and-reading-files)
     - [Markdown](#markdown)    
 - [Installation](#installation)
-- [Things to do](#things-to-do)
 - [Markdown File Example](#markdown-file-example)
 
 Overview
