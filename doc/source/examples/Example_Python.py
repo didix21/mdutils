@@ -162,8 +162,95 @@ for x in range(5):
 mdFile.new_line()
 mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
 
+# ********************************************************************************************************************
+# ************************************************** Create Link *****************************************************
+# ********************************************************************************************************************
+
+mdFile.new_header(2, "Create Links")
+
+# *********************************************** Inline link ********************************************************
+
+mdFile.new_header(3, "Create inline links")
+
+link = "https://github.com/didix21/mdutils"
+text = "mdutils"
+
+mdFile.new_paragraph("``new_inline_link`` method allows you to create a link of the style: "
+                     "``[mdutils](https://github.com/didix21/mdutils)``.\n")
+mdFile.new_paragraph("Moreover, you can add bold, italics or code in the link text. Check the following examples: \n")
+
+mdFile.insert_code("mdFile.new_line('  - Inline link: '"
+                   " + mdFile.new_inline_link(link='{}', text='{}')) \n".format(link, text) +
+                   "mdFile.new_line('  - Bold inline link: ' "
+                   "+ mdFile.new_inline_link(link='{}', text='{}', bold_italics_code='b') \n".format(link, text) +
+                   "mdFile.new_line('  - Italics inline link: ' "
+                   "+ mdFile.new_inline_link(link='{}', text='{}', bold_italics_code='i') \n".format(link, text) +
+                   "mdFile.new_line('  - Code inline link: ' "
+                   "+ mdFile.new_inline_link(link='{}', text='{}', bold_italics_code='i') \n".format(link, text) +
+                   "mdFile.new_line('  - Bold italics code inline link: ' "
+                   "+ mdFile.new_inline_link(link='{}', text='{}', bold_italics_code='cbi') \n".format(link, text) +
+                   "mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link='{}') \n".format(link),
+                   language='python')
+
+mdFile.new_line('  - Inline link: ' + mdFile.new_inline_link(link=link, text=text))
+mdFile.new_line('  - Bold inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='b'))
+mdFile.new_line('  - Italics inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='i'))
+mdFile.new_line('  - Code inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='c'))
+mdFile.new_line('  - Bold italics code inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='cbi'))
+mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link=link))
+
+# *********************************************** Reference link ******************************************************
+mdFile.new_header(3, "Create reference links")
+
+mdFile.new_paragraph("``new_reference_link`` method allows you to create a link of the style: "
+                     "``[mdutils][1]``. All references will be added at the end of the markdown file automatically as: \n")
+
+mdFile.insert_code("[1]: https://github.com/didix21/mdutils", language="python")
+mdFile.new_paragraph("Lets check some examples: \n")
+
+link="https://github.com/didix21/mdutils"
+
+mdFile.insert_code("mdFile.write('\\n  - Reference link: ' "
+                   "+ mdFile.new_reference_link(link='{}', text='mdutils', reference_tag='1')\n".format(link) +
+                   "mdFile.write('\\n  - Reference link: ' "
+                   "+ mdFile.new_reference_link(link='{}', text='another reference', reference_tag='md')\n".format(link) +
+                   "mdFile.write('\\n  - Bold link: ' "
+                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='bold', bold_italics_code='b')\n".format(link) +
+                   "mdFile.write('\\n  - Italics link: ' "
+                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='italics', bold_italics_code='i')\n".format(link),
+                   language="python")
+
+mdFile.write("\n  - Reference link: " + mdFile.new_reference_link(link=link, text='mdutils', reference_tag='1'))
+mdFile.write("\n  - Reference link: " + mdFile.new_reference_link(link=link, text='another reference', reference_tag='md'))
+mdFile.write("\n  - Bold link: " + mdFile.new_reference_link(link=link, text='Bold reference', reference_tag='bold', bold_italics_code='b'))
+mdFile.write("\n  - Italics link: " + mdFile.new_reference_link(link=link, text='Italics reference', reference_tag='italics', bold_italics_code='i'))
+
+# ********************************************************************************************************************
+# ************************************************** Add Images ******************************************************
+# ********************************************************************************************************************
+
+mdFile.new_header(2, "Add images")
+
+# *********************************************** Inline Image *******************************************************
+
+image_text="snow trees"
+path="../images/photo-of-snow-covered-trees.jpg"
+
+mdFile.new_header(3, "Inline Images")
+
+mdFile.new_paragraph("You can add inline images using ``new_inline_image`` method. Method will return: "
+                     "``[image](../path/to/your/image.png)``. Check the following example: ")
+mdFile.insert_code("mdFile.new_line(mdFile.new_inline_image(text='{}', path='{}'))".format(image_text, path))
+mdFile.new_line(mdFile.new_inline_image(text=image_text, path=path))
+
+# *********************************************** Reference Image *****************************************************
+mdFile.new_header(3, "Reference Images")
+mdFile.new_paragraph("You can add inline images using ``new_reference_image`` method. Method will return: "
+                     "``[image][im]``. Check the following example: ")
+mdFile.insert_code("mdFile.new_line(mdFile.new_reference_image(text='{}', path='{}', reference_tag='im'))".format(image_text, path))
+mdFile.new_line(mdFile.new_reference_image(text=image_text, path=path, reference_tag='im'))
+
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)
-
 mdFile.create_md_file()
 
