@@ -1,3 +1,11 @@
+# Python
+#
+# This module implements tests for Header class.
+#
+# This file is part of mdutils. https://github.com/didix21/mdutils
+#
+# MIT License: (C) 2020 Dídac Coll
+
 from unittest import TestCase
 from mdutils.tools.Link import Reference
 

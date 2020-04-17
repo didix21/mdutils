@@ -1,1 +1,5 @@
-from mdutils.tools import Header, Image, Link, TableOfContents, Table, TextUtils
+from .Link import Inline
+from .TextUtils import TextUtils
+from .Html import Html, SizeBadFormat
+from mdutils.tools import Header, Table, TableOfContents, Link, Html
+

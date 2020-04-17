@@ -14,7 +14,8 @@ Contents
 	* [Create a Table](#create-a-table)
 	* [Create Links](#create-links)
 	* [Add images](#add-images)
-  
+	* [Add HTML images](#add-html-images)
+
 # Overview
 
 
@@ -103,7 +104,7 @@ Using ``new_paragraph`` method you can very easily add a new paragraph on your m
 mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
 ```
 
-***<font color="purple"> This is an example of text in which has been added color, bold and italics text. </font>***
+***<font color="purple">This is an example of text in which has been added color, bold and italics text.</font>***
 ### New Line Method
 
 
@@ -143,7 +144,7 @@ mdFile.write('  \n')
 mdFile.write('Align Text to center', align='center')
 ```  
 ***``bold_italics_code``***  
-<font color="green"> Text color </font>  
+<font color="green">Text color</font>  
 <center>Align Text to center</center>  
 
 ## Create a Table
@@ -225,22 +226,47 @@ mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://gi
 You can add inline images using ``new_inline_image`` method. Method will return: ``[image](../path/to/your/image.png)``. Check the following example: 
 
 ```
-mdFile.new_line(mdFile.new_inline_image(text='snow trees', path='../images/photo-of-snow-covered-trees.jpg'))
+mdFile.new_line(mdFile.new_inline_image(text='snow trees', path='./doc/source/images/photo-of-snow-covered-trees.jpg'))
 ```  
-![snow trees](../images/photo-of-snow-covered-trees.jpg)
+![snow trees](./doc/source/images/photo-of-snow-covered-trees.jpg)
 ### Reference Images
 
 
 You can add inline images using ``new_reference_image`` method. Method will return: ``[image][im]``. Check the following example: 
 
 ```
-mdFile.new_line(mdFile.new_reference_image(text='snow trees', path='../images/photo-of-snow-covered-trees.jpg', reference_tag='im'))
+mdFile.new_line(mdFile.new_reference_image(text='snow trees', path='./doc/source/images/photo-of-snow-covered-trees.jpg', reference_tag='im'))
 ```  
 ![snow trees][im]
+## Add HTML images
+
+### Change size to images
+
+
+With ``Html.image`` you can change size of images in a markdown file. For example you can dothe following for changing width: ``mdFile.new_paragraph(Html.image(path=path, size='200'))``
+
+<img src="./doc/source/images/sunset.jpg" width="200"/>
+
+Or maybe only want to change height: ``mdFile.new_paragraph(Html.image(path=path, size='x300'))``
+
+<img src="./doc/source/images/sunset.jpg" height="300"/>
+
+Or change width and height: ``mdFile.new_paragraph(Html.image(path=path, size='300x300'))``
+
+<img src="./doc/source/images/sunset.jpg" width="300" height="300"/>
+
+### Align images
+
+
+Html.image allow to align images, too. For example you can run: ``mdFile.new_paragraph(Html.image(path=path, size='300x200', align='center'))``
+
+<p align="center">
+    <img src="./doc/source/images/sunset.jpg" width="300" height="200"/>
+</p>
 
 
 [1]: https://github.com/didix21/mdutils
 [bold]: https://github.com/didix21/mdutils
-[im]: ../images/photo-of-snow-covered-trees.jpg
+[im]: ./doc/source/images/photo-of-snow-covered-trees.jpg
 [italics]: https://github.com/didix21/mdutils
 [md]: https://github.com/didix21/mdutils
