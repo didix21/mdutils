@@ -7,7 +7,7 @@
 # MIT License: (C) 2018 Dídac Coll
 
 from unittest import TestCase
-from mdutils.tools.tools import Header
+from mdutils.tools.Header import Header
 
 __author__ = 'didix21'
 __project__ = 'MdUtils'

@@ -7,7 +7,7 @@
 # MIT License: (C) 2018 Dídac Coll
 
 from unittest import TestCase
-from mdutils.tools.tools import Table
+from mdutils.tools.Table import Table
 from mdutils.mdutils import MdUtils
 
 __author__ = 'didix21'

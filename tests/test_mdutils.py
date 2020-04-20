@@ -8,12 +8,19 @@
 
 from unittest import TestCase
 from mdutils.mdutils import MdUtils
+from mdutils.fileutils import MarkDownFile
 
 from pathlib import Path
 import os
 
 
 class TestMdUtils(TestCase):
+
+    def tearDown(self):
+        md_file = Path('Test_file.md')
+        if md_file.is_file():
+            os.remove('Test_file.md')
+
     def test_create_md_file(self):
         md_file = MdUtils("Test_file")
         md_file.create_md_file()
@@ -37,7 +44,6 @@ class TestMdUtils(TestCase):
         md_file.create_md_file()
         file_result = md_file.read_md_file(file_name)
         self.assertEqual(file_result, '\n\n\n' + string_headers_expected)
-        os.remove(file_name + '.md')
 
     def test_new_table_of_contents(self):
         # Create headers level 1 and 2.
@@ -53,17 +59,17 @@ class TestMdUtils(TestCase):
         # Testing Depth 1
         table_of_contents_result = md_file.new_table_of_contents(table_title="Index", depth=1)
         table_of_content_expected = table_of_content_title \
-            + '\n* [' + list_headers[0] + '](#' + list_headers[0].lower().replace(' ', '-') \
-            + ')' \
-            + '\n* [' + list_headers[2] + '](#' + list_headers[2].lower().replace(' ', '-') \
-            + ')\n'
+                                    + '\n* [' + list_headers[0] + '](#' + list_headers[0].lower().replace(' ', '-') \
+                                    + ')' \
+                                    + '\n* [' + list_headers[2] + '](#' + list_headers[2].lower().replace(' ', '-') \
+                                    + ')\n'
         self.assertEqual(table_of_contents_result, table_of_content_expected)
         # Testing created file
         md_file.create_md_file()
         data_file_result = MdUtils('').read_md_file('Test_file')
         data_file_expected = MdUtils('').new_header(1, "Testing table of contents", 'setext') \
-            + md_file.table_of_contents \
-            + md_file.file_data_text
+                             + md_file.table_of_contents \
+                             + md_file.file_data_text
         self.assertEqual(data_file_result, data_file_expected)
         os.remove('Test_file.md')
 
@@ -92,13 +98,10 @@ class TestMdUtils(TestCase):
         md_file.create_md_file()
         data_file_result = MdUtils('').read_md_file('Test_file')
         data_file_expected = MdUtils('').new_header(1, "Testing table of contents", 'setext') \
-            + md_file.table_of_contents \
-            + md_file.file_data_text
+                             + md_file.table_of_contents \
+                             + md_file.file_data_text
         self.assertEqual(data_file_result, data_file_expected)
         os.remove('Test_file.md')
-
-    def test_new_table(self):
-        pass
 
     def test_new_paragraph(self):
         md_file = MdUtils(file_name="Test_file", title="")
@@ -126,3 +129,219 @@ class TestMdUtils(TestCase):
         expects = '\n\n```' + language + '\n' + code + '\n```'
         self.assertEqual(md_file.insert_code(code, language), expects)
 
+    def test_new_inline_link(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        created_value = md_file.new_inline_link(link="https://github.com/didix21/mdutils", text="mdutils library")
+        expected_value = '[mdutils library](https://github.com/didix21/mdutils)'
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_text_empty(self):
+        link = "https://github.com/didix21/mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        created_value = md_file.new_inline_link(link=link, text=link)
+        expected_value = '[https://github.com/didix21/mdutils](https://github.com/didix21/mdutils)'
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_empty(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        try:
+            md_file.new_inline_link()
+        except TypeError:
+            return
+
+        self.fail()
+
+    def test_new_inline_link_bold_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[**' + text + '**](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, bold_italics_code="b")
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_italic_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[*' + text + '*](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, bold_italics_code="i")
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_code_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[``' + text + '``](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, bold_italics_code="c")
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_bold_italic_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[***' + text + '***](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, bold_italics_code="bi")
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_bold_italic_code_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[***``' + text + '``***](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, bold_italics_code="bic")
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_inline_link_align_format(self):
+        link = "https://github.com/didix21/mdutils"
+        text = "mdutils"
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_value = '[<center>' + text + '</center>](' + link + ')'
+        created_value = md_file.new_inline_link(link, text, align='center')
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_reference_link(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        reference_tag = "mdutils library"
+        expected_value = '[' + text + '][' + reference_tag + ']'
+        created_value = md_file.new_reference_link(
+            link="https://github.com/didix21/mdutils",
+            text=text,
+            reference_tag=reference_tag)
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_reference_link_when_reference_tag_not_defined_and_bold_italics_code_is_defined(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        try:
+            md_file.new_reference_link(
+                link="https://github.com/didix21/mdutils",
+                text=text,
+                bold_italics_code='b')
+        except TypeError:
+            return
+
+        self.fail()
+
+    def test_new_reference_link_when_reference_tag_not_defined_and_align_is_defined(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        try:
+            md_file.new_reference_link(
+                link="https://github.com/didix21/mdutils",
+                text=text,
+                align='center')
+        except TypeError:
+            return
+
+        self.fail()
+
+    def test_new_bold_reference_link(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        reference_tag = "mdutils library"
+        expected_value = '[**' + text + '**][' + reference_tag + ']'
+        created_value = md_file.new_reference_link(
+            link="https://github.com/didix21/mdutils",
+            text=text,
+            reference_tag=reference_tag, bold_italics_code='b')
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_italics_reference_link(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        reference_tag = "mdutils library"
+        expected_value = '[*' + text + '*][' + reference_tag + ']'
+        created_value = md_file.new_reference_link(
+            link="https://github.com/didix21/mdutils",
+            text=text,
+            reference_tag=reference_tag, bold_italics_code='i')
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_new_code_reference_link(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        text = "mdutils library"
+        reference_tag = "mdutils library"
+        expected_value = '[``' + text + '``][' + reference_tag + ']'
+        created_value = md_file.new_reference_link(
+            link="https://github.com/didix21/mdutils",
+            text=text,
+            reference_tag=reference_tag, bold_italics_code='c')
+
+        self.assertEqual(expected_value, created_value)
+
+    def test_references_placed_in_markdown_file(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+
+        text = "mdutils library"
+        reference_tag = "mdutils library"
+        link = "https://github.com/didix21/mdutils"
+
+        expected_value = "\n\n\n[mdutils library0][mdutils library0]\n" \
+                         "[mdutils library1][mdutils library1]\n" \
+                         "[mdutils library2][mdutils library2]\n" \
+                         "[mdutils library3][mdutils library3]\n" \
+                         "\n\n\n" \
+                         "[mdutils library0]: https://github.com/didix21/mdutils0\n" \
+                         "[mdutils library1]: https://github.com/didix21/mdutils1\n" \
+                         "[mdutils library2]: https://github.com/didix21/mdutils2\n" \
+                         "[mdutils library3]: https://github.com/didix21/mdutils3\n"
+
+        for i in range(4):
+            md_file.write(md_file.new_reference_link(
+                link=link + str(i),
+                text=text + str(i),
+                reference_tag=reference_tag + str(i)))
+            md_file.write('\n')
+
+        md_file.create_md_file()
+
+        created_data = MarkDownFile.read_file('Test_file.md')
+
+        self.assertEqual(expected_value, created_data)
+
+    def test_new_inline_image(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_image = '![image](../image.png)'
+        created_image = md_file.new_inline_image(text='image', path='../image.png')
+
+        self.assertEqual(expected_image, created_image)
+
+    def test_new_reference_image(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_image = '![image][reference]'
+        created_image = md_file.new_reference_image(text='image', path='../image.png', reference_tag="reference")
+
+        self.assertEqual(expected_image, created_image)
+
+    def test_new_reference_image_markdown_data(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        expected_image_1 = '![image_1][reference]'
+        expected_image_2 = '![image_2]'
+        image_1 = md_file.new_reference_image(text='image_1', path='../image.png', reference_tag="reference")
+        image_2 = md_file.new_reference_image(text='image_2', path='../image_2.png')
+
+        expected_created_data = "\n\n\n"\
+                                "  \n{}".format(expected_image_1) + \
+                                "  \n{}".format(expected_image_2) + \
+                                "\n\n\n" \
+                                "[image_2]: ../image_2.png\n" \
+                                "[reference]: ../image.png\n"
+
+        md_file.new_line(image_1)
+        md_file.new_line(image_2)
+        md_file.create_md_file()
+
+        actual_created_data = MarkDownFile.read_file("Test_file")
+
+        self.assertEqual(expected_created_data, actual_created_data)

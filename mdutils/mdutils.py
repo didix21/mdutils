@@ -18,8 +18,13 @@ The available features are:
     * Insert Code.
     * Place text anywhere using a marker.
 """
+from mdutils.tools.Header import Header
+import mdutils.tools.Table
+import mdutils.tools.TableOfContents
+from mdutils.tools.TextUtils import TextUtils
 from mdutils.fileutils.fileutils import MarkDownFile
-from mdutils.tools import tools
+from mdutils.tools.Link import Inline, Reference
+from mdutils.tools.Image import Image
 
 
 class MdUtils:
@@ -49,18 +54,22 @@ class MdUtils:
         """
         self.file_name = file_name
         self.author = author
-        self.header = tools.Header()
-        self.textUtils = tools.TextUtils()
+        self.header = Header()
+        self.textUtils = TextUtils
         self.title = self.header.choose_header(level=1, title=title, style='setext')
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
+        self.reference = Reference()
+        self.image = Image(reference=self.reference)
 
     def create_md_file(self):
         """It creates a new Markdown file.
         :return: return an instance of a MarkDownFile."""
         md_file = MarkDownFile(self.file_name)
-        md_file.rewrite_all_file(data=self.title + self.table_of_contents + self.file_data_text)
+        md_file.rewrite_all_file(
+            data=self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+        )
         return md_file
 
     def read_md_file(self, file_name):
@@ -72,7 +81,7 @@ class MdUtils:
         :rtype: str
         """
         file_data = MarkDownFile().read_file(file_name)
-        self.file_data_text += file_data
+        self.___update_file_data(file_data)
 
         return file_data
 
@@ -86,30 +95,33 @@ class MdUtils:
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
         :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
-                                        table of contents, setting this parameter to 'n'.
+            table of contents, setting this parameter to 'n'.
         :type add_table_of_contents: str
 
         The example below consist in creating two types Headers examples:
 
         :Example:
+        >>> from mdutils import MdUtils
         >>> mdfile = MdUtils("Header_Example")
         >>> print(mdfile.new_header(level=2, title='Header Level 2 Title', style='atx', add_table_of_contents='y'))
         '\\n## Header Level 2 Title\\n'
         >>> print(mdfile.new_header(level=2, title='Header Title', style='setext'))
         '\\nHeader Title\\n-------------\\n'
+
         """
         if add_table_of_contents == 'y':
-            self._add_new_item_table_of_content(level, title)
-        self.file_data_text += self.header.choose_header(level, title, style)
+            self.__add_new_item_table_of_content(level, title)
+        self.___update_file_data(self.header.choose_header(level, title, style))
         return self.header.choose_header(level, title, style)
 
-    def _add_new_item_table_of_content(self, level, item):
+    def __add_new_item_table_of_content(self, level, item):
         """Automatically add new atx headers to the table of contents.
 
         :param level: add til 2 levels. Only can take 1 or 2.
         :type level: int
         :param item: items to add.
         :type item: list or str
+
         """
         if level == 1:
             self._table_titles.append(item)
@@ -133,17 +145,18 @@ class MdUtils:
         :type marker: str
         :return: a string with the data is returned.
         :rtype: str
+
         """
 
         if marker:
             self.table_of_contents = ""
             marker_table_of_contents = self.header.choose_header(level=1, title=table_title, style='setext')
-            marker_table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles, depth)
+            marker_table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(self._table_titles, depth)
             self.file_data_text = self.place_text_using_marker(marker_table_of_contents, marker)
         else:
             marker_table_of_contents = ""
             self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
-            self.table_of_contents += tools.TableOfContents().create_table_of_contents(self._table_titles, depth)
+            self.table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(self._table_titles, depth)
 
         return self.table_of_contents + marker_table_of_contents
 
@@ -169,9 +182,10 @@ class MdUtils:
         :rtype: str
 
         :Example:
-        >>> from mdutils.tools.tools import Table
+        >>> from mdutils import MdUtils
+        >>> md = MdUtils(file_name='Example')
         >>> text_list = ['List of Items', 'Description', 'Result', 'Item 1', 'Description of item 1', '10', 'Item 2', 'Description of item 2', '0']
-        >>> table = Table().new_table(columns=3, rows=3, text=text_list, text_align='center')
+        >>> table = md.new_table(columns=3, rows=3, text=text_list, text_align='center')
         >>> print(repr(table))
         '\\n|List of Items|Description|Result|\\n| :---: | :---: | :---: |\\n|Item 1|Description of item 1|10|\\n|Item 2|Description of item 2|0|\\n'
 
@@ -181,14 +195,15 @@ class MdUtils:
 
                "Item 1", "Description of Item 1", 10
                "Item 2", "Description of Item 2", 0
+
         """
 
-        new_table = tools.Table()
+        new_table = mdutils.tools.Table.Table()
         text_table = new_table.create_table(columns, rows, text, text_align)
         if marker:
             self.file_data_text = self.place_text_using_marker(text_table, marker)
         else:
-            self.file_data_text += text_table
+            self.___update_file_data(text_table)
 
         return text_table
 
@@ -197,8 +212,7 @@ class MdUtils:
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
         :type text: str
-        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
-                                    ``'c'``: ``inline_code``.
+        :param bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and ``'c'``: ``inline_code``.
         :type bold_italics_code: str
         :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
         :type color: str
@@ -207,12 +221,13 @@ class MdUtils:
         :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
         :rtype: str
+
         """
 
         if bold_italics_code or color != 'black' or align:
-            self.file_data_text += '\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align)
+            self.___update_file_data('\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align))
         else:
-            self.file_data_text += '\n\n' + text
+            self.___update_file_data('\n\n' + text)
 
         return self.file_data_text
 
@@ -221,12 +236,11 @@ class MdUtils:
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
         :type text: str
-        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
-                                    ``'c'``: ``inline_code``..
+        :param bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and ``'c'``: ``inline_code``...
         :type bold_italics_code: str
         :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
         :type color: str
-        :param align: Using this parameter you can align text.
+        :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
         :return: return a string ``'\\n' + text``. Not necessary to take it, if only has to be written to the
                     file.
@@ -234,9 +248,9 @@ class MdUtils:
         """
 
         if bold_italics_code or color != 'black' or align:
-            self.file_data_text += '  \n' + self.textUtils.text_format(text, bold_italics_code, color, align)
+            self.___update_file_data('  \n' + self.textUtils.text_format(text, bold_italics_code, color, align))
         else:
-            self.file_data_text += '  \n' + text
+            self.___update_file_data('  \n' + text)
 
         return self.file_data_text
 
@@ -245,12 +259,11 @@ class MdUtils:
 
         :param text: a text a string.
         :type text: str
-        :param bold_italics_code: bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and
-                                    ``'c'``: ``inline_code``..
+        :param bold_italics_code: using ``'b'``: **bold**, ``'i'``: *italics* and ``'c'``: ``inline_code``...
         :type bold_italics_code: str
         :param color: Can change text color. For example: ``'red'``, ``'green'``, ``'orange'``...
         :type color: str
-        :param align: Using this parameter you can align text.
+        :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
         :param marker: allows to replace a marker on some point of the file by the text.
         :type marker: str
@@ -264,7 +277,7 @@ class MdUtils:
         if marker:
             self.file_data_text = self.place_text_using_marker(new_text, marker)
         else:
-            self.file_data_text += new_text
+            self.___update_file_data(new_text)
 
         return new_text
 
@@ -273,13 +286,13 @@ class MdUtils:
 
         :param code: code string.
         :type code: str
-        :param language: code language: python. c++, c#...
+        :param language: code language: python, c++, c#...
         :type language: str
         :return:
         :rtype: str
         """
         md_code = '\n\n' + self.textUtils.insert_code(code, language)
-        self.file_data_text += md_code
+        self.___update_file_data(md_code)
         return md_code
 
     def create_marker(self, text_marker):
@@ -296,7 +309,7 @@ class MdUtils:
         """
 
         new_marker = '##--[' + text_marker + ']--##'
-        self.file_data_text += new_marker
+        self.___update_file_data(new_marker)
         return new_marker
 
     def place_text_using_marker(self, text, marker):
@@ -313,3 +326,123 @@ class MdUtils:
         :rtype: str
         """
         return self.file_data_text.replace(marker, text)
+
+    def ___update_file_data(self, file_data):
+        self.file_data_text += file_data
+
+    def new_inline_link(self, link, text=None, bold_italics_code='', align=''):
+        """Creates a inline link in markdown format.
+
+        :param link:
+        :type link: str
+        :param text: Text that is going to be displayed in the markdown file as a link.
+        :type text: str
+        :param bold_italics_code: Using ``'b'``: **bold**, ``'i'``: *italics* and ``'c'``: ``inline_code``...
+        :type bold_italics_code: str
+        :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
+        :type align: str
+        :return: returns the link in markdown format ``'[ + text + '](' + link + ')'``. If text is not defined returns
+        ``'<' + link + '>'``.
+        :rtype: str
+
+        .. note::
+            If param text is not provided, link param will be used instead.
+        """
+        if text is None:
+            n_text = link
+        else:
+            n_text = text
+
+        if bold_italics_code or align:
+            n_text = self.textUtils.text_format(text=n_text, bold_italics_code=bold_italics_code, align=align)
+
+        return Inline.new_link(link=link, text=n_text)
+
+    def new_reference_link(self, link, text, reference_tag=None, bold_italics_code='', align=''):
+        """Creates a reference link in markdown format. All references will be stored at the end of the markdown file.
+
+
+        :param link:
+        :type link: str
+        :param text: Text that is going to be displayed in the markdown file as a link.
+        :type text: str
+        :param reference_tag: Tag that will be placed at the end of the markdown file jointly with the link.
+        :type reference_tag: str
+        :param bold_italics_code: Using ``'b'``: **bold**, ``'i'``: *italics* and ``'c'``: ``inline_code``...
+        :type bold_italics_code: str
+        :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
+        :type align: str
+        :return: returns the link in markdown format ``'[ + text + '][' + link + ]'``.
+        :rtype: str
+
+        .. note::
+            If param reference_tag is not provided, text param will be used instead.
+
+        :Example:
+        >>> from mdutils import MdUtils
+        >>> md = MdUtils("Reference link")
+        >>> link = md.new_reference_link(link='https://github.com', text='github', reference_tag='git')
+        >>> md.new_link(link)
+        >>> print(repr(link))
+        '[github][git]'
+        >>> link = md.new_reference_link(link='https://github.com/didix21/mdutils', text='mdutils')
+        >>> md.new_link(link)
+        >>> print(repr(link))
+        '[mdutils]'
+        >>> link = md.new_line(md.new_reference_link(link='https://github.com/didix21/mdutils', text='mdutils', reference_tag='md', bold_italics_code='b'))
+        >>> md.new_link(link)
+        >>> print(repr(link))
+        '[**mdutils**][md]'
+        >>> md.create_md_file()
+
+        """
+
+        if reference_tag is None:
+            if bold_italics_code != '':
+                raise TypeError('For using bold_italics_code param, reference_tag must be defined')
+            if align != '':
+                raise TypeError('For using align, reference_tag must be defined')
+
+        n_text = text
+        if bold_italics_code or align:
+            n_text = self.textUtils.text_format(text=n_text, bold_italics_code=bold_italics_code, align=align)
+
+        return self.reference.new_link(link=link, text=n_text, reference_tag=reference_tag)
+
+    @staticmethod
+    def new_inline_image(text, path):
+        """Add inline images in a markdown file. For example ``[MyImage](../MyImage.jpg)``.
+
+        :param text: Text that is going to be displayed in the markdown file as a iamge.
+        :type text: str
+        :param path: Image's path / link.
+        :type path: str
+        :return: return the image in markdown format ``'![ + text + '](' + path + ')'``.
+        :rtype: str
+
+        """
+
+        return Image.new_inline_image(text=text, path=path)
+
+    def new_reference_image(self, text, path, reference_tag=None):
+        """Add reference images in a markdown file. For example ``[MyImage][my_image]``. All references will be stored
+        at the end of the markdown file.
+
+        :param text: Text that is going to be displayed in the markdown file as a image.
+        :type text: str
+        :param path: Image's path / link.
+        :type path: str
+        :param reference_tag: Tag that will be placed at the end of the markdown file jointly with the image's path.
+        :type reference_tag: str
+        :return: return the image in markdown format ``'![ + text + '][' + reference_tag + ']'``.
+        :rtype: str
+
+        .. note::
+            If param reference_tag is not provided, text param will be used instead.
+        """
+        return self.image.new_reference_image(text=text, path=path, reference_tag=reference_tag)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
