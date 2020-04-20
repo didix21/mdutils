@@ -1,7 +1,7 @@
 =======
 mdutils
 =======
-|build-status| |documentation-status|
+|build-status| |documentation-status| |coverage-status|
 
 .. contents:: Table of Contents
 
@@ -34,6 +34,9 @@ Markdown
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
 - Create a table of contents.
+- Add Links.
+- Add Markdown Images.
+- Add Html Images.
 
 .. note::
 
@@ -52,8 +55,12 @@ Use pip to install mdutils:
 
 .. |build-status| image:: https://travis-ci.org/didix21/mdutils.svg?branch=master
     :target: https://travis-ci.org/didix21/mdutils
-    :alt: Build status
+    :alt: Build Status
 
 .. |documentation-status| image:: https://readthedocs.org/projects/mdutils/badge/?version=latest
     :target: http://mdutils.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+
+.. |coverage-status| image:: https://coveralls.io/repos/github/didix21/mdutils/badge.svg?branch=add-coveralls
+    :target: https://coveralls.io/github/didix21/mdutils?branch=add-coveralls
+    :alt: Coverage Status

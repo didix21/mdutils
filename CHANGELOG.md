@@ -1,5 +1,32 @@
-# Change log
-All notable changes to this project will be documented in this file.
+# Changelog
+
+## [1.1.0](https://github.com/didix21/mdutils/tree/1.1.0) (2020-04-20)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.0.0...1.1.0)
+
+**Implemented enhancements:**
+
+- Inline links [\#12](https://github.com/didix21/mdutils/issues/12)
+- Create an Example [\#5](https://github.com/didix21/mdutils/issues/5)
+- Add support for markdown images [\#3](https://github.com/didix21/mdutils/issues/3)
+- Features to develop [\#2](https://github.com/didix21/mdutils/issues/2)
+
+**Closed issues:**
+
+- Add HTML for image support [\#28](https://github.com/didix21/mdutils/issues/28)
+- Exclude IDE related files from project [\#24](https://github.com/didix21/mdutils/issues/24)
+- how [\#23](https://github.com/didix21/mdutils/issues/23)
+- Write to specified path? [\#22](https://github.com/didix21/mdutils/issues/22)
+- TextUtils.text\_color adds an extra space [\#20](https://github.com/didix21/mdutils/issues/20)
+- Reference-Style Links [\#14](https://github.com/didix21/mdutils/issues/14)
+
+**Merged pull requests:**
+
+- Add HTML for image support \#28 [\#29](https://github.com/didix21/mdutils/pull/29) ([didix21](https://github.com/didix21))
+- Add support for markdown images \#3 [\#27](https://github.com/didix21/mdutils/pull/27) ([didix21](https://github.com/didix21))
+- Add coveralls [\#26](https://github.com/didix21/mdutils/pull/26) ([arnsangra](https://github.com/arnsangra))
+- Exclude ide files [\#25](https://github.com/didix21/mdutils/pull/25) ([arnsangra](https://github.com/arnsangra))
+- FIX \#20: Delete TextUtils.text\_color\(\) extra spaces [\#21](https://github.com/didix21/mdutils/pull/21) ([didix21](https://github.com/didix21))
 
 ## [v1.0.0](https://github.com/didix21/mdutils/tree/v1.0.0) (2018-05-10)
 
