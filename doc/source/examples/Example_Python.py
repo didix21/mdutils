@@ -8,6 +8,7 @@
 
 
 from mdutils.mdutils import MdUtils
+from mdutils import Html
 
 mdFile = MdUtils(file_name='Example_Markdown', title='Markdown File Example')
 
@@ -234,7 +235,7 @@ mdFile.new_header(2, "Add images")
 # *********************************************** Inline Image *******************************************************
 
 image_text="snow trees"
-path="../images/photo-of-snow-covered-trees.jpg"
+path="./doc/source/images/photo-of-snow-covered-trees.jpg"
 
 mdFile.new_header(3, "Inline Images")
 
@@ -249,6 +250,35 @@ mdFile.new_paragraph("You can add inline images using ``new_reference_image`` me
                      "``[image][im]``. Check the following example: ")
 mdFile.insert_code("mdFile.new_line(mdFile.new_reference_image(text='{}', path='{}', reference_tag='im'))".format(image_text, path))
 mdFile.new_line(mdFile.new_reference_image(text=image_text, path=path, reference_tag='im'))
+
+# ************************************************* Html Image *******************************************************
+
+mdFile.new_header(2, "Add HTML images")
+
+# *********************************************** Size Image *******************************************************
+
+mdFile.new_header(3, "Change size to images")
+path="./doc/source/images/sunset.jpg"
+
+mdFile.new_paragraph("With ``Html.image`` you can change size of images in a markdown file. For example you can do"
+                     "the following for changing width: ``mdFile.new_paragraph(Html.image(path=path, size='200'))``")
+
+mdFile.new_paragraph(Html.image(path=path, size='200'))
+
+mdFile.new_paragraph("Or maybe only want to change height: ``mdFile.new_paragraph(Html.image(path=path, size='x300'))``")
+mdFile.new_paragraph(Html.image(path=path, size='x300'))
+
+mdFile.new_paragraph("Or change width and height: ``mdFile.new_paragraph(Html.image(path=path, size='300x300'))``")
+mdFile.new_paragraph(Html.image(path=path, size='300x300'))
+mdFile.write('\n')
+
+# *********************************************** Align Image *******************************************************
+
+mdFile.new_header(3, "Align images")
+mdFile.new_paragraph("Html.image allow to align images, too. For example you can run: "
+                     "``mdFile.new_paragraph(Html.image(path=path, size='300x200', align='center'))``")
+
+mdFile.new_paragraph(Html.image(path=path, size='300x200', align='center'))
 
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)

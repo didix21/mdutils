@@ -4,7 +4,7 @@
 #
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
-# MIT License: (C) 2018 Dídac Coll
+# MIT License: (C) 2020 Dídac Coll
 
 from unittest import TestCase
 from mdutils.tools.Link import Inline

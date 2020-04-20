@@ -18,13 +18,13 @@ The available features are:
     * Insert Code.
     * Place text anywhere using a marker.
 """
-from mdutils.tools.Header import Header
 import mdutils.tools.Table
 import mdutils.tools.TableOfContents
-from mdutils.tools.TextUtils import TextUtils
 from mdutils.fileutils.fileutils import MarkDownFile
-from mdutils.tools.Link import Inline, Reference
+from mdutils.tools.Header import Header
 from mdutils.tools.Image import Image
+from mdutils.tools.Link import Inline, Reference
+from mdutils.tools.TextUtils import TextUtils
 
 
 class MdUtils:
@@ -86,7 +86,7 @@ class MdUtils:
         return file_data
 
     def new_header(self, level, title, style='atx', add_table_of_contents='y'):
-        """ Add a new header to the Markdown file.
+        """Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
         :type level: int
@@ -94,11 +94,9 @@ class MdUtils:
         :type title: str
         :param style: Header style, can be ``'atx'`` or ``'setext'``. By default ``'atx'`` style is chosen.
         :type style: str
-        :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the
-            table of contents, setting this parameter to 'n'.
+        :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the \
+        table of contents, setting this parameter to 'n'.
         :type add_table_of_contents: str
-
-        The example below consist in creating two types Headers examples:
 
         :Example:
         >>> from mdutils import MdUtils
@@ -151,12 +149,14 @@ class MdUtils:
         if marker:
             self.table_of_contents = ""
             marker_table_of_contents = self.header.choose_header(level=1, title=table_title, style='setext')
-            marker_table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(self._table_titles, depth)
+            marker_table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(
+                self._table_titles, depth)
             self.file_data_text = self.place_text_using_marker(marker_table_of_contents, marker)
         else:
             marker_table_of_contents = ""
             self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
-            self.table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(self._table_titles, depth)
+            self.table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(
+                self._table_titles, depth)
 
         return self.table_of_contents + marker_table_of_contents
 
@@ -341,12 +341,13 @@ class MdUtils:
         :type bold_italics_code: str
         :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
-        :return: returns the link in markdown format ``'[ + text + '](' + link + ')'``. If text is not defined returns
+        :return: returns the link in markdown format ``'[ + text + '](' + link + ')'``. If text is not defined returns \
         ``'<' + link + '>'``.
         :rtype: str
 
         .. note::
             If param text is not provided, link param will be used instead.
+
         """
         if text is None:
             n_text = link
@@ -445,4 +446,5 @@ class MdUtils:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -42,6 +42,9 @@ Markdown
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
 - Create a table of contents.
+- Add Links.
+- Add Markdown Images.
+- Add Html Images.
 
 **NOTE:** some available features will depen on which CSS you are using. For example, GitHub do not allows to give color to text.
 
@@ -65,6 +68,9 @@ Contents
 	* [Table of Contents](#table-of-contents)
 	* [Paragraph and Text Format](#paragraph-and-text-format)
 	* [Create a Table](#create-a-table)
+	* [Create Links](#create-links)
+	* [Add images](#add-images)
+	* [Add HTML images](#add-html-images)
 
 # Overview
 
@@ -72,8 +78,6 @@ Contents
 This is an example of markdown file created using mdutils python package. In this example you are going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy the creation of this type of files while you are running Python code.
 
 **IMPORTANT:** some features available on this library have no effect with the GitHub Markdown CSS. Some of them are: coloring text, centering text...
-
-The Python file has been generated this file can be found [here](doc/source/examples/Example_Python.md).
 
 
 # This is what you can do
@@ -87,7 +91,7 @@ The Python file has been generated this file can be found [here](doc/source/exam
 import Mdutils
 
 
-mdFile = MdUtils(file_name='Example',title='This is a Markdown File Example')
+mdFile = MdUtils(file_name='Example_Markdown',title='Markdown File Example')
 mdFile.create_md_file()
 ```
 ## Create Headers
@@ -144,9 +148,9 @@ mdutils allows you to create paragraph, line breaks or simply write text:
 
 
 ```python
-mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph"
+mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a new paragraph" 
 					 " This example of paragraph has been added using this method. Moreover,"
-					 "``new_paragraph`` method make your live easy because it can give format"
+					 "``new_paragraph`` method make your live easy because it can give format" 
 					 " to the text. Lets see an example:")
 ```
 
@@ -156,7 +160,7 @@ Using ``new_paragraph`` method you can very easily add a new paragraph on your m
 mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
 ```
 
-***<font color="purple"> This is an example of text in which has been added color, bold and italics text. </font>***
+***<font color="purple">This is an example of text in which has been added color, bold and italics text.</font>***
 ### New Line Method
 
 
@@ -176,7 +180,7 @@ mdFile.new_line("This is an inline code which contains bold and italics text and
 ### Write Method
 
 
-``write`` method writes text in a markdown file without jump lines ``'\n'`` and as ``new_paragraph`` and ``new_line``, you can give format to text using the arguments ``bold_italics_code``, ``color`` and ``align``:
+``write`` method writes text in a markdown file without jump lines ``'\n'`` and as ``new_paragraph`` and ``new_line``, you can give format to text using the arguments ``bold_italics_code``, ``color`` and ``align``: 
 
 ```python
 mdFile.write("The following text has been written with ``write`` method. You can use markdown directives to write:"
@@ -196,7 +200,7 @@ mdFile.write('  \n')
 mdFile.write('Align Text to center', align='center')
 ```  
 ***``bold_italics_code``***  
-<font color="green"> Text color </font>  
+<font color="green">Text color</font>  
 <center>Align Text to center</center>  
 
 ## Create a Table
@@ -219,3 +223,106 @@ mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
 |Item 2|Description Item 2|2|
 |Item 3|Description Item 3|3|
 |Item 4|Description Item 4|4|
+
+## Create Links
+
+### Create inline links
+
+
+``new_inline_link`` method allows you to create a link of the style: ``[mdutils](https://github.com/didix21/mdutils)``.
+
+
+Moreover, you can add bold, italics or code in the link text. Check the following examples: 
+
+
+```python
+mdFile.new_line('  - Inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils')) 
+mdFile.new_line('  - Bold inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='b') 
+mdFile.new_line('  - Italics inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i') 
+mdFile.new_line('  - Code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i') 
+mdFile.new_line('  - Bold italics code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='cbi') 
+mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils') 
+
+```  
+  - Inline link: [mdutils](https://github.com/didix21/mdutils)  
+  - Bold inline link: [**mdutils**](https://github.com/didix21/mdutils)  
+  - Italics inline link: [*mdutils*](https://github.com/didix21/mdutils)  
+  - Code inline link: [``mdutils``](https://github.com/didix21/mdutils)  
+  - Bold italics code inline link: [***``mdutils``***](https://github.com/didix21/mdutils)  
+  - Another inline link: [https://github.com/didix21/mdutils](https://github.com/didix21/mdutils)
+### Create reference links
+
+
+``new_reference_link`` method allows you to create a link of the style: ``[mdutils][1]``. All references will be added at the end of the markdown file automatically as: 
+
+
+```python
+[1]: https://github.com/didix21/mdutils
+```
+
+Lets check some examples: 
+
+
+```python
+mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='mdutils', reference_tag='1')
+mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='another reference', reference_tag='md')
+mdFile.write('\n  - Bold link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='bold', bold_italics_code='b')
+mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='italics', bold_italics_code='i')
+
+```
+  - Reference link: [mdutils][1]
+  - Reference link: [another reference][md]
+  - Bold link: [**Bold reference**][bold]
+  - Italics link: [*Italics reference*][italics]
+## Add images
+
+### Inline Images
+
+
+You can add inline images using ``new_inline_image`` method. Method will return: ``[image](../path/to/your/image.png)``. Check the following example: 
+
+```
+mdFile.new_line(mdFile.new_inline_image(text='snow trees', path='./doc/source/images/photo-of-snow-covered-trees.jpg'))
+```  
+![snow trees](./doc/source/images/photo-of-snow-covered-trees.jpg)
+### Reference Images
+
+
+You can add inline images using ``new_reference_image`` method. Method will return: ``[image][im]``. Check the following example: 
+
+```
+mdFile.new_line(mdFile.new_reference_image(text='snow trees', path='./doc/source/images/photo-of-snow-covered-trees.jpg', reference_tag='im'))
+```  
+![snow trees][im]
+## Add HTML images
+
+### Change size to images
+
+
+With ``Html.image`` you can change size of images in a markdown file. For example you can dothe following for changing width: ``mdFile.new_paragraph(Html.image(path=path, size='200'))``
+
+<img src="./doc/source/images/sunset.jpg" width="200"/>
+
+Or maybe only want to change height: ``mdFile.new_paragraph(Html.image(path=path, size='x300'))``
+
+<img src="./doc/source/images/sunset.jpg" height="300"/>
+
+Or change width and height: ``mdFile.new_paragraph(Html.image(path=path, size='300x300'))``
+
+<img src="./doc/source/images/sunset.jpg" width="300" height="300"/>
+
+### Align images
+
+
+Html.image allow to align images, too. For example you can run: ``mdFile.new_paragraph(Html.image(path=path, size='300x200', align='center'))``
+
+<p align="center">
+    <img src="./doc/source/images/sunset.jpg" width="300" height="200"/>
+</p>
+
+
+[1]: https://github.com/didix21/mdutils
+[bold]: https://github.com/didix21/mdutils
+[im]: ./doc/source/images/photo-of-snow-covered-trees.jpg
+[italics]: https://github.com/didix21/mdutils
+[md]: https://github.com/didix21/mdutils

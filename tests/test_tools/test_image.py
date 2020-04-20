@@ -6,6 +6,9 @@
 #
 # MIT License: (C) 2020 Dídac Coll
 
+__author__ = 'didix21'
+__project__ = 'MdUtils'
+
 from unittest import TestCase
 from mdutils.tools.Image import Image
 from mdutils.tools.Link import Reference

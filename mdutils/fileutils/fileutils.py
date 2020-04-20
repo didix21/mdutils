@@ -42,12 +42,12 @@ class MarkDownFile(object):
 
         :param str data: is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'r+', encoding='utf-8') as self.file:
-            file_data = self.file.read()                        # Save all the file's content
-            self.file.seek(0, 0)                                # Place file pointer at the beginning
-            first_line = self.file.readline()                   # Read the first line
-            second_line = self.file.readline()                  # Read the second line
-            self.file.seek(len(first_line + second_line), 0)    # Place file pointer at the end of the first line
-            self.file.write(data)                               # Write data
+            file_data = self.file.read()  # Save all the file's content
+            self.file.seek(0, 0)  # Place file pointer at the beginning
+            first_line = self.file.readline()  # Read the first line
+            second_line = self.file.readline()  # Read the second line
+            self.file.seek(len(first_line + second_line), 0)  # Place file pointer at the end of the first line
+            self.file.write(data)  # Write data
             self.file.write('\n' + file_data[len(first_line + second_line):])
 
     @staticmethod
