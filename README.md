@@ -69,6 +69,7 @@ Contents
 	* [Paragraph and Text Format](#paragraph-and-text-format)
 	* [Create a Table](#create-a-table)
 	* [Create Links](#create-links)
+	* [Create Lists](#create-lists)
 	* [Add images](#add-images)
 	* [Add HTML images](#add-html-images)
 
@@ -274,6 +275,91 @@ mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://gi
   - Reference link: [another reference][md]
   - Bold link: [**Bold reference**][bold]
   - Italics link: [*Italics reference*][italics]
+## Create Lists
+
+### Create unordered lists
+
+
+You can add Mark down unordered list using ``mdFile.new_list(items, marked_with)``. Lets check an example: 
+
+```
+items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', ['Item 4.1', 'Item 4.2', ['Item 4.2.1', 'Item 4.2.2'], 'Item 4.3', ['Item 4.3.1']], 'Item 5']
+mdFile.new_list(items)
+```
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+    - Item 4.1
+    - Item 4.2
+        - Item 4.2.1
+        - Item 4.2.2
+    - Item 4.3
+        - Item 4.3.1
+- Item 5
+
+### Create ordered lists
+
+
+You can add ordered ones easily, too: ``mdFile.new_list(items, marked_with='1')``
+1. Item 1
+2. Item 2
+3. Item 3
+4. Item 4
+    1. Item 4.1
+    2. Item 4.2
+        1. Item 4.2.1
+        2. Item 4.2.2
+    3. Item 4.3
+        1. Item 4.3.1
+5. Item 5
+
+
+Moreover, you can add mixed list, for example: 
+
+```
+items = ['Item 1', 'Item 2', ['1. Item 2.1', '2. Item 2.2'], 'Item 3']
+mdFile.new_list(items)
+```
+- Item 1
+- Item 2
+    1. Item 2.1
+    2. Item 2.2
+- Item 3
+
+
+Maybe you want to replace the default hyphen ``-`` by a ``+`` or ``*`` then you can do: ``mdFile.new_list(items, marked_with='*')``.
+### Create checkbox lists
+
+
+For creating checkbox lists you can use ``mdFile.new_checkbox_list(items)``.
+- [ ] Item 1
+- [ ] Item 2
+    - [ ] Item 2.1
+    - [ ] Item 2.2
+- [ ] Item 3
+
+
+If you want to check all of them you can do: ``mdFile.new_checkbox_list(items, checked=True)``
+- [x] Item 1
+- [x] Item 2
+    - [x] Item 2.1
+    - [x] Item 2.2
+- [x] Item 3
+
+
+Or maybe you only want to check some of them, then you can add an ``x`` before each item that you want to check: 
+
+```
+['Item 1', 'Item 2', ['Item 2.1', 'x Item 2.2'], 'x Item 3']
+mdFile.new_checkbox_list(items)
+```
+- [ ] Item 1
+- [ ] Item 2
+    - [ ] Item 2.1
+    - [x] Item 2.2
+- [x] Item 3
+
 ## Add images
 
 ### Inline Images

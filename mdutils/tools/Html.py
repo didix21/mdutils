@@ -34,7 +34,7 @@ class Html:
 
         :param path:
         :type path: str
-        :param size: (In px) for width write ``'<int>'`, for height write ``'x<int>'`` or \
+        :param size: (In px) for width write ``'<int>'``, for height write ``'x<int>'`` or \
         width and height ``'<int>x<int>``.
         :type size: str
         :param align: can be ``'left'``, ``'center'`` or ``'right'``.

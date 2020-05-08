@@ -16,6 +16,25 @@ import os
 
 class TestMdUtils(TestCase):
 
+    def setUp(self) -> None:
+        self.expected_list = "\n\n\n" \
+                     "\n- Item 1\n" \
+                     "- Item 2\n" \
+                     "- Item 3\n" \
+                       "- Item 4\n" \
+                       "    - Item 4.1\n" \
+                       "    - Item 4.2\n" \
+                       "        - Item 4.2.1\n" \
+                       "        - Item 4.2.2\n" \
+                       "    - Item 4.3\n" \
+                       "        - Item 4.3.1\n" \
+                       "- Item 5\n"
+        self.complex_items = ["Item 1", "Item 2", "Item 3", "Item 4",
+                         ["Item 4.1", "Item 4.2",
+                          ["Item 4.2.1", "Item 4.2.2"],
+                          "Item 4.3", ["Item 4.3.1"]],
+                         "Item 5"]
+
     def tearDown(self):
         md_file = Path('Test_file.md')
         if md_file.is_file():
@@ -331,7 +350,7 @@ class TestMdUtils(TestCase):
         image_1 = md_file.new_reference_image(text='image_1', path='../image.png', reference_tag="reference")
         image_2 = md_file.new_reference_image(text='image_2', path='../image_2.png')
 
-        expected_created_data = "\n\n\n"\
+        expected_created_data = "\n\n\n" \
                                 "  \n{}".format(expected_image_1) + \
                                 "  \n{}".format(expected_image_2) + \
                                 "\n\n\n" \
@@ -345,3 +364,24 @@ class TestMdUtils(TestCase):
         actual_created_data = MarkDownFile.read_file("Test_file")
 
         self.assertEqual(expected_created_data, actual_created_data)
+
+    def test_new_list(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        md_file.new_list(self.complex_items)
+        md_file.create_md_file()
+
+        self.assertEqual(self.expected_list, MarkDownFile.read_file('Test_file.md'))
+
+    def test_new_checkbox_list(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        md_file.new_checkbox_list(self.complex_items)
+        md_file.create_md_file()
+
+        self.assertEqual(self.expected_list.replace('-', '- [ ]'), MarkDownFile.read_file('Test_file.md'))
+
+    def test_new_checkbox_checked_list(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        md_file.new_checkbox_list(self.complex_items, checked=True)
+        md_file.create_md_file()
+
+        self.assertEqual(self.expected_list.replace('-', '- [x]'), MarkDownFile.read_file('Test_file.md'))
