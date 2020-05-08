@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.1](https://github.com/didix21/mdutils/tree/1.2.1) (2020-05-08)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/1.1.1...1.2.1)
+
+**Merged pull requests:**
+
+- Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
+
+## [1.1.1](https://github.com/didix21/mdutils/tree/1.1.1) (2020-04-20)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/1.1.0...1.1.1)
+
 ## [1.1.0](https://github.com/didix21/mdutils/tree/1.1.0) (2020-04-20)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.0.0...1.1.0)
