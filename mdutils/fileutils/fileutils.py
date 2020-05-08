@@ -19,7 +19,7 @@ class MarkDownFile(object):
         """Creates a markdown file, if name is not empty.
         :param str name: file name"""
         if name:
-            self.file_name = name + '.md'
+            self.file_name = name if 'md' in name else name + '.md'
             self.file = open(self.file_name, 'w+', encoding='UTF-8')
             self.file.close()
 

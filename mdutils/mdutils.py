@@ -25,6 +25,7 @@ from mdutils.tools.Header import Header
 from mdutils.tools.Image import Image
 from mdutils.tools.Link import Inline, Reference
 from mdutils.tools.TextUtils import TextUtils
+from mdutils.tools.MDList import MDList, MDCheckbox
 
 
 class MdUtils:
@@ -442,6 +443,32 @@ class MdUtils:
             If param reference_tag is not provided, text param will be used instead.
         """
         return self.image.new_reference_image(text=text, path=path, reference_tag=reference_tag)
+
+    def new_list(self, items: [str], marked_with: str = "-"):
+        """Add unordered or ordered list in MarkDown file.
+
+        :param items: Array of items for generating the list.
+        :type items: [str]
+        :param marked_with: By default has the value of ``'-'``, can be ``'+'``, ``'*'``. If you want to generate
+         an ordered list then set to ``'1'``.
+        :type marked_with: str
+        :return:
+        """
+        mdlist = MDList(items, marked_with)
+        self.___update_file_data('\n' + mdlist.get_md())
+
+    def new_checkbox_list(self, items: [str], checked: bool = False):
+        """Add checkbox list in MarkDown file.
+
+        :param items: Array of items for generating the checkbox list.
+        :type items: [str]
+        :param checked: if you set this to ``True``. All checkbox will be checked. By default is ``False``.
+        :type checked: bool
+        :return:
+        """
+
+        mdcheckbox = MDCheckbox(items=items, checked=checked)
+        self.___update_file_data('\n' + mdcheckbox.get_md())
 
 
 if __name__ == "__main__":

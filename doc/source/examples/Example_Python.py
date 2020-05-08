@@ -12,7 +12,7 @@ from mdutils import Html
 
 mdFile = MdUtils(file_name='Example_Markdown', title='Markdown File Example')
 
-mdFile.new_header(level=1, title='Overview')    # style is set 'atx' format by default.
+mdFile.new_header(level=1, title='Overview')  # style is set 'atx' format by default.
 
 mdFile.new_paragraph("This is an example of markdown file created using mdutils python package. In this example you "
                      "are going to see how to create a markdown file using this library. Moreover, you're "
@@ -43,7 +43,7 @@ mdFile.new_header(level=2, title="Create Headers")
 mdFile.new_paragraph("Using ``new_header`` method you can create headers of different levels depending on the style. "
                      "There are two available styles: 'atx' and 'setext'. The first one has til 6 different header "
                      "levels. Atx's levels 1 and 2 are automatically added to the table of contents unless the "
-                     "parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levels" 
+                     "parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levels"
                      "of headers.")
 
 mdFile.insert_code("mdFile.new_header(level=1, title='Atx Header 1')\n"
@@ -197,7 +197,8 @@ mdFile.new_line('  - Inline link: ' + mdFile.new_inline_link(link=link, text=tex
 mdFile.new_line('  - Bold inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='b'))
 mdFile.new_line('  - Italics inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='i'))
 mdFile.new_line('  - Code inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='c'))
-mdFile.new_line('  - Bold italics code inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='cbi'))
+mdFile.new_line(
+    '  - Bold italics code inline link: ' + mdFile.new_inline_link(link=link, text=text, bold_italics_code='cbi'))
 mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link=link))
 
 # *********************************************** Reference link ******************************************************
@@ -209,22 +210,72 @@ mdFile.new_paragraph("``new_reference_link`` method allows you to create a link 
 mdFile.insert_code("[1]: https://github.com/didix21/mdutils", language="python")
 mdFile.new_paragraph("Lets check some examples: \n")
 
-link="https://github.com/didix21/mdutils"
+link = "https://github.com/didix21/mdutils"
 
 mdFile.insert_code("mdFile.write('\\n  - Reference link: ' "
                    "+ mdFile.new_reference_link(link='{}', text='mdutils', reference_tag='1')\n".format(link) +
                    "mdFile.write('\\n  - Reference link: ' "
-                   "+ mdFile.new_reference_link(link='{}', text='another reference', reference_tag='md')\n".format(link) +
+                   "+ mdFile.new_reference_link(link='{}', text='another reference', reference_tag='md')\n".format(
+                       link) +
                    "mdFile.write('\\n  - Bold link: ' "
-                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='bold', bold_italics_code='b')\n".format(link) +
+                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='bold', bold_italics_code='b')\n".format(
+                       link) +
                    "mdFile.write('\\n  - Italics link: ' "
-                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='italics', bold_italics_code='i')\n".format(link),
+                   "+ mdFile.new_reference_link(link='{}', text='Bold reference', reference_tag='italics', bold_italics_code='i')\n".format(
+                       link),
                    language="python")
 
 mdFile.write("\n  - Reference link: " + mdFile.new_reference_link(link=link, text='mdutils', reference_tag='1'))
-mdFile.write("\n  - Reference link: " + mdFile.new_reference_link(link=link, text='another reference', reference_tag='md'))
-mdFile.write("\n  - Bold link: " + mdFile.new_reference_link(link=link, text='Bold reference', reference_tag='bold', bold_italics_code='b'))
-mdFile.write("\n  - Italics link: " + mdFile.new_reference_link(link=link, text='Italics reference', reference_tag='italics', bold_italics_code='i'))
+mdFile.write(
+    "\n  - Reference link: " + mdFile.new_reference_link(link=link, text='another reference', reference_tag='md'))
+mdFile.write("\n  - Bold link: " + mdFile.new_reference_link(link=link, text='Bold reference', reference_tag='bold',
+                                                             bold_italics_code='b'))
+mdFile.write(
+    "\n  - Italics link: " + mdFile.new_reference_link(link=link, text='Italics reference', reference_tag='italics',
+                                                       bold_italics_code='i'))
+
+# ********************************************************************************************************************
+# ************************************************** Create Lists ****************************************************
+# ********************************************************************************************************************
+mdFile.new_header(2, "Create Lists")
+# *********************************************** Unordered Lists ****************************************************
+mdFile.new_header(3, "Create unordered lists")
+mdFile.new_paragraph(
+    "You can add Mark down unordered list using ``mdFile.new_list(items, marked_with)``. Lets check an example: ")
+items = ["Item 1", "Item 2", "Item 3", "Item 4", ["Item 4.1", "Item 4.2", ["Item 4.2.1", "Item 4.2.2"],
+                                                  "Item 4.3", ["Item 4.3.1"]], "Item 5"]
+mdFile.insert_code(f'items = {items}\n'
+                   f'mdFile.new_list(items)')
+mdFile.new_list(items=items)
+
+# *********************************************** Ordered Lists ******************************************************
+mdFile.new_header(3, "Create ordered lists")
+mdFile.new_paragraph("You can add ordered ones easily, too: ``mdFile.new_list(items, marked_with='1')``")
+mdFile.new_list(items=items, marked_with='1')
+
+mdFile.new_paragraph("Moreover, you can add mixed list, for example: ")
+items = ["Item 1", "Item 2", ["1. Item 2.1", "2. Item 2.2"], "Item 3"]
+mdFile.insert_code(f'items = {items}\n'
+                   f'mdFile.new_list(items)')
+mdFile.new_list(items)
+mdFile.new_paragraph("Maybe you want to replace the default hyphen ``-`` by a ``+`` or ``*`` then you can do: "
+                     "``mdFile.new_list(items, marked_with='*')``.")
+
+# *********************************************** Checkbox Lists *****************************************************
+mdFile.new_header(3, "Create checkbox lists")
+mdFile.new_paragraph("For creating checkbox lists you can use ``mdFile.new_checkbox_list(items)``.")
+items = ["Item 1", "Item 2", ["Item 2.1", "Item 2.2"], "Item 3"]
+mdFile.new_checkbox_list(items)
+
+mdFile.new_paragraph("If you want to check all of them you can do: ``mdFile.new_checkbox_list(items, checked=True)``")
+mdFile.new_checkbox_list(items, checked=True)
+
+mdFile.new_paragraph("Or maybe you only want to check some of them, then you can add an ``x`` before each item that "
+                     "you want to check: ")
+items = ["Item 1", "Item 2", ["Item 2.1", "x Item 2.2"], "x Item 3"]
+mdFile.insert_code(f'{items}\n'
+                   'mdFile.new_checkbox_list(items)')
+mdFile.new_checkbox_list(items)
 
 # ********************************************************************************************************************
 # ************************************************** Add Images ******************************************************
@@ -234,8 +285,8 @@ mdFile.new_header(2, "Add images")
 
 # *********************************************** Inline Image *******************************************************
 
-image_text="snow trees"
-path="./doc/source/images/photo-of-snow-covered-trees.jpg"
+image_text = "snow trees"
+path = "./doc/source/images/photo-of-snow-covered-trees.jpg"
 
 mdFile.new_header(3, "Inline Images")
 
@@ -244,28 +295,30 @@ mdFile.new_paragraph("You can add inline images using ``new_inline_image`` metho
 mdFile.insert_code("mdFile.new_line(mdFile.new_inline_image(text='{}', path='{}'))".format(image_text, path))
 mdFile.new_line(mdFile.new_inline_image(text=image_text, path=path))
 
-# *********************************************** Reference Image *****************************************************
+# *********************************************** Reference Image ****************************************************
 mdFile.new_header(3, "Reference Images")
 mdFile.new_paragraph("You can add inline images using ``new_reference_image`` method. Method will return: "
                      "``[image][im]``. Check the following example: ")
-mdFile.insert_code("mdFile.new_line(mdFile.new_reference_image(text='{}', path='{}', reference_tag='im'))".format(image_text, path))
+mdFile.insert_code(
+    "mdFile.new_line(mdFile.new_reference_image(text='{}', path='{}', reference_tag='im'))".format(image_text, path))
 mdFile.new_line(mdFile.new_reference_image(text=image_text, path=path, reference_tag='im'))
 
 # ************************************************* Html Image *******************************************************
 
 mdFile.new_header(2, "Add HTML images")
 
-# *********************************************** Size Image *******************************************************
+# *********************************************** Size Image *********************************************************
 
 mdFile.new_header(3, "Change size to images")
-path="./doc/source/images/sunset.jpg"
+path = "./doc/source/images/sunset.jpg"
 
 mdFile.new_paragraph("With ``Html.image`` you can change size of images in a markdown file. For example you can do"
                      "the following for changing width: ``mdFile.new_paragraph(Html.image(path=path, size='200'))``")
 
 mdFile.new_paragraph(Html.image(path=path, size='200'))
 
-mdFile.new_paragraph("Or maybe only want to change height: ``mdFile.new_paragraph(Html.image(path=path, size='x300'))``")
+mdFile.new_paragraph(
+    "Or maybe only want to change height: ``mdFile.new_paragraph(Html.image(path=path, size='x300'))``")
 mdFile.new_paragraph(Html.image(path=path, size='x300'))
 
 mdFile.new_paragraph("Or change width and height: ``mdFile.new_paragraph(Html.image(path=path, size='300x300'))``")
@@ -283,4 +336,3 @@ mdFile.new_paragraph(Html.image(path=path, size='300x200', align='center'))
 # Create a table of contents
 mdFile.new_table_of_contents(table_title='Contents', depth=2)
 mdFile.create_md_file()
-

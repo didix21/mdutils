@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-sphinx-apidoc -o ./source ../mdutils
+SCRIPT_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+sphinx-apidoc -f -o ./source ../mdutils
 make html
