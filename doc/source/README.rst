@@ -31,10 +31,12 @@ Writing and Reading Files
 Markdown
 --------
 - Implemented method to give format to the text: bold, italics, change color...
+- Align text.
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
 - Create a table of contents.
 - Add Links.
+- Add Lists.
 - Add Markdown Images.
 - Add Html Images.
 

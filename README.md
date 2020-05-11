@@ -43,6 +43,7 @@ Markdown
 - Create tables.
 - Create a table of contents.
 - Add Links.
+- Add Lists.
 - Add Markdown Images.
 - Add Html Images.
 
