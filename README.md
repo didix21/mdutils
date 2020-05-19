@@ -90,7 +90,7 @@ This is an example of markdown file created using mdutils python package. In thi
 ``create_md_file()`` is the last command that has to be called.
 
 ```python
-import Mdutils
+from mdutils.mdutils import MdUtils
 
 
 mdFile = MdUtils(file_name='Example_Markdown',title='Markdown File Example')
