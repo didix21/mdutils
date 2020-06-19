@@ -1,1 +1,1 @@
-from mdutils.fileutils.fileutils import MarkDownFile
+from mdutils.fileutils.fileutils import MarkdownFile

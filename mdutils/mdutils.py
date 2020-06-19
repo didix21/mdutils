@@ -20,7 +20,7 @@ The available features are:
 """
 import mdutils.tools.Table
 import mdutils.tools.TableOfContents
-from mdutils.fileutils.fileutils import MarkDownFile
+from mdutils.fileutils.fileutils import MarkdownFile
 from mdutils.tools.Header import Header
 from mdutils.tools.Image import Image
 from mdutils.tools.Link import Inline, Reference
@@ -67,8 +67,8 @@ class MdUtils:
     def create_md_file(self):
         """It creates a new Markdown file.
         :return: return an instance of a MarkDownFile."""
-        md_file = MarkDownFile(self.file_name)
-        md_file.rewrite_all_file(
+        md_file = MarkdownFile(self.file_name)
+        md_file.write(
             data=self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
         )
         return md_file
@@ -81,7 +81,7 @@ class MdUtils:
         :return: optionally returns the file data content.
         :rtype: str
         """
-        file_data = MarkDownFile().read_file(file_name)
+        file_data = MarkdownFile().read_file(file_name)
         self.___update_file_data(file_data)
 
         return file_data

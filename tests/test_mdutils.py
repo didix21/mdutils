@@ -8,7 +8,7 @@
 
 from unittest import TestCase
 from mdutils.mdutils import MdUtils
-from mdutils.fileutils import MarkDownFile
+from mdutils.fileutils import MarkdownFile
 
 from pathlib import Path
 import os
@@ -325,7 +325,7 @@ class TestMdUtils(TestCase):
 
         md_file.create_md_file()
 
-        created_data = MarkDownFile.read_file('Test_file.md')
+        created_data = MarkdownFile.read_file('Test_file.md')
 
         self.assertEqual(expected_value, created_data)
 
@@ -361,7 +361,7 @@ class TestMdUtils(TestCase):
         md_file.new_line(image_2)
         md_file.create_md_file()
 
-        actual_created_data = MarkDownFile.read_file("Test_file")
+        actual_created_data = MarkdownFile.read_file("Test_file")
 
         self.assertEqual(expected_created_data, actual_created_data)
 
@@ -370,18 +370,18 @@ class TestMdUtils(TestCase):
         md_file.new_list(self.complex_items)
         md_file.create_md_file()
 
-        self.assertEqual(self.expected_list, MarkDownFile.read_file('Test_file.md'))
+        self.assertEqual(self.expected_list, MarkdownFile.read_file('Test_file.md'))
 
     def test_new_checkbox_list(self):
         md_file = MdUtils(file_name="Test_file", title="")
         md_file.new_checkbox_list(self.complex_items)
         md_file.create_md_file()
 
-        self.assertEqual(self.expected_list.replace('-', '- [ ]'), MarkDownFile.read_file('Test_file.md'))
+        self.assertEqual(self.expected_list.replace('-', '- [ ]'), MarkdownFile.read_file('Test_file.md'))
 
     def test_new_checkbox_checked_list(self):
         md_file = MdUtils(file_name="Test_file", title="")
         md_file.new_checkbox_list(self.complex_items, checked=True)
         md_file.create_md_file()
 
-        self.assertEqual(self.expected_list.replace('-', '- [x]'), MarkDownFile.read_file('Test_file.md'))
+        self.assertEqual(self.expected_list.replace('-', '- [x]'), MarkdownFile.read_file('Test_file.md'))
