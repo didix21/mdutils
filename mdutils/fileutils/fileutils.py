@@ -7,7 +7,7 @@
 # MIT License: (C) 2018 Dídac Coll
 
 
-class MarkDownFile(object):
+class MarkdownFile(object):
     """MarkDownFile class creates a new file of MarkDown extension.
 
     Features available are:
@@ -23,14 +23,14 @@ class MarkDownFile(object):
             self.file = open(self.file_name, 'w+', encoding='UTF-8')
             self.file.close()
 
-    def rewrite_all_file(self, data):
+    def write(self, data):
         """Rewrite all the data of a Markdown file by ``data``.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
         with open(self.file_name, 'w', encoding='utf-8') as self.file:
             self.file.write(data)
 
-    def append_end(self, data):
+    def append(self, data):
         """Write at the last position of a Markdown file.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
@@ -69,5 +69,5 @@ class MarkDownFile(object):
 
 
 if __name__ == '__main__':
-    new_file = MarkDownFile('Example')
-    new_file.rewrite_all_file(data="# Some Text Example")
+    new_file = MarkdownFile('Example')
+    new_file.write(data="# Some Text Example")
