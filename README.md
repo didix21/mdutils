@@ -1,7 +1,7 @@
 # mdutils
 [![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
 [![Documentation Status](https://readthedocs.org/projects/mdutils/badge/?version=latest)](http://mdutils.readthedocs.io/en/latest/?badge=latest)
-[![Coverage Status](https://coveralls.io/repos/github/didix21/mdutils/badge.svg?branch=add-coveralls)](https://coveralls.io/github/didix21/mdutils?branch=add-coveralls)
+[![Coverage Status](https://coveralls.io/repos/github/didix21/mdutils/badge.svg?branch=master)](https://coveralls.io/github/didix21/mdutils?branch=master)
 
 Table of Contents
 =================
