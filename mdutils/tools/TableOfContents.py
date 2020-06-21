@@ -5,6 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
+import re
 
 
 class TableOfContents:
@@ -30,7 +31,8 @@ class TableOfContents:
                     else:
                         elements_to_string += self._loop_through(item, tab='\t')
             else:
-                elements_to_string += '\n' + tab + '* [' + item + '](#' + item.lower().replace(' ', '-') + ')'
+                elements_to_string += '\n' + tab + '* [' + item + '](#' \
+                                      + re.sub('[^a-z0-9_\-]', '', item.lower().replace(' ', '-')) + ')'
 
         return elements_to_string
 
