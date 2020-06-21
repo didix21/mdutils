@@ -12,28 +12,29 @@ from mdutils.fileutils import MarkDownFile
 
 from pathlib import Path
 import os
+import re
 
 
 class TestMdUtils(TestCase):
 
     def setUp(self) -> None:
         self.expected_list = "\n\n\n" \
-                     "\n- Item 1\n" \
-                     "- Item 2\n" \
-                     "- Item 3\n" \
-                       "- Item 4\n" \
-                       "    - Item 4.1\n" \
-                       "    - Item 4.2\n" \
-                       "        - Item 4.2.1\n" \
-                       "        - Item 4.2.2\n" \
-                       "    - Item 4.3\n" \
-                       "        - Item 4.3.1\n" \
-                       "- Item 5\n"
+                             "\n- Item 1\n" \
+                             "- Item 2\n" \
+                             "- Item 3\n" \
+                             "- Item 4\n" \
+                             "    - Item 4.1\n" \
+                             "    - Item 4.2\n" \
+                             "        - Item 4.2.1\n" \
+                             "        - Item 4.2.2\n" \
+                             "    - Item 4.3\n" \
+                             "        - Item 4.3.1\n" \
+                             "- Item 5\n"
         self.complex_items = ["Item 1", "Item 2", "Item 3", "Item 4",
-                         ["Item 4.1", "Item 4.2",
-                          ["Item 4.2.1", "Item 4.2.2"],
-                          "Item 4.3", ["Item 4.3.1"]],
-                         "Item 5"]
+                              ["Item 4.1", "Item 4.2",
+                               ["Item 4.2.1", "Item 4.2.2"],
+                               "Item 4.3", ["Item 4.3.1"]],
+                              "Item 5"]
 
     def tearDown(self):
         md_file = Path('Test_file.md')
@@ -78,10 +79,10 @@ class TestMdUtils(TestCase):
         # Testing Depth 1
         table_of_contents_result = md_file.new_table_of_contents(table_title="Index", depth=1)
         table_of_content_expected = table_of_content_title \
-                                    + '\n* [' + list_headers[0] + '](#' + list_headers[0].lower().replace(' ', '-') \
-                                    + ')' \
-                                    + '\n* [' + list_headers[2] + '](#' + list_headers[2].lower().replace(' ', '-') \
-                                    + ')\n'
+                                    + '\n* [' + list_headers[0] + '](#' \
+                                    + re.sub('[^a-z0-9_\-]', '', list_headers[0].lower().replace(' ', '-')) + ')' \
+                                    + '\n* [' + list_headers[2] + '](#' \
+                                    + re.sub('[^a-z0-9_\-]', '', list_headers[2].lower().replace(' ', '-')) + ')\n'
         self.assertEqual(table_of_contents_result, table_of_content_expected)
         # Testing created file
         md_file.create_md_file()
@@ -107,10 +108,12 @@ class TestMdUtils(TestCase):
         for x in range(len(list_headers)):
             if x in (0, 2):
                 table_of_content_expected += '\n* [' + list_headers[x] + '](#' \
-                                             + list_headers[x].lower().replace(' ', '-') + ')'
+                                             + re.sub('[^a-z0-9_\-]', '', list_headers[x].lower().replace(' ', '-')) \
+                                             + ')'
             else:
                 table_of_content_expected += '\n\t* [' + list_headers[x] + '](#' \
-                                             + list_headers[x].lower().replace(' ', '-') + ')'
+                                             + re.sub('[^a-z0-9_\-]', '', list_headers[x].lower().replace(' ', '-')) \
+                                             + ')'
         table_of_content_expected += '\n'
         self.assertEqual(table_of_contents_result, table_of_content_expected)
 

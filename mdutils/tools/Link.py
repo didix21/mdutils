@@ -90,7 +90,7 @@ class Inline:
 
     @staticmethod
     def __md_link(link, text):
-        return '[' + text + '](' + link + ')'
+        return TextUtils.text_external_link(text, link)
 
 
 if __name__ == "__main__":
