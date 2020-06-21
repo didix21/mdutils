@@ -1,20 +1,45 @@
 # Changelog
 
-## [1.2.1](https://github.com/didix21/mdutils/tree/1.2.1) (2020-05-08)
+## [v1.2.2](https://github.com/didix21/mdutils/tree/v1.2.2) (2020-06-21)
 
-[Full Changelog](https://github.com/didix21/mdutils/compare/1.1.1...1.2.1)
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.2.1...v1.2.2)
+
+**Implemented enhancements:**
+
+- Add support for markdown lists [\#4](https://github.com/didix21/mdutils/issues/4)
+
+**Fixed bugs:**
+
+- Missing .md extension when filename has 'md' [\#37](https://github.com/didix21/mdutils/issues/37)
+- Table of contents link does not work when headers contain special characters [\#36](https://github.com/didix21/mdutils/issues/36)
+- Fix \#36: Delete special characters when creating toc links [\#40](https://github.com/didix21/mdutils/pull/40) ([didix21](https://github.com/didix21))
+- Fix \#37: Add .md extension if name contains md word [\#39](https://github.com/didix21/mdutils/pull/39) ([didix21](https://github.com/didix21))
+
+**Closed issues:**
+
+- SyntaxError: invalid syntax [\#31](https://github.com/didix21/mdutils/issues/31)
+
+**Merged pull requests:**
+
+- Update issue templates [\#35](https://github.com/didix21/mdutils/pull/35) ([didix21](https://github.com/didix21))
+- Create CODE\_OF\_CONDUCT.md [\#34](https://github.com/didix21/mdutils/pull/34) ([didix21](https://github.com/didix21))
+- update Readme.md [\#32](https://github.com/didix21/mdutils/pull/32) ([Alexmod](https://github.com/Alexmod))
+
+## [v1.2.1](https://github.com/didix21/mdutils/tree/v1.2.1) (2020-05-08)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.1.1...v1.2.1)
 
 **Merged pull requests:**
 
 - Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
 
-## [1.1.1](https://github.com/didix21/mdutils/tree/1.1.1) (2020-04-20)
+## [v1.1.1](https://github.com/didix21/mdutils/tree/v1.1.1) (2020-04-20)
 
-[Full Changelog](https://github.com/didix21/mdutils/compare/1.1.0...1.1.1)
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.1.0...v1.1.1)
 
-## [1.1.0](https://github.com/didix21/mdutils/tree/1.1.0) (2020-04-20)
+## [v1.1.0](https://github.com/didix21/mdutils/tree/v1.1.0) (2020-04-20)
 
-[Full Changelog](https://github.com/didix21/mdutils/compare/v1.0.0...1.1.0)
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
