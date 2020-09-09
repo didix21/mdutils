@@ -116,29 +116,34 @@ class MdUtils:
     def __add_new_item_table_of_content(self, level, item):
         """Automatically add new atx headers to the table of contents.
 
-        :param level: add til 2 levels. Only can take 1 or 2.
+        :param level: add levels up to 6.
         :type level: int
         :param item: items to add.
         :type item: list or str
 
         """
-        if level == 1:
-            self._table_titles.append(item)
-            self._table_titles.append([])
-        elif level == 2:
-            self._table_titles[-1].append(item)
-            self._table_titles[-1].append([])
+
+        curr = self._table_titles
+
+        for i in range(level-1):
+            curr = curr[-1]
+
+        curr.append(item)
+
+        if level < 6:
+            curr.append([])
+
 
     def new_table_of_contents(self, table_title="Table of contents", depth=1, marker=''):
         """Table of contents can be created if Headers of 'atx' style have been defined.
 
         This method allows to create a table of contents and define a title for it. Moreover, `depth` allows user to
-        define if headers of level 1 and 2 or only level 1 have to be placed on the table of contents.
+        define how many levels of headers will be placed in the table of contents.
         If no marker is defined, the table of contents will be placed automatically after the file's title.
 
         :param table_title: The table content's title, by default "Table of contents"
         :type table_title: str
-        :param depth: allows to include Headers 1 and 2 or only Headers of level 1. Possible values 1 or 2.
+        :param depth: allows to include atx headers 1 through 6. Possible values: 1, 2, 3, 4, 5, or 6.
         :type depth: int
         :param marker: allows to place the table of contents using a marker.
         :type marker: str
