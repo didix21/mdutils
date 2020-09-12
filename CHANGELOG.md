@@ -1,5 +1,23 @@
 # Changelog
 
+## [v1.3.0](https://github.com/didix21/mdutils/tree/v1.3.0) (2020-09-12)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.2.2...v1.3.0)
+
+**Implemented enhancements:**
+
+- Implement \#43 Allow table of contents to generate from arbitrary depth of headers [\#44](https://github.com/didix21/mdutils/pull/44) ([mythWizard](https://github.com/mythWizard))
+
+**Fixed bugs:**
+
+- Default text align for tables should use --- [\#42](https://github.com/didix21/mdutils/issues/42)
+- Fix \#42 Default table's text\_align should be '---' [\#45](https://github.com/didix21/mdutils/pull/45) ([didix21](https://github.com/didix21))
+
+**Closed issues:**
+
+- Allow creation of Table of Contents with arbitrary depth [\#43](https://github.com/didix21/mdutils/issues/43)
+- write file to specified path  [\#41](https://github.com/didix21/mdutils/issues/41)
+
 ## [v1.2.2](https://github.com/didix21/mdutils/tree/v1.2.2) (2020-06-21)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.2.1...v1.2.2)
