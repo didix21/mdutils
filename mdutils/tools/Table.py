@@ -5,6 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
+from typing import Optional
 
 
 class Table:
@@ -14,7 +15,7 @@ class Table:
         self.columns = 0
 
     @staticmethod
-    def _align(columns, text_align):
+    def _align(columns, text_align: Optional[str] = None) -> str:
         """ This private method it's in charge of aligning text of a table.
 
         - notes: more information about `text_align`
@@ -44,9 +45,13 @@ class Table:
 
             column_align_string = '|' + ''.join([' ---: |' for _ in range(columns)])
 
+        elif text_align is None:
+
+            column_align_string = '|' + ''.join([' --- |' for _ in range(columns)])
+
         return column_align_string
 
-    def create_table(self, columns, rows, text, text_align='center'):
+    def create_table(self, columns: int, rows: int, text: [str], text_align: Optional[str] = None):
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows.
@@ -83,13 +88,13 @@ class Table:
         column_align_string = self._align(columns, text_align)
         index = 0
         if columns * rows == len(text):
-            if text_align.lower() in ('right', 'center', 'left'):
-                for r in range(rows + 1):
-                    if r == 1:
+            if text_align is None or text_align.lower() in ('right', 'center', 'left'):
+                for row in range(rows + 1):
+                    if row == 1:
                         table += column_align_string  # Row align, Example: '| :---: | :---: | ... | \n'
                     else:
                         table += '|'
-                        for c in range(columns):
+                        for _ in range(columns):
                             table += text[index] + '|'
                             index += 1
 
@@ -98,7 +103,7 @@ class Table:
                 return table
 
             else:
-                raise ValueError("text_align's expected value: 'right', 'center' or 'left', but text_align = "
+                raise ValueError("text_align's expected value: 'right', 'center', 'left' or None , but text_align = "
                                  + text_align.lower())
         else:
             raise ValueError("columns * rows is not equal to text length")
