@@ -137,6 +137,12 @@ class TestMdUtils(TestCase):
         expected_value = '  \nThis is a new line created using new_line method.'
         self.assertEqual(created_value, expected_value)
 
+    def test_wrap_text(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        created_value = md_file.new_line("This is a new line created using new_line method with wrapping.", wrap_width=25)
+        expected_value = '  \nThis is a new line \ncreated using new_line \nmethod with wrapping.'
+        self.assertEqual(created_value, expected_value) 
+
     def test_insert_code(self):
         md_file = MdUtils(file_name='Test_file')
         code = ("mdFile.new_header(level=1, title='Atx Header 1')\n"

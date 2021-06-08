@@ -26,6 +26,7 @@ from mdutils.tools.Image import Image
 from mdutils.tools.Link import Inline, Reference
 from mdutils.tools.TextUtils import TextUtils
 from mdutils.tools.MDList import MDList, MDCheckbox
+from textwrap import fill
 
 
 class MdUtils:
@@ -213,7 +214,7 @@ class MdUtils:
 
         return text_table
 
-    def new_paragraph(self, text='', bold_italics_code='', color='black', align=''):
+    def new_paragraph(self, text='', bold_italics_code='', color='black', align='', wrap_width=120):
         """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -224,11 +225,17 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
+                           Use width of 0 to disable wrapping.
+        :type wrap_width: int
         :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
         :rtype: str
 
         """
+
+        if wrap_width > 0:
+            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
 
         if bold_italics_code or color != 'black' or align:
             self.___update_file_data('\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align))
@@ -237,7 +244,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def new_line(self, text='', bold_italics_code='', color='black', align=''):
+    def new_line(self, text='', bold_italics_code='', color='black', align='', wrap_width=120):
         """Add a new line to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -248,10 +255,16 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
+                           Use width of 0 to disable wrapping.
+        :type wrap_width: int
         :return: return a string ``'\\n' + text``. Not necessary to take it, if only has to be written to the
                     file.
         :rtype: str
         """
+
+        if wrap_width > 0:
+            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
 
         if bold_italics_code or color != 'black' or align:
             self.___update_file_data('  \n' + self.textUtils.text_format(text, bold_italics_code, color, align))
@@ -260,7 +273,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text='', bold_italics_code='', color='black', align='', marker=''):
+    def write(self, text='', bold_italics_code='', color='black', align='', marker='', wrap_width=120):
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
@@ -271,9 +284,15 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
+                           Use width of 0 to disable wrapping.
+        :type wrap_width: int
         :param marker: allows to replace a marker on some point of the file by the text.
         :type marker: str
         """
+
+        if wrap_width > 0:
+            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
 
         if bold_italics_code or color or align:
             new_text = self.textUtils.text_format(text, bold_italics_code, color, align)
