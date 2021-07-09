@@ -1,5 +1,22 @@
 # Changelog
 
+## [v1.3.1](https://github.com/didix21/mdutils/tree/v1.3.1) (2021-07-10)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.3.0...v1.3.1)
+
+**Fixed bugs:**
+
+- NameError: name 'create\_md\_file' is not define [\#50](https://github.com/didix21/mdutils/issues/50)
+- Solve max text length [\#6](https://github.com/didix21/mdutils/issues/6)
+- convert value to str before adding it to a char [\#56](https://github.com/didix21/mdutils/pull/56) ([anaskhl](https://github.com/anaskhl))
+
+**Merged pull requests:**
+
+- Add release drafter action [\#58](https://github.com/didix21/mdutils/pull/58) ([didix21](https://github.com/didix21))
+- Add PR labeler action [\#57](https://github.com/didix21/mdutils/pull/57) ([didix21](https://github.com/didix21))
+- Fix \#6: add option to wrap text on new lines, paragraphs and writes [\#53](https://github.com/didix21/mdutils/pull/53) ([mhmdkanj](https://github.com/mhmdkanj))
+- make text\_align be a list not only str or None [\#47](https://github.com/didix21/mdutils/pull/47) ([sgsokol](https://github.com/sgsokol))
+
 ## [v1.3.0](https://github.com/didix21/mdutils/tree/v1.3.0) (2020-09-12)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.2.2...v1.3.0)
