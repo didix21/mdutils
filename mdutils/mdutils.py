@@ -58,7 +58,9 @@ class MdUtils:
         self.author = author
         self.header = Header()
         self.textUtils = TextUtils
-        self.title = self.header.choose_header(level=1, title=title, style='setext')
+        if title != "":
+            title = self.header.choose_header(level=1, title=title, style='setext')
+        self.title = title
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
