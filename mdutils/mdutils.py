@@ -74,6 +74,12 @@ class MdUtils:
         )
         return md_file
 
+    def get_md_text(self) -> str:
+        """Instead of writing the markdown text into a file it returns it as a string.
+
+        :return: return a string with the markdown text."""
+        return self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+
     def read_md_file(self, file_name):
         """Reads a Markdown file and save it to global class `file_data_text`.
 
