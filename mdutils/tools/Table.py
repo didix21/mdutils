@@ -112,7 +112,7 @@ class Table:
                 else:
                     table += '|'
                     for _ in range(columns):
-                        table += str(text[index]) + '|'
+                        table += str(text[index]).replace("|", r"\|") + '|'
                         index += 1
                 table += '\n'
             return table
