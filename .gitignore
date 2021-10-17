@@ -229,5 +229,7 @@ tags
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/vim,python,pycharm+all,visualstudiocode
+# Mac
+.DS_Store
 
+# End of https://www.gitignore.io/api/vim,python,pycharm+all,visualstudiocode
