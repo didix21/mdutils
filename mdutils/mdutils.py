@@ -78,8 +78,14 @@ class MdUtils:
         """It creates a new Markdown file.
         :return: return an instance of a MarkDownFile."""
         md_file = MarkDownFile(self.file_name)
+        # Only contatenate title and table of contents if we have those
+        start_text = ""
+        if self.title:
+            start_text += self.title
+        if self.table_of_contents:
+            start_text += self.table_of_contents
         md_file.rewrite_all_file(
-            data=self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+            data=start_text + self.file_data_text + self.reference.get_references_as_markdown()
         )
         return md_file
 
