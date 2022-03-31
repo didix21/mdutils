@@ -44,7 +44,7 @@ class MdUtils:
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name, title="", author=""):
+    def __init__(self, file_name, title="", author="", append_existing=False):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -53,6 +53,8 @@ class MdUtils:
         :type title: str
         :param author: it is the author fo the Markdown file.
         :type author: str
+        :param append_existing: optionally append to an existing Mardown file.
+        :type append_existing: bool
         """
         self.file_name = file_name
         self.author = author
@@ -64,6 +66,8 @@ class MdUtils:
         self._table_titles = []
         self.reference = Reference()
         self.image = Image(reference=self.reference)
+        if append_existing:
+            self.read_md_file(file_name)
 
     def create_md_file(self):
         """It creates a new Markdown file.
