@@ -1,6 +1,31 @@
 # Changelog
 
-## [v1.3.1](https://github.com/didix21/mdutils/tree/v1.3.1) (2021-07-10)
+## [v1.4.0](https://github.com/didix21/mdutils/tree/v1.4.0) (2022-05-31)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.3.1...v1.4.0)
+
+**Implemented enhancements:**
+
+- Add fontsize increase option for Paragraph [\#54](https://github.com/didix21/mdutils/issues/54)
+- Added `get\_md\_text` method to `MdUtils` class. [\#61](https://github.com/didix21/mdutils/pull/61) ([Patitotective](https://github.com/Patitotective))
+
+**Fixed bugs:**
+
+- Unwanted line break in link url breaks the link [\#70](https://github.com/didix21/mdutils/issues/70)
+- Varying Title level leads to IndexError in \_\_add\_new\_item\_table\_of\_content [\#68](https://github.com/didix21/mdutils/issues/68)
+- GH-70, GH-73: fix unwanted link and table breaks [\#74](https://github.com/didix21/mdutils/pull/74) ([didix21](https://github.com/didix21))
+- Escape "|" in Table.create\_table [\#63](https://github.com/didix21/mdutils/pull/63) ([jaredliw](https://github.com/jaredliw))
+
+**Closed issues:**
+
+- travis-ci.org is ceased and tests are not running [\#62](https://github.com/didix21/mdutils/issues/62)
+
+**Merged pull requests:**
+
+- Import coverage to codecov [\#66](https://github.com/didix21/mdutils/pull/66) ([didix21](https://github.com/didix21))
+- 62: Move test workflow from travis to github actions [\#65](https://github.com/didix21/mdutils/pull/65) ([didix21](https://github.com/didix21))
+
+## [v1.3.1](https://github.com/didix21/mdutils/tree/v1.3.1) (2021-07-09)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.3.0...v1.3.1)
 
