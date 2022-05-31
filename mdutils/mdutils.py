@@ -220,7 +220,7 @@ class MdUtils:
 
         return text_table
 
-    def new_paragraph(self, text='', bold_italics_code='', color='black', align='', wrap_width=120):
+    def new_paragraph(self, text='', bold_italics_code='', color='black', align='', wrap_width=0):
         """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -250,7 +250,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def new_line(self, text='', bold_italics_code='', color='black', align='', wrap_width=120):
+    def new_line(self, text='', bold_italics_code='', color='black', align='', wrap_width=0):
         """Add a new line to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -279,7 +279,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text='', bold_italics_code='', color='black', align='', marker='', wrap_width=120):
+    def write(self, text='', bold_italics_code='', color='black', align='', marker='', wrap_width=0):
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
