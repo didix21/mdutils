@@ -37,7 +37,7 @@ Writing and Reading Files
 
 Markdown
 --------
-- Implemented method to give format to the text: bold, italics, change color...
+- Implemented method to give format to the text: **bold**, _italics_, change color...
 - Align text.
 - Add headers of levels 1 til 6 (atx style) or 1 and 2 (setext style).
 - Create tables.
@@ -47,7 +47,7 @@ Markdown
 - Add Markdown Images.
 - Add Html Images.
 
-**NOTE:** some available features will depen on which CSS you are using. For example, GitHub do not allows to give color to text.
+**NOTE:** some available features will depend on which CSS you are using. For example, GitHub does not allow to give color to text.
 
 Installation
 ============
@@ -77,9 +77,10 @@ Contents
 # Overview
 
 
-This is an example of markdown file created using mdutils python package. In this example you are going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy the creation of this type of files while you are running Python code.
+This is an example of a markdown file created using the mdutils python package. In this example you are going to see how to create a markdown file using this library. Moreover, you're finding the available features which makes easy the creation of this type of files while you are running Python code.
 
-**IMPORTANT:** some features available on this library have no effect with the GitHub Markdown CSS. Some of them are: coloring text, centering text...
+**IMPORTANT:** some features available in this library have no effect with the GitHub Markdown CSS. Some of them are: coloring text, centering text...
+
 
 
 # This is what you can do
@@ -99,7 +100,7 @@ mdFile.create_md_file()
 ## Create Headers
 
 
-Using ``new_header`` method you can create headers of different levels depending on the style. There are two available styles: 'atx' and 'setext'. The first one has til 6 different header levels. Atx's levels 1 and 2 are automatically added to the table of contents unless the parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levelsof headers.
+Using the ``new_header`` method you can create headers of different levels depending on the style. There are two available styles: 'atx' and 'setext'. The first one has til 6 different header levels. Atx's levels 1 and 2 are automatically added to the table of contents unless the parameter ``add_table_of_contents`` is set to 'n'. The 'setext' style only has two levels of headers.
 
 ```python
 mdFile.new_header(level=1, title='Atx Header 1')
@@ -145,7 +146,7 @@ mdFile.new_table_of_contents(table_title='Contents', depth=2)
 ## Paragraph and Text Format
 
 
-mdutils allows you to create paragraph, line breaks or simply write text:
+mdutils allows you to create paragraphs, line breaks or simply write text:
 ### New Paragraph Method
 
 
@@ -156,7 +157,7 @@ mdFile.new_paragraph("Using ``new_paragraph`` method you can very easily add a n
 					 " to the text. Lets see an example:")
 ```
 
-Using ``new_paragraph`` method you can very easily add a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method make your live easy because it can give format to the text. Lets see an example:
+Using ``new_paragraph`` method you can very easily add a new paragraph on your markdown file. This example of paragraph has been added using this method. Moreover, ``new_paragraph`` method makes your live easy because it can give format to the text. Lets see an example:
 
 ```python
 mdFile.new_paragraph("This is an example of text in which has been added color, bold and italics text.", bold_italics_code='bi', color='purple')
@@ -281,7 +282,7 @@ mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://gi
 ### Create unordered lists
 
 
-You can add Mark down unordered list using ``mdFile.new_list(items, marked_with)``. Lets check an example: 
+You can add Markdown unordered list using ``mdFile.new_list(items, marked_with)``. Lets check an example: 
 
 ```
 items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', ['Item 4.1', 'Item 4.2', ['Item 4.2.1', 'Item 4.2.2'], 'Item 4.3', ['Item 4.3.1']], 'Item 5']
