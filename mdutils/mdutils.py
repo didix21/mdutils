@@ -93,7 +93,7 @@ class MdUtils:
 
         return file_data
 
-    def new_header(self, level, title, style='atx', add_table_of_contents='y'):
+    def new_header(self, level, title, style='atx', add_table_of_contents='y', header_id=''):
         """Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
@@ -105,6 +105,8 @@ class MdUtils:
         :param add_table_of_contents: by default the atx and setext headers of level 1 and 2 are added to the \
         table of contents, setting this parameter to 'n'.
         :type add_table_of_contents: str
+        :param header_id: ID of the header for extended Markdown syntax
+        :type header_id: str
 
         :Example:
         >>> from mdutils import MdUtils
@@ -117,8 +119,8 @@ class MdUtils:
         """
         if add_table_of_contents == 'y':
             self.__add_new_item_table_of_content(level, title)
-        self.___update_file_data(self.header.choose_header(level, title, style))
-        return self.header.choose_header(level, title, style)
+        self.___update_file_data(self.header.choose_header(level, title, style, header_id))
+        return self.header.choose_header(level, title, style, header_id)
 
     def __add_new_item_table_of_content(self, level, item):
         """Automatically add new atx headers to the table of contents.
