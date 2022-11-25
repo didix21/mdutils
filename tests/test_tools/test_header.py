@@ -14,33 +14,51 @@ class TestHeader(TestCase):
 
     def test_atx_level_1(self):
         title = "Text Title Atx 1"
+        header_id = "myheader"
         result = '\n# ' + title + '\n'
+        result2 = '\n# ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_1(title), result)
+        self.assertEqual(Header().atx_level_1(title, header_id), result2)
 
     def test_atx_level_2(self):
         title = "Text Title Atx 2"
+        header_id = "myheader"
         result = '\n## ' + title + '\n'
+        result2 = '\n## ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_2(title), result)
+        self.assertEqual(Header().atx_level_2(title, header_id), result2)
 
     def test_atx_level_3(self):
         title = "Text Title Atx 3"
+        header_id = "myheader"
         result = '\n### ' + title + '\n'
+        result2 = '\n### ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_3(title), result)
+        self.assertEqual(Header().atx_level_3(title, header_id), result2)
 
     def test_atx_level_4(self):
         title = "Text Title Atx 4"
+        header_id = "myheader"
         result = '\n#### ' + title + '\n'
+        result2 = '\n#### ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_4(title), result)
+        self.assertEqual(Header().atx_level_4(title, header_id), result2)
 
     def test_atx_level_5(self):
         title = "Text Title Atx 5"
+        header_id = "myheader"
         result = '\n##### ' + title + '\n'
+        result2 = '\n##### ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_5(title), result)
+        self.assertEqual(Header().atx_level_5(title, header_id), result2)
 
     def test_atx_level_6(self):
         title = "Text Title Atx 6"
+        header_id = "myheader"
         result = '\n###### ' + title + '\n'
+        result2 = '\n###### ' + title + ' {#myheader}' + '\n'
         self.assertEqual(Header().atx_level_6(title), result)
+        self.assertEqual(Header().atx_level_6(title, header_id), result2)
 
     def test_setext_level_1(self):
         title = "Text Title Setext 1"
