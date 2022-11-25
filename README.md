@@ -110,6 +110,13 @@ mdFile.new_header(level=4, title='Atx Header 4')
 mdFile.new_header(level=5, title='Atx Header 5')
 mdFile.new_header(level=6, title='Atx Header 6')
 ```
+
+To give a header an ID (Extended Markdown syntax only), the `header_id` parameter can be used:
+```python
+mdFile.new_header(level=1, title='Header', header_id='firstheader')
+```
+This will result in ``# Header {#firstheader}`` in the Markdown file.
+
 # Atx Header 1
 
 ## Atx Header 2
