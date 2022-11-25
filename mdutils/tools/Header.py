@@ -25,70 +25,88 @@ class Header:
     # *                             Atx-Style                            *
     # ********************************************************************
     @staticmethod
-    def atx_level_1(title):
+    def atx_level_1(title, header_id=''):
         """Return a atx level 1 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n#' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n# ' + title + '\n'
+        return '\n# ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_2(title):
+    def atx_level_2(title, header_id=''):
         """Return a atx level 2 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n##' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n## ' + title + '\n'
+        return '\n## ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_3(title):
+    def atx_level_3(title, header_id=''):
         """Return a atx level 3 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n###' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n### ' + title + '\n'
+        return '\n### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_4(title):
+    def atx_level_4(title, header_id=''):
         """Return a atx level 4 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n####' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n#### ' + title + '\n'
+        return '\n#### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_5(title):
+    def atx_level_5(title, header_id=''):
         """Return a atx level 5 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n#####' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n##### ' + title + '\n'
+        return '\n##### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_6(title):
+    def atx_level_6(title, header_id=''):
         """Return a atx level 6 header.
 
         :param str title: text title.
+        :param header_id: ID of the header for extended Markdown syntax
         :return: a header title of form: ``'\\n######' + title + '\\n'``
         :rtype: str
         """
+        if len(header_id):
+            header_id = ' {#' + header_id + '}'
 
-        return '\n###### ' + title + '\n'
+        return '\n###### ' + title + header_id + '\n'
 
     # ********************************************************************
     # *                          Setext-Style                            *
@@ -142,7 +160,7 @@ class Header:
         return '[' + text + '](' + link + ')'
 
     @staticmethod
-    def choose_header(level, title, style='atx'):
+    def choose_header(level, title, style='atx', header_id=''):
         # noinspection SpellCheckingInspection
         """This method choose the style and the header level.
 
@@ -157,21 +175,22 @@ class Header:
                 :param level: Header Level, For Atx-style 1 til 6. For Setext-style 1 and 2 header levels.
                 :param title: Header Title.
                 :param style: Header Style atx or setext.
+                :param header_id: ID of the header for extended Markdown syntax
                 :return:
                 """
         if style.lower() == 'atx':
             if level == 1:
-                return Header.atx_level_1(title)
+                return Header.atx_level_1(title, header_id)
             elif level == 2:
-                return Header.atx_level_2(title)
+                return Header.atx_level_2(title, header_id)
             elif level == 3:
-                return Header.atx_level_3(title)
+                return Header.atx_level_3(title, header_id)
             elif level == 4:
-                return Header.atx_level_4(title)
+                return Header.atx_level_4(title, header_id)
             elif level == 5:
-                return Header.atx_level_5(title)
+                return Header.atx_level_5(title, header_id)
             elif level == 6:
-                return Header.atx_level_6(title)
+                return Header.atx_level_6(title, header_id)
             else:
                 raise ValueError("For 'atx' style, level's expected value: 1, 2, 3, 4, 5 or 6, but level = "
                                  + str(level))
