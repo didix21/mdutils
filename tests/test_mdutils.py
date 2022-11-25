@@ -55,10 +55,14 @@ class TestMdUtils(TestCase):
         file_name = 'Test_file'
         md_file = MdUtils(file_name)
         string_headers_expected = "\n# Header 0\n\n## Header 1\n\n### Header 2\n\n#### Header 3\n\n" \
-                                  "##### Header 4\n\n###### Header 5\n"
+                                  "##### Header 4\n\n###### Header 5 {#header5}\n"
         string_headers = ""
         for x in range(6):
-            string_headers += md_file.new_header(level=(x + 1), title='Header ' + str(x), style='atx')
+            # The last header includes an ID
+            if x == 5:
+                string_headers += md_file.new_header(level=(x + 1), title='Header ' + str(x), style='atx', header_id='header5')
+            else:
+                string_headers += md_file.new_header(level=(x + 1), title='Header ' + str(x), style='atx')
 
         self.assertEqual(string_headers, string_headers_expected)
         md_file.create_md_file()
