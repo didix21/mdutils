@@ -15,6 +15,7 @@ def replace_on(file, pattern, new_value):
     with open(file, 'r+') as file:
         content = file.read()
         new_content = re.sub(pattern, new_value, content)
+        file.seek(0)
         file.write(new_content)
 
 def replace_version_on_config_py(version):

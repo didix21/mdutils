@@ -1,5 +1,28 @@
 # Changelog
 
+## [v1.5.0](https://github.com/didix21/mdutils/tree/v1.5.0) (2023-02-11)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.4.0...v1.5.0)
+
+**Implemented enhancements:**
+
+- Introduce `header\_id` as parameter for headers [\#78](https://github.com/didix21/mdutils/pull/78) ([kieferro](https://github.com/kieferro))
+
+**Fixed bugs:**
+
+- converting html tables to markdown creates unusable tables [\#73](https://github.com/didix21/mdutils/issues/73)
+
+**Closed issues:**
+
+- Add Id to header [\#77](https://github.com/didix21/mdutils/issues/77)
+- mkreports package [\#71](https://github.com/didix21/mdutils/issues/71)
+
+**Merged pull requests:**
+
+- Update setup-python version [\#79](https://github.com/didix21/mdutils/pull/79) ([didix21](https://github.com/didix21))
+- Modify tests to fix flakiness [\#76](https://github.com/didix21/mdutils/pull/76) ([blazyy](https://github.com/blazyy))
+- Fix typos in README [\#75](https://github.com/didix21/mdutils/pull/75) ([kieferro](https://github.com/kieferro))
+
 ## [v1.4.0](https://github.com/didix21/mdutils/tree/v1.4.0) (2022-05-31)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.3.1...v1.4.0)
@@ -84,14 +107,11 @@
 - Update issue templates [\#35](https://github.com/didix21/mdutils/pull/35) ([didix21](https://github.com/didix21))
 - Create CODE\_OF\_CONDUCT.md [\#34](https://github.com/didix21/mdutils/pull/34) ([didix21](https://github.com/didix21))
 - update Readme.md [\#32](https://github.com/didix21/mdutils/pull/32) ([Alexmod](https://github.com/Alexmod))
+- Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
 
 ## [v1.2.1](https://github.com/didix21/mdutils/tree/v1.2.1) (2020-05-08)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.1.1...v1.2.1)
-
-**Merged pull requests:**
-
-- Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
 
 ## [v1.1.1](https://github.com/didix21/mdutils/tree/v1.1.1) (2020-04-20)
 
