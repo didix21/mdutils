@@ -5,6 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2018 Dídac Coll
+from pathlib import Path
 
 
 class MarkDownFile(object):
@@ -17,12 +18,28 @@ class MarkDownFile(object):
 
     def __init__(self, name='', tmp=''):
         """Creates a markdown file, if name is not empty.
-        :param str name: file name"""
+        :param str name: file name
+        If the file name is a relative path then the output is
+        pwd/path/to/name.md or tmp/name.md if tmp is specified
+        If the file name is an absolute path then the output is
+        /abs/path/name.md or /tmp/name.md if tmp is specified
+        """
+
         import os
         if name:
-            self.dirname = tmp if tmp else os.getcwd() 
+            # Set the directory name to the temp directory if temp is specified, otherwise
+            # set to the current working directory
+            self.dirname = tmp if not tmp == "" else os.getcwd()
+            # Extend file name to have .md suffix if not already specified
             self.file_name = name if name.endswith('.md') else name + '.md'
-            self.file = open(f'{self.dirname}/{self.file_name}', 'w+', encoding='UTF-8')
+            # Truncate file_name to just file name if tmp specified
+            # This if an absolute path is specified AND tmp is specified, file goes to tmp/name
+            # Otherwise file_name remains as is
+            self.file_name = Path(self.file_name).name if not tmp == "" else self.file_name
+            # Use join path to connect dirname to file path.
+            # This means that if file_name is an absolute path, the self.dirname is not used
+            file_path = Path(self.dirname).joinpath(Path(self.file_name))
+            self.file = open(str(file_path), 'w+', encoding='UTF-8')
             self.file.close()
 
     def rewrite_all_file(self, data):
