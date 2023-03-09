@@ -21,10 +21,12 @@ jobs:
       with:
         python-version: '3.6'
     - name: Install dependencies
-      run: pip install coverage
+      run: | 
+        pip install coverage
+        pip install -U pytest
     - name: Test unittest
       run: |
-        coverage run -m unittest discover
+        coverage run -m pytest
         coverage xml
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v2

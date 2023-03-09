@@ -15,35 +15,42 @@ class MarkDownFile(object):
         - Rewrite a file with new data.
         - Write at the end of the file."""
 
-    def __init__(self, name='', tmp=''):
+    def __init__(self, name='', dirname: str = None):
         """Creates a markdown file, if name is not empty.
-        :param str name: file name"""
-        import os
+        :param str name: provide the file name or a path joinly with the file name. For example: `./my-path/my-file.md`.
+        :param str dirname: use dirname if you want to provide the path separately from the name. 
+        If not you can specify the path directly on the name."""
         if name:
-            self.dirname = tmp if tmp else os.getcwd() 
-            self.file_name = name if name.endswith('.md') else name + '.md'
-            self.file = open(f'{self.dirname}/{self.file_name}', 'w+', encoding='UTF-8')
+            self.dirname = dirname
+            self.file_name = self._get_file_name(name, dirname)
+            self.file = open(f'{self.file_name}', 'w+', encoding='UTF-8')
             self.file.close()
+
+    def _get_file_name(self, name: str, dirname: str = None ) -> str:
+            if dirname:
+                return f'{dirname}/{name}' if name.endswith('.md') else f'{dirname}/{name}.md'
+            
+            return name if name.endswith('.md') else f'{name}.md'
 
     def rewrite_all_file(self, data):
         """Rewrite all the data of a Markdown file by ``data``.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
-        with open(f'{self.dirname}/{self.file_name}', 'w', encoding='utf-8') as self.file:
+        with open(f'{self.file_name}', 'w', encoding='utf-8') as self.file:
             self.file.write(data)
 
     def append_end(self, data):
         """Write at the last position of a Markdown file.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
-        with open(f'{self.dirname}/{self.file_name}', 'a', encoding='utf-8') as self.file:
+        with open(f'{self.file_name}', 'a', encoding='utf-8') as self.file:
             self.file.write(data)
 
     def append_after_second_line(self, data):
         """Write after the file's first line.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
-        with open(f'{self.dirname}/{self.file_name}', 'r+', encoding='utf-8') as self.file:
+        with open(f'{self.file_name}', 'r+', encoding='utf-8') as self.file:
             file_data = self.file.read()  # Save all the file's content
             self.file.seek(0, 0)  # Place file pointer at the beginning
             first_line = self.file.readline()  # Read the first line
@@ -53,7 +60,7 @@ class MarkDownFile(object):
             self.file.write('\n' + file_data[len(first_line + second_line):])
 
     @staticmethod
-    def read_file(file_name):
+    def read_file(file_name: str) -> str:
         """Read a Markdown file using a file name. It is not necessary to add *.md extension.
 
         :param file_name: Markdown file's name.
