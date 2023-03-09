@@ -9,7 +9,6 @@
 from unittest import TestCase
 from mdutils.fileutils import MarkDownFile
 import tempfile
-import os
 
 
 class TestMarkdownFile(TestCase):
@@ -17,17 +16,22 @@ class TestMarkdownFile(TestCase):
     def test_create_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             file = MarkDownFile('Test_file', tmp)
-            self.assertEqual(file.file_name, 'Test_file.md')
+            self.assertEqual(file.file_name, f'{tmp}/Test_file.md')
 
     def test_create_file_case_0(self):
         with tempfile.TemporaryDirectory() as tmp:
             file = MarkDownFile('Test_filemd', tmp)
-            self.assertEqual(file.file_name, 'Test_filemd.md')
+            self.assertEqual(file.file_name, f'{tmp}/Test_filemd.md')
 
     def test_create_file_case_1(self):
         with tempfile.TemporaryDirectory() as tmp:
             file = MarkDownFile('Test_file.md', tmp)
-            self.assertEqual(file.file_name, 'Test_file.md')
+            self.assertEqual(file.file_name, f'{tmp}/Test_file.md')
+    
+    def test_create_file_case_3(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            file = MarkDownFile(f'{tmp}/Test_file.md')
+            self.assertEqual(file.file_name, f'{tmp}/Test_file.md')
 
     def test_rewrite_all_file(self):
         expected_content = "Write some content"
