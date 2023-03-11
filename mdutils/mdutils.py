@@ -44,7 +44,7 @@ class MdUtils:
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name, title="", author=""):
+    def __init__(self, file_name, title="", author="", append_existing=False):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -53,24 +53,39 @@ class MdUtils:
         :type title: str
         :param author: it is the author fo the Markdown file.
         :type author: str
+        :param append_existing: optionally append to an existing Mardown file.
+        :type append_existing: bool
         """
         self.file_name = file_name
         self.author = author
         self.header = Header()
         self.textUtils = TextUtils
-        self.title = self.header.choose_header(level=1, title=title, style='setext')
+
+        # create a header for the Title, only if we were given a title
+        if title:
+            self.title = self.header.choose_header(level=1, title=title, style='setext')
+        else:
+            self.title = ""
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
         self.reference = Reference()
         self.image = Image(reference=self.reference)
+        if append_existing:
+            self.read_md_file(file_name)
 
     def create_md_file(self):
         """It creates a new Markdown file.
         :return: return an instance of a MarkDownFile."""
         md_file = MarkDownFile(self.file_name)
+        # Only contatenate title and table of contents if we have those
+        start_text = ""
+        if self.title:
+            start_text += self.title
+        if self.table_of_contents:
+            start_text += self.table_of_contents
         md_file.rewrite_all_file(
-            data=self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+            data=start_text + self.file_data_text + self.reference.get_references_as_markdown()
         )
         return md_file
 
