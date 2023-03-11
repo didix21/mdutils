@@ -13,27 +13,27 @@ class Reference:
     def __init__(self):
         self.references = {}
 
-    def get_references(self):
+    def get_references(self) -> dict:
         """
         :return:
         :rtype: dict
         """
         return self.references
 
-    def get_references_as_markdown(self):
+    def get_references_as_markdown(self) -> str:
         """
         :return:
         :rtype: str
         """
         if not bool(self.references):
-            return ""
+            return ''
 
-        references_as_markdown = ""
+        references_as_markdown = ''
         for key in sorted(self.references.keys()):
             references_as_markdown += '[' + key + ']: ' + self.references[key] + '\n'
         return '\n\n\n' + references_as_markdown
 
-    def new_link(self, link, text, reference_tag=None, tooltip=None):
+    def new_link(self, link: str, text: str, reference_tag: str = None, tooltip: str = None) -> str:
         """
         :param link:
         :type link: str
@@ -53,7 +53,7 @@ class Reference:
         self.__update_ref(link, reference_tag, tooltip)
         return '[' + text + '][' + reference_tag + ']'
 
-    def __update_ref(self, link, reference_tag, tooltip=None):
+    def __update_ref(self, link: str, reference_tag: str, tooltip: str = None):
         if not (reference_tag in self.references.keys()):
             if tooltip is not None:
                 self.references.update({reference_tag: TextUtils.add_tooltip(link, tooltip)})
@@ -65,7 +65,7 @@ class Reference:
 class Inline:
 
     @staticmethod
-    def new_link(link, text=None, tooltip=None):
+    def new_link(link: str, text: str = None, tooltip: str = None):
         """
         :param link:
         :type link: str
@@ -89,7 +89,7 @@ class Inline:
         return Inline.__md_link(link=link, text=text)
 
     @staticmethod
-    def __md_link(link, text):
+    def __md_link(link: str, text: str):
         return TextUtils.text_external_link(text, link)
 
 

@@ -5,7 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2018 Dídac Coll
-
+from typing import Optional
 
 class MarkDownFile(object):
     """MarkDownFile class creates a new file of MarkDown extension.
@@ -15,7 +15,7 @@ class MarkDownFile(object):
         - Rewrite a file with new data.
         - Write at the end of the file."""
 
-    def __init__(self, name='', dirname: str = None):
+    def __init__(self, name='', dirname: Optional[str] = None):
         """Creates a markdown file, if name is not empty.
         :param str name: provide the file name or a path joinly with the file name. For example: `./my-path/my-file.md`.
         :param str dirname: use dirname if you want to provide the path separately from the name. 
@@ -26,27 +26,27 @@ class MarkDownFile(object):
             self.file = open(f'{self.file_name}', 'w+', encoding='UTF-8')
             self.file.close()
 
-    def _get_file_name(self, name: str, dirname: str = None ) -> str:
+    def _get_file_name(self, name: str, dirname: Optional[str] = None ) -> str:
             if dirname:
                 return f'{dirname}/{name}' if name.endswith('.md') else f'{dirname}/{name}.md'
             
             return name if name.endswith('.md') else f'{name}.md'
 
-    def rewrite_all_file(self, data):
+    def rewrite_all_file(self, data: str):
         """Rewrite all the data of a Markdown file by ``data``.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
         with open(f'{self.file_name}', 'w', encoding='utf-8') as self.file:
             self.file.write(data)
 
-    def append_end(self, data):
+    def append_end(self, data: str):
         """Write at the last position of a Markdown file.
 
         :param str data: is a string containing all the data that is written in the markdown file."""
         with open(f'{self.file_name}', 'a', encoding='utf-8') as self.file:
             self.file.write(data)
 
-    def append_after_second_line(self, data):
+    def append_after_second_line(self, data: str):
         """Write after the file's first line.
 
         :param str data: is a string containing all the data that is written in the markdown file."""

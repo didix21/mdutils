@@ -27,6 +27,7 @@ from mdutils.tools.Link import Inline, Reference
 from mdutils.tools.TextUtils import TextUtils
 from mdutils.tools.MDList import MDList, MDCheckbox
 from textwrap import fill
+from typing import Union, Optional, List
 
 
 class MdUtils:
@@ -44,7 +45,7 @@ class MdUtils:
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name, title="", author=""):
+    def __init__(self, file_name: str, title: str = '', author: str = ''):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -65,7 +66,7 @@ class MdUtils:
         self.reference = Reference()
         self.image = Image(reference=self.reference)
 
-    def create_md_file(self):
+    def create_md_file(self) -> MarkDownFile:
         """It creates a new Markdown file.
         :return: return an instance of a MarkDownFile."""
         md_file = MarkDownFile(self.file_name)
@@ -80,7 +81,7 @@ class MdUtils:
         :return: return a string with the markdown text."""
         return self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
 
-    def read_md_file(self, file_name):
+    def read_md_file(self, file_name: str) -> str:
         """Reads a Markdown file and save it to global class `file_data_text`.
 
         :param file_name: Markdown file's name that has to be read.
@@ -93,7 +94,7 @@ class MdUtils:
 
         return file_data
 
-    def new_header(self, level, title, style='atx', add_table_of_contents='y', header_id=''):
+    def new_header(self, level: int, title: str, style: str = 'atx', add_table_of_contents: str = 'y', header_id: str = '') -> str:
         """Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
@@ -122,7 +123,7 @@ class MdUtils:
         self.___update_file_data(self.header.choose_header(level, title, style, header_id))
         return self.header.choose_header(level, title, style, header_id)
 
-    def __add_new_item_table_of_content(self, level, item):
+    def __add_new_item_table_of_content(self, level: int, item: Union[List[str], str]):
         """Automatically add new atx headers to the table of contents.
 
         :param level: add levels up to 6.
@@ -143,7 +144,7 @@ class MdUtils:
             curr.append([])
 
 
-    def new_table_of_contents(self, table_title="Table of contents", depth=1, marker=''):
+    def new_table_of_contents(self, table_title: str = "Table of contents", depth: int = 1, marker: str = '') -> str:
         """Table of contents can be created if Headers of 'atx' style have been defined.
 
         This method allows to create a table of contents and define a title for it. Moreover, `depth` allows user to
@@ -175,7 +176,7 @@ class MdUtils:
 
         return self.table_of_contents + marker_table_of_contents
 
-    def new_table(self, columns, rows, text, text_align='center', marker=''):
+    def new_table(self, columns: int, rows: int, text: List[str], text_align: str = 'center', marker: str = '') -> str:
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
@@ -222,7 +223,7 @@ class MdUtils:
 
         return text_table
 
-    def new_paragraph(self, text='', bold_italics_code='', color='black', align='', wrap_width=0):
+    def new_paragraph(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', wrap_width:int = 0) -> str:
         """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -252,7 +253,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def new_line(self, text='', bold_italics_code='', color='black', align='', wrap_width=0):
+    def new_line(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', wrap_width: int = 0) -> str:
         """Add a new line to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -281,7 +282,7 @@ class MdUtils:
 
         return self.file_data_text
 
-    def write(self, text='', bold_italics_code='', color='black', align='', marker='', wrap_width=0):
+    def write(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', marker: str = '', wrap_width: int = 0) -> str:
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
@@ -314,7 +315,7 @@ class MdUtils:
 
         return new_text
 
-    def insert_code(self, code, language=''):
+    def insert_code(self, code: str, language: str = '') -> str:
         """This method allows to insert a peace of code on a markdown file.
 
         :param code: code string.
@@ -328,7 +329,7 @@ class MdUtils:
         self.___update_file_data(md_code)
         return md_code
 
-    def create_marker(self, text_marker):
+    def create_marker(self, text_marker: str) -> str:
         """This will add a marker to ``file_data_text`` and returns the marker result in order to be used whenever
             you need.
 
@@ -345,7 +346,7 @@ class MdUtils:
         self.___update_file_data(new_marker)
         return new_marker
 
-    def place_text_using_marker(self, text, marker):
+    def place_text_using_marker(self, text: str, marker: str) -> str:
         """It replace a previous marker created with ``create_marker`` with a text string.
 
             This method is going to search for the ``marker`` argument, which has been created previously using
@@ -363,7 +364,7 @@ class MdUtils:
     def ___update_file_data(self, file_data):
         self.file_data_text += file_data
 
-    def new_inline_link(self, link, text=None, bold_italics_code='', align=''):
+    def new_inline_link(self, link: str, text: Optional[str] = None, bold_italics_code: str = '', align: str = '') -> str:
         """Creates a inline link in markdown format.
 
         :param link:
@@ -392,7 +393,7 @@ class MdUtils:
 
         return Inline.new_link(link=link, text=n_text)
 
-    def new_reference_link(self, link, text, reference_tag=None, bold_italics_code='', align=''):
+    def new_reference_link(self, link: str, text: str, reference_tag: Optional[str] = None, bold_italics_code: str = '', align: str = '') -> str:
         """Creates a reference link in markdown format. All references will be stored at the end of the markdown file.
 
 
@@ -444,7 +445,7 @@ class MdUtils:
         return self.reference.new_link(link=link, text=n_text, reference_tag=reference_tag)
 
     @staticmethod
-    def new_inline_image(text, path):
+    def new_inline_image(text: str, path: str) -> str:
         """Add inline images in a markdown file. For example ``[MyImage](../MyImage.jpg)``.
 
         :param text: Text that is going to be displayed in the markdown file as a iamge.
@@ -458,7 +459,7 @@ class MdUtils:
 
         return Image.new_inline_image(text=text, path=path)
 
-    def new_reference_image(self, text, path, reference_tag=None):
+    def new_reference_image(self, text: str, path: str, reference_tag: Optional[str] = None) -> str:
         """Add reference images in a markdown file. For example ``[MyImage][my_image]``. All references will be stored
         at the end of the markdown file.
 
@@ -476,7 +477,7 @@ class MdUtils:
         """
         return self.image.new_reference_image(text=text, path=path, reference_tag=reference_tag)
 
-    def new_list(self, items: [str], marked_with: str = "-"):
+    def new_list(self, items: List[str], marked_with: str = "-"):
         """Add unordered or ordered list in MarkDown file.
 
         :param items: Array of items for generating the list.
@@ -489,7 +490,7 @@ class MdUtils:
         mdlist = MDList(items, marked_with)
         self.___update_file_data('\n' + mdlist.get_md())
 
-    def new_checkbox_list(self, items: [str], checked: bool = False):
+    def new_checkbox_list(self, items: List[str], checked: bool = False):
         """Add checkbox list in MarkDown file.
 
         :param items: Array of items for generating the checkbox list.

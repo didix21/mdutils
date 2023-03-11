@@ -5,11 +5,12 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
+from typing import List
 import re
 
 
 class TableOfContents:
-    def _loop_through(self, elements, tab='', depth=1):
+    def _loop_through(self, elements, tab: str = '', depth: int = 1) -> str:
         """Method that go through a list of elements that contain strings and other list and return a string.
 
         The returned string is ready to be written in a markdown file in order to create a table of contents.
@@ -22,7 +23,7 @@ class TableOfContents:
         :type depth: int
         :rtype: str
         """
-        elements_to_string = ""
+        elements_to_string = ''
         for item in elements:
             if isinstance(item, list):
                 if item and depth > 1:
@@ -33,7 +34,7 @@ class TableOfContents:
 
         return elements_to_string
 
-    def create_table_of_contents(self, array_of_title_contents, depth=1):
+    def create_table_of_contents(self, array_of_title_contents: List[str], depth: int = 1) -> str:
         """This method can create a table of contents using an array of the different titles. The depth can be changed.
         :param array_of_title_contents: a string list with the different headers.
         :type array_of_title_contents: list
@@ -43,7 +44,7 @@ class TableOfContents:
         :rtype: str
         """
         if depth in range(1,7):
-            table_of_contents = ""
+            table_of_contents = ''
             table_of_contents += self._loop_through(array_of_title_contents, depth=depth)
             table_of_contents += '\n'
             return table_of_contents

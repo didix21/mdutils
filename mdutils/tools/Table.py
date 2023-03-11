@@ -5,7 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
-from typing import Optional, Union, Iterable
+from typing import Optional, Union, Iterable, List
 
 
 class Table:
@@ -69,7 +69,7 @@ class Table:
 
         return column_align_string
 
-    def create_table(self, columns: int, rows: int, text: [str], text_align: Optional[Union[str, list]] = None):
+    def create_table(self, columns: int, rows: int, text: List[str], text_align: Optional[Union[str, list]] = None):
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows.

@@ -11,7 +11,7 @@ from mdutils.tools.Link import Inline, Reference
 
 class Image:
 
-    def __init__(self, reference):
+    def __init__(self, reference: Reference):
         """
         :param reference:
         :type reference: Reference
@@ -19,7 +19,7 @@ class Image:
         self.reference = reference
 
     @staticmethod
-    def new_inline_image(text, path, tooltip=None):
+    def new_inline_image(text: str, path: str, tooltip: str = None) -> str:
         """
         :param text: Text that is going to be displayed in the markdown file as a iamge.
         :type text: str
@@ -32,7 +32,7 @@ class Image:
         """
         return '!' + Inline.new_link(link=path, text=text, tooltip=tooltip)
 
-    def new_reference_image(self, text, path, reference_tag=None, tooltip=None):
+    def new_reference_image(self, text: str, path: str, reference_tag: str = None, tooltip: str = None) -> str:
         """
         :param text: Text that is going to be displayed in the markdown file as a image.
         :type text: str
