@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.5.1](https://github.com/didix21/mdutils/tree/v1.5.1) (2023-03-11)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.5.0...v1.5.1)
+
+**Fixed bugs:**
+
+- MarkDownFile not accepting absolute file path anymore [\#81](https://github.com/didix21/mdutils/issues/81)
+- Fix \#81: Absolute path are broken [\#83](https://github.com/didix21/mdutils/pull/83) ([didix21](https://github.com/didix21))
+
 ## [v1.5.0](https://github.com/didix21/mdutils/tree/v1.5.0) (2023-02-11)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.4.0...v1.5.0)
@@ -107,11 +116,14 @@
 - Update issue templates [\#35](https://github.com/didix21/mdutils/pull/35) ([didix21](https://github.com/didix21))
 - Create CODE\_OF\_CONDUCT.md [\#34](https://github.com/didix21/mdutils/pull/34) ([didix21](https://github.com/didix21))
 - update Readme.md [\#32](https://github.com/didix21/mdutils/pull/32) ([Alexmod](https://github.com/Alexmod))
-- Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
 
 ## [v1.2.1](https://github.com/didix21/mdutils/tree/v1.2.1) (2020-05-08)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.1.1...v1.2.1)
+
+**Merged pull requests:**
+
+- Add support list in markdown [\#30](https://github.com/didix21/mdutils/pull/30) ([didix21](https://github.com/didix21))
 
 ## [v1.1.1](https://github.com/didix21/mdutils/tree/v1.1.1) (2020-04-20)
 
