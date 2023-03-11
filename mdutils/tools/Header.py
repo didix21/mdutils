@@ -25,7 +25,7 @@ class Header:
     # *                             Atx-Style                            *
     # ********************************************************************
     @staticmethod
-    def atx_level_1(title, header_id=''):
+    def atx_level_1(title: str, header_id: str = '') -> str:
         """Return a atx level 1 header.
 
         :param str title: text title.
@@ -39,7 +39,7 @@ class Header:
         return '\n# ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_2(title, header_id=''):
+    def atx_level_2(title: str, header_id: str = '') -> str:
         """Return a atx level 2 header.
 
         :param str title: text title.
@@ -53,7 +53,7 @@ class Header:
         return '\n## ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_3(title, header_id=''):
+    def atx_level_3(title: str, header_id: str = '') -> str:
         """Return a atx level 3 header.
 
         :param str title: text title.
@@ -67,7 +67,7 @@ class Header:
         return '\n### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_4(title, header_id=''):
+    def atx_level_4(title: str, header_id: str = '') -> str:
         """Return a atx level 4 header.
 
         :param str title: text title.
@@ -81,7 +81,7 @@ class Header:
         return '\n#### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_5(title, header_id=''):
+    def atx_level_5(title: str, header_id: str = '') -> str:
         """Return a atx level 5 header.
 
         :param str title: text title.
@@ -95,7 +95,7 @@ class Header:
         return '\n##### ' + title + header_id + '\n'
 
     @staticmethod
-    def atx_level_6(title, header_id=''):
+    def atx_level_6(title: str, header_id: str = '') -> str:
         """Return a atx level 6 header.
 
         :param str title: text title.
@@ -112,7 +112,7 @@ class Header:
     # *                          Setext-Style                            *
     # ********************************************************************
     @staticmethod
-    def setext_level_1(title):
+    def setext_level_1(title: str) -> str:
         """Return a setext level 1 header.
 
         :param str title: text title.
@@ -123,7 +123,7 @@ class Header:
         return '\n' + title + '\n' + ''.join(['=' for _ in title]) + '\n'
 
     @staticmethod
-    def setext_level_2(title):
+    def setext_level_2(title: str) -> str:
         """Return a setext level 1 header.
 
                 :param str title: text title.
@@ -134,7 +134,7 @@ class Header:
         return '\n' + title + '\n' + ''.join(['-' for _ in title]) + '\n'
 
     @staticmethod
-    def header_anchor(text, link=""):
+    def header_anchor(text: str, link: str = '') -> str:
         """Creates an internal link of a defined Header level 1 or level 2 in the markdown file.
 
         Giving a text string an text link you can create an internal link of already existing header. If the ``link``
@@ -160,7 +160,7 @@ class Header:
         return '[' + text + '](' + link + ')'
 
     @staticmethod
-    def choose_header(level, title, style='atx', header_id=''):
+    def choose_header(level: int, title: str, style: str = 'atx', header_id: str = '') -> str:
         # noinspection SpellCheckingInspection
         """This method choose the style and the header level.
 

@@ -13,7 +13,7 @@ class TextUtils:
     """
 
     @staticmethod
-    def bold(text):
+    def bold(text: str) -> str:
         """Bold text converter.
 
         :param text: a text string.
@@ -23,7 +23,7 @@ class TextUtils:
         return '**' + text + '**'
 
     @staticmethod
-    def italics(text):
+    def italics(text: str) -> str:
         """Italics text converter.
 
         :param text: a text string.
@@ -33,7 +33,7 @@ class TextUtils:
         return '*' + text + '*'
 
     @staticmethod
-    def inline_code(text):
+    def inline_code(text: str) -> str:
         """Inline code text converter.
 
         :param text: a text string.
@@ -43,7 +43,7 @@ class TextUtils:
         return '``' + text + '``'
 
     @staticmethod
-    def center_text(text):
+    def center_text(text: str) -> str:
         """Place a text string to center.
 
         :param text: a text string.
@@ -53,7 +53,7 @@ class TextUtils:
         return '<center>' + text + '</center>'
 
     @staticmethod
-    def text_color(text, color="black"):
+    def text_color(text: str, color: str = "black") -> str:
         """Change text color.
 
         :param text: it is the text that will be changed its color.
@@ -67,7 +67,7 @@ class TextUtils:
         return '<font color="' + color + '">' + text + '</font>'
 
     @staticmethod
-    def text_external_link(text, link=''):
+    def text_external_link(text: str, link: str = '') -> str:
         """ Using this method can be created an external link of a file or a web page.
 
         :param text: Text to be displayed.
@@ -80,7 +80,7 @@ class TextUtils:
         return '[' + text + '](' + link + ')'
 
     @staticmethod
-    def insert_code(code, language=''):
+    def insert_code(code: str, language: str = '') -> str:
         """This method allows to insert a peace of code.
 
         :param code: code string.
@@ -96,7 +96,7 @@ class TextUtils:
             return '```' + language + '\n' + code + '\n```'
 
     @staticmethod
-    def text_format(text, bold_italics_code='', color='black', align=''):
+    def text_format(text: str, bold_italics_code: str = '', color: str = 'black', align: str = '') -> str:
         """Text format helps to write multiple text format such as bold, italics and color.
 
         :param text: it is a string in which will be added the mew format
@@ -142,7 +142,7 @@ class TextUtils:
         return new_text_format
 
     @staticmethod
-    def add_tooltip(link, tip):
+    def add_tooltip(link: str, tip: str) -> str:
         """
         :param link:
         :type link: str

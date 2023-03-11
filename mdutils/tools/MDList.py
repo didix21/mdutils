@@ -5,6 +5,7 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
+from typing import List
 import re
 
 
@@ -12,7 +13,7 @@ class MDListHelper:
     def __init__(self):
         self.n_tabs = 0
 
-    def _get_unordered_markdown_list(self, items: [str], marker: str) -> str:
+    def _get_unordered_markdown_list(self, items, marker: str) -> str:
         md_list = ""
         for item in items:
             if isinstance(item, list):
@@ -24,7 +25,7 @@ class MDListHelper:
 
         return md_list
 
-    def _get_ordered_markdown_list(self, items: [str]) -> str:
+    def _get_ordered_markdown_list(self, items) -> str:
         md_list = ""
         n_marker = 1
         for item in items:
@@ -60,7 +61,7 @@ class MDList(MDListHelper):
     """This class allows to create unordered or ordered MarkDown list.
 
     """
-    def __init__(self, items: [str], marked_with: str = '-'):
+    def __init__(self, items, marked_with: str = '-'):
         """
 
         :param items: Array of items for generating the list.
@@ -87,7 +88,7 @@ class MDCheckbox(MDListHelper):
 
     """
 
-    def __init__(self, items: [str], checked: bool = False):
+    def __init__(self, items, checked: bool = False):
         """
 
         :param items: Array of items for generating the list.
