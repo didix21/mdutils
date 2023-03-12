@@ -45,7 +45,7 @@ class MdUtils:
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name: str, title: str = '', author: str = ''):
+    def __init__(self, file_name: str, title: str = "", author: str = ""):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -59,7 +59,7 @@ class MdUtils:
         self.author = author
         self.header = Header()
         self.textUtils = TextUtils
-        self.title = self.header.choose_header(level=1, title=title, style='setext')
+        self.title = self.header.choose_header(level=1, title=title, style="setext")
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
@@ -71,7 +71,10 @@ class MdUtils:
         :return: return an instance of a MarkDownFile."""
         md_file = MarkDownFile(self.file_name)
         md_file.rewrite_all_file(
-            data=self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+            data=self.title
+            + self.table_of_contents
+            + self.file_data_text
+            + self.reference.get_references_as_markdown()
         )
         return md_file
 
@@ -79,7 +82,12 @@ class MdUtils:
         """Instead of writing the markdown text into a file it returns it as a string.
 
         :return: return a string with the markdown text."""
-        return self.title + self.table_of_contents + self.file_data_text + self.reference.get_references_as_markdown()
+        return (
+            self.title
+            + self.table_of_contents
+            + self.file_data_text
+            + self.reference.get_references_as_markdown()
+        )
 
     def read_md_file(self, file_name: str) -> str:
         """Reads a Markdown file and save it to global class `file_data_text`.
@@ -94,7 +102,14 @@ class MdUtils:
 
         return file_data
 
-    def new_header(self, level: int, title: str, style: str = 'atx', add_table_of_contents: str = 'y', header_id: str = '') -> str:
+    def new_header(
+        self,
+        level: int,
+        title: str,
+        style: str = "atx",
+        add_table_of_contents: str = "y",
+        header_id: str = "",
+    ) -> str:
         """Add a new header to the Markdown file.
 
         :param level: Header level. *atx* style can take values 1 til 6 and *setext* style take values 1 and 2.
@@ -118,9 +133,11 @@ class MdUtils:
         '\\nHeader Title\\n-------------\\n'
 
         """
-        if add_table_of_contents == 'y':
+        if add_table_of_contents == "y":
             self.__add_new_item_table_of_content(level, title)
-        self.___update_file_data(self.header.choose_header(level, title, style, header_id))
+        self.___update_file_data(
+            self.header.choose_header(level, title, style, header_id)
+        )
         return self.header.choose_header(level, title, style, header_id)
 
     def __add_new_item_table_of_content(self, level: int, item: Union[List[str], str]):
@@ -135,7 +152,7 @@ class MdUtils:
 
         curr = self._table_titles
 
-        for i in range(level-1):
+        for i in range(level - 1):
             curr = curr[-1]
 
         curr.append(item)
@@ -143,8 +160,9 @@ class MdUtils:
         if level < 6:
             curr.append([])
 
-
-    def new_table_of_contents(self, table_title: str = "Table of contents", depth: int = 1, marker: str = '') -> str:
+    def new_table_of_contents(
+        self, table_title: str = "Table of contents", depth: int = 1, marker: str = ""
+    ) -> str:
         """Table of contents can be created if Headers of 'atx' style have been defined.
 
         This method allows to create a table of contents and define a title for it. Moreover, `depth` allows user to
@@ -164,19 +182,34 @@ class MdUtils:
 
         if marker:
             self.table_of_contents = ""
-            marker_table_of_contents = self.header.choose_header(level=1, title=table_title, style='setext')
+            marker_table_of_contents = self.header.choose_header(
+                level=1, title=table_title, style="setext"
+            )
             marker_table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(
-                self._table_titles, depth)
-            self.file_data_text = self.place_text_using_marker(marker_table_of_contents, marker)
+                self._table_titles, depth
+            )
+            self.file_data_text = self.place_text_using_marker(
+                marker_table_of_contents, marker
+            )
         else:
             marker_table_of_contents = ""
-            self.table_of_contents += self.header.choose_header(level=1, title=table_title, style='setext')
+            self.table_of_contents += self.header.choose_header(
+                level=1, title=table_title, style="setext"
+            )
             self.table_of_contents += mdutils.tools.TableOfContents.TableOfContents().create_table_of_contents(
-                self._table_titles, depth)
+                self._table_titles, depth
+            )
 
         return self.table_of_contents + marker_table_of_contents
 
-    def new_table(self, columns: int, rows: int, text: List[str], text_align: str = 'center', marker: str = '') -> str:
+    def new_table(
+        self,
+        columns: int,
+        rows: int,
+        text: List[str],
+        text_align: str = "center",
+        marker: str = "",
+    ) -> str:
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows. The
@@ -223,7 +256,14 @@ class MdUtils:
 
         return text_table
 
-    def new_paragraph(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', wrap_width:int = 0) -> str:
+    def new_paragraph(
+        self,
+        text: str = "",
+        bold_italics_code: str = "",
+        color: str = "black",
+        align: str = "",
+        wrap_width: int = 0,
+    ) -> str:
         """Add a new paragraph to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -234,8 +274,8 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text.
         :type align: str
-        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
-                           Use width of 0 to disable wrapping.
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not
+                           broken. Use width of 0 to disable wrapping.
         :type wrap_width: int
         :return:  ``'\\n\\n' + text``. Not necessary to take it, if only has to be written to
                     the file.
@@ -244,16 +284,32 @@ class MdUtils:
         """
 
         if wrap_width > 0:
-            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
+            text = fill(
+                text,
+                wrap_width,
+                break_long_words=False,
+                replace_whitespace=False,
+                drop_whitespace=False,
+            )
 
-        if bold_italics_code or color != 'black' or align:
-            self.___update_file_data('\n\n' + self.textUtils.text_format(text, bold_italics_code, color, align))
+        if bold_italics_code or color != "black" or align:
+            self.___update_file_data(
+                "\n\n"
+                + self.textUtils.text_format(text, bold_italics_code, color, align)
+            )
         else:
-            self.___update_file_data('\n\n' + text)
+            self.___update_file_data("\n\n" + text)
 
         return self.file_data_text
 
-    def new_line(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', wrap_width: int = 0) -> str:
+    def new_line(
+        self,
+        text: str = "",
+        bold_italics_code: str = "",
+        color: str = "black",
+        align: str = "",
+        wrap_width: int = 0,
+    ) -> str:
         """Add a new line to Markdown file. The text is saved to the global variable file_data_text.
 
         :param text: is a string containing the paragraph text. Optionally, the paragraph text is returned.
@@ -264,8 +320,8 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
-        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
-                           Use width of 0 to disable wrapping.
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not
+                           broken. Use width of 0 to disable wrapping.
         :type wrap_width: int
         :return: return a string ``'\\n' + text``. Not necessary to take it, if only has to be written to the
                     file.
@@ -273,16 +329,33 @@ class MdUtils:
         """
 
         if wrap_width > 0:
-            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
+            text = fill(
+                text,
+                wrap_width,
+                break_long_words=False,
+                replace_whitespace=False,
+                drop_whitespace=False,
+            )
 
-        if bold_italics_code or color != 'black' or align:
-            self.___update_file_data('  \n' + self.textUtils.text_format(text, bold_italics_code, color, align))
+        if bold_italics_code or color != "black" or align:
+            self.___update_file_data(
+                "  \n"
+                + self.textUtils.text_format(text, bold_italics_code, color, align)
+            )
         else:
-            self.___update_file_data('  \n' + text)
+            self.___update_file_data("  \n" + text)
 
         return self.file_data_text
 
-    def write(self, text: str = '', bold_italics_code: str = '', color: str = 'black', align: str = '', marker: str = '', wrap_width: int = 0) -> str:
+    def write(
+        self,
+        text: str = "",
+        bold_italics_code: str = "",
+        color: str = "black",
+        align: str = "",
+        marker: str = "",
+        wrap_width: int = 0,
+    ) -> str:
         """Write text in ``file_Data_text`` string.
 
         :param text: a text a string.
@@ -293,15 +366,21 @@ class MdUtils:
         :type color: str
         :param align: Using this parameter you can align text. For example ``'right'``, ``'left'`` or ``'center'``.
         :type align: str
-        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not broken. 
-                           Use width of 0 to disable wrapping.
+        :param wrap_width: wraps text with designated width by number of characters. By default, long words are not
+                           broken. Use width of 0 to disable wrapping.
         :type wrap_width: int
         :param marker: allows to replace a marker on some point of the file by the text.
         :type marker: str
         """
 
         if wrap_width > 0:
-            text = fill(text, wrap_width, break_long_words=False, replace_whitespace=False, drop_whitespace=False)
+            text = fill(
+                text,
+                wrap_width,
+                break_long_words=False,
+                replace_whitespace=False,
+                drop_whitespace=False,
+            )
 
         if bold_italics_code or color or align:
             new_text = self.textUtils.text_format(text, bold_italics_code, color, align)
@@ -315,7 +394,7 @@ class MdUtils:
 
         return new_text
 
-    def insert_code(self, code: str, language: str = '') -> str:
+    def insert_code(self, code: str, language: str = "") -> str:
         """This method allows to insert a peace of code on a markdown file.
 
         :param code: code string.
@@ -325,7 +404,7 @@ class MdUtils:
         :return:
         :rtype: str
         """
-        md_code = '\n\n' + self.textUtils.insert_code(code, language)
+        md_code = "\n\n" + self.textUtils.insert_code(code, language)
         self.___update_file_data(md_code)
         return md_code
 
@@ -342,7 +421,7 @@ class MdUtils:
         :rtype: str
         """
 
-        new_marker = '##--[' + text_marker + ']--##'
+        new_marker = "##--[" + text_marker + "]--##"
         self.___update_file_data(new_marker)
         return new_marker
 
@@ -364,7 +443,13 @@ class MdUtils:
     def ___update_file_data(self, file_data):
         self.file_data_text += file_data
 
-    def new_inline_link(self, link: str, text: Optional[str] = None, bold_italics_code: str = '', align: str = '') -> str:
+    def new_inline_link(
+        self,
+        link: str,
+        text: Optional[str] = None,
+        bold_italics_code: str = "",
+        align: str = "",
+    ) -> str:
         """Creates a inline link in markdown format.
 
         :param link:
@@ -389,11 +474,20 @@ class MdUtils:
             n_text = text
 
         if bold_italics_code or align:
-            n_text = self.textUtils.text_format(text=n_text, bold_italics_code=bold_italics_code, align=align)
+            n_text = self.textUtils.text_format(
+                text=n_text, bold_italics_code=bold_italics_code, align=align
+            )
 
         return Inline.new_link(link=link, text=n_text)
 
-    def new_reference_link(self, link: str, text: str, reference_tag: Optional[str] = None, bold_italics_code: str = '', align: str = '') -> str:
+    def new_reference_link(
+        self,
+        link: str,
+        text: str,
+        reference_tag: Optional[str] = None,
+        bold_italics_code: str = "",
+        align: str = "",
+    ) -> str:
         """Creates a reference link in markdown format. All references will be stored at the end of the markdown file.
 
 
@@ -433,16 +527,22 @@ class MdUtils:
         """
 
         if reference_tag is None:
-            if bold_italics_code != '':
-                raise TypeError('For using bold_italics_code param, reference_tag must be defined')
-            if align != '':
-                raise TypeError('For using align, reference_tag must be defined')
+            if bold_italics_code != "":
+                raise TypeError(
+                    "For using bold_italics_code param, reference_tag must be defined"
+                )
+            if align != "":
+                raise TypeError("For using align, reference_tag must be defined")
 
         n_text = text
         if bold_italics_code or align:
-            n_text = self.textUtils.text_format(text=n_text, bold_italics_code=bold_italics_code, align=align)
+            n_text = self.textUtils.text_format(
+                text=n_text, bold_italics_code=bold_italics_code, align=align
+            )
 
-        return self.reference.new_link(link=link, text=n_text, reference_tag=reference_tag)
+        return self.reference.new_link(
+            link=link, text=n_text, reference_tag=reference_tag
+        )
 
     @staticmethod
     def new_inline_image(text: str, path: str) -> str:
@@ -459,7 +559,9 @@ class MdUtils:
 
         return Image.new_inline_image(text=text, path=path)
 
-    def new_reference_image(self, text: str, path: str, reference_tag: Optional[str] = None) -> str:
+    def new_reference_image(
+        self, text: str, path: str, reference_tag: Optional[str] = None
+    ) -> str:
         """Add reference images in a markdown file. For example ``[MyImage][my_image]``. All references will be stored
         at the end of the markdown file.
 
@@ -475,7 +577,9 @@ class MdUtils:
         .. note::
             If param reference_tag is not provided, text param will be used instead.
         """
-        return self.image.new_reference_image(text=text, path=path, reference_tag=reference_tag)
+        return self.image.new_reference_image(
+            text=text, path=path, reference_tag=reference_tag
+        )
 
     def new_list(self, items: List[str], marked_with: str = "-"):
         """Add unordered or ordered list in MarkDown file.
@@ -488,7 +592,7 @@ class MdUtils:
         :return:
         """
         mdlist = MDList(items, marked_with)
-        self.___update_file_data('\n' + mdlist.get_md())
+        self.___update_file_data("\n" + mdlist.get_md())
 
     def new_checkbox_list(self, items: List[str], checked: bool = False):
         """Add checkbox list in MarkDown file.
@@ -501,7 +605,7 @@ class MdUtils:
         """
 
         mdcheckbox = MDCheckbox(items=items, checked=checked)
-        self.___update_file_data('\n' + mdcheckbox.get_md())
+        self.___update_file_data("\n" + mdcheckbox.get_md())
 
 
 if __name__ == "__main__":

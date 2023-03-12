@@ -8,7 +8,6 @@
 
 
 class Html:
-
     @staticmethod
     def paragraph(text: str, align: str = None) -> str:
         """
@@ -20,7 +19,7 @@ class Html:
         """
 
         if align is None:
-            return '<p>\n    {}\n</p>'.format(text)
+            return "<p>\n    {}\n</p>".format(text)
 
         if align is not None:
             if align not in ["left", "center", "right"]:
@@ -49,14 +48,18 @@ class Html:
         """
 
         if align:
-            return cls.paragraph(text=cls.__html_image(path=path, size=size), align=align)
+            return cls.paragraph(
+                text=cls.__html_image(path=path, size=size), align=align
+            )
 
         return cls.__html_image(path=path, size=size)
 
     @classmethod
     def __html_image(cls, path: str, size: str = None):
         if size:
-            return '<img src="{}" {}/>'.format(path, HtmlSize.size_to_width_and_height(size=size))
+            return '<img src="{}" {}/>'.format(
+                path, HtmlSize.size_to_width_and_height(size=size)
+            )
         return '<img src="{}" />'.format(path)
 
 
@@ -67,18 +70,20 @@ class HtmlSize:
         if size.isdigit():
             return cls.__get_width(size=size)
 
-        if size.startswith('x'):
+        if size.startswith("x"):
             height = size[1:]
             if height.isdigit():
                 return cls.__get_height(size=height)
 
             raise SizeBadFormat(size)
 
-        width_height = size.split('x')
+        width_height = size.split("x")
 
         if len(width_height) == 2:
             if width_height[0].isdigit() and width_height[1].isdigit():
-                return "{} {}".format(cls.__get_width(width_height[0]), cls.__get_height(width_height[1]))
+                return "{} {}".format(
+                    cls.__get_width(width_height[0]), cls.__get_height(width_height[1])
+                )
 
         raise SizeBadFormat(size)
 
@@ -98,6 +103,13 @@ class HtmlSize:
 
 class SizeBadFormat(Exception):
     """Raise exception when size does not match the expected format"""
+
     def __init__(self, message):
-        Exception.__init__(self, "Unexpected format: {}. Expected: '<int>', 'x<int>' or '<int>x<int>'".format(message))
+        Exception.__init__(
+            self,
+            "Unexpected format: {}. Expected: '<int>', 'x<int>' or '<int>x<int>'".format(
+                message
+            ),
+        )
+
     pass

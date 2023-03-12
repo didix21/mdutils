@@ -8,9 +8,7 @@
 
 
 class TextUtils:
-    """This class helps to create bold, italics and change color text.
-
-    """
+    """This class helps to create bold, italics and change color text."""
 
     @staticmethod
     def bold(text: str) -> str:
@@ -20,7 +18,7 @@ class TextUtils:
         :type text: str
         :return: a string like this example: ``'**text**'``
         :rtype: str"""
-        return '**' + text + '**'
+        return "**" + text + "**"
 
     @staticmethod
     def italics(text: str) -> str:
@@ -30,7 +28,7 @@ class TextUtils:
         :type text: str
         :return: a string like this example: ``'_text_'``
         :rtype: str"""
-        return '*' + text + '*'
+        return "*" + text + "*"
 
     @staticmethod
     def inline_code(text: str) -> str:
@@ -40,7 +38,7 @@ class TextUtils:
         :type text: str
         :return: a string like this example: ``'``text``'``
         :rtype: str"""
-        return '``' + text + '``'
+        return "``" + text + "``"
 
     @staticmethod
     def center_text(text: str) -> str:
@@ -50,7 +48,7 @@ class TextUtils:
         :type text: str
         :return: a string like this exampple: ``'<center>text</center>'``
         """
-        return '<center>' + text + '</center>'
+        return "<center>" + text + "</center>"
 
     @staticmethod
     def text_color(text: str, color: str = "black") -> str:
@@ -64,11 +62,11 @@ class TextUtils:
         :type color: str
         :rtype: str
         """
-        return '<font color="' + color + '">' + text + '</font>'
+        return '<font color="' + color + '">' + text + "</font>"
 
     @staticmethod
-    def text_external_link(text: str, link: str = '') -> str:
-        """ Using this method can be created an external link of a file or a web page.
+    def text_external_link(text: str, link: str = "") -> str:
+        """Using this method can be created an external link of a file or a web page.
 
         :param text: Text to be displayed.
         :type text: str
@@ -77,10 +75,10 @@ class TextUtils:
         :return: return a string like this: ``'[Text to be shown](https://write.link.com)'``
         :rtype: str"""
 
-        return '[' + text + '](' + link + ')'
+        return "[" + text + "](" + link + ")"
 
     @staticmethod
-    def insert_code(code: str, language: str = '') -> str:
+    def insert_code(code: str, language: str = "") -> str:
         """This method allows to insert a peace of code.
 
         :param code: code string.
@@ -90,13 +88,15 @@ class TextUtils:
         :return: markdown style.
         :rtype: str
         """
-        if language == '':
-            return '```\n' + code + '\n```'
+        if language == "":
+            return "```\n" + code + "\n```"
         else:
-            return '```' + language + '\n' + code + '\n```'
+            return "```" + language + "\n" + code + "\n```"
 
     @staticmethod
-    def text_format(text: str, bold_italics_code: str = '', color: str = 'black', align: str = '') -> str:
+    def text_format(
+        text: str, bold_italics_code: str = "", color: str = "black", align: str = ""
+    ) -> str:
         """Text format helps to write multiple text format such as bold, italics and color.
 
         :param text: it is a string in which will be added the mew format
@@ -118,26 +118,38 @@ class TextUtils:
         """
         new_text_format = text
         if bold_italics_code:
-            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
-                if 'c' in bold_italics_code:
+            if (
+                ("c" in bold_italics_code)
+                or ("b" in bold_italics_code)
+                or ("i" in bold_italics_code)
+            ):
+                if "c" in bold_italics_code:
                     new_text_format = TextUtils.inline_code(new_text_format)
             else:
-                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
+                raise ValueError(
+                    "unexpected bold_italics_code value, options available: 'b', 'c' or 'i'."
+                )
 
-        if color != 'black':
+        if color != "black":
             new_text_format = TextUtils.text_color(new_text_format, color)
 
-        if align == 'center':
+        if align == "center":
             new_text_format = TextUtils.center_text(new_text_format)
 
         if bold_italics_code:
-            if ('c' in bold_italics_code) or ('b' in bold_italics_code) or ('i' in bold_italics_code):
-                if 'b' in bold_italics_code:
+            if (
+                ("c" in bold_italics_code)
+                or ("b" in bold_italics_code)
+                or ("i" in bold_italics_code)
+            ):
+                if "b" in bold_italics_code:
                     new_text_format = TextUtils.bold(new_text_format)
-                if 'i' in bold_italics_code:
+                if "i" in bold_italics_code:
                     new_text_format = TextUtils.italics(new_text_format)
             else:
-                raise ValueError("unexpected bold_italics_code value, options available: 'b', 'c' or 'i'.")
+                raise ValueError(
+                    "unexpected bold_italics_code value, options available: 'b', 'c' or 'i'."
+                )
 
         return new_text_format
 
