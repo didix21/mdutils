@@ -9,14 +9,13 @@ from typing import Optional, Union, Iterable, List
 
 
 class Table:
-
     def __init__(self):
         self.rows = 0
         self.columns = 0
 
     @staticmethod
     def _align(columns: int, text_align: Optional[Union[str, Iterable]] = None) -> str:
-        """ This private method it's in charge of aligning text of a table.
+        """This private method it's in charge of aligning text of a table.
 
         - notes: more information about `text_align`
 
@@ -31,45 +30,48 @@ class Table:
         .. note:
         """
 
-        column_align_string = ''
-        ta2pat={ # text_align to pattern translator
-            'center': ' :---: |',
-            'left': ' :--- |',
-            'right': ' ---: |',
-            None: ' --- |'
+        column_align_string = ""
+        ta2pat = {  # text_align to pattern translator
+            "center": " :---: |",
+            "left": " :--- |",
+            "right": " ---: |",
+            None: " --- |",
         }
         if type(text_align) == str:
-            
-            text_align = [text_align.lower()]*columns
-            
+            text_align = [text_align.lower()] * columns
+
         elif text_align is None:
-            
-            text_align = [None]*columns
-            
+            text_align = [None] * columns
+
         else:
-            
-            text_align = list(text_align)[:columns] # make a local redimensionnable copy
-        
+            text_align = list(text_align)[
+                :columns
+            ]  # make a local redimensionnable copy
+
         if len(text_align) < columns:
-            
-            text_align += [None]*(columns-len(text_align))
-            
-        column_align_string = '|'
-        for i,ta in enumerate(text_align):
-            
-            if not ta is None:
-                
+            text_align += [None] * (columns - len(text_align))
+
+        column_align_string = "|"
+        for i, ta in enumerate(text_align):
+            if ta is not None:
                 ta = ta.lower()
-                
+
             if ta not in ta2pat:
-                
-                raise ValueError(f"text_align's expected value: 'right', 'center', 'left' or None , but in column {i+1} text_align = '{ta}'")
-            
+                raise ValueError(
+                    f"text_align's expected value: 'right', 'center', 'left' or None , but in column {i+1} text_align = '{ta}'"
+                )
+
             column_align_string += ta2pat[ta]
 
         return column_align_string
 
-    def create_table(self, columns: int, rows: int, text: List[str], text_align: Optional[Union[str, list]] = None):
+    def create_table(
+        self,
+        columns: int,
+        rows: int,
+        text: List[str],
+        text_align: Optional[Union[str, list]] = None,
+    ):
         """This method takes a list of strings and creates a table.
 
             Using arguments ``columns`` and ``rows`` allows to create a table of *n* columns and *m* rows.
@@ -79,7 +81,9 @@ class Table:
         :param int rows: number of rows of the table.
         :param text: a list of strings.
         :type text: list of str
-        :param str_or_list text_align: text align argument. Values available are: ``'right'``, ``'center'``, ``'left'`` and ``None`` (default). If text_align is a list then individual alignment can be set for each column.
+        :param str_or_list text_align: text align argument.
+                                       Values available are: ``'right'``, ``'center'``, ``'left'`` and ``None`` (default).
+                                       If text_align is a list then individual alignment can be set for each column.
         :return: a markdown table.
         :rtype: str
 
@@ -102,7 +106,7 @@ class Table:
         """
         self.columns = columns
         self.rows = rows
-        table = '\n'
+        table = "\n"
         column_align_string = self._align(columns, text_align)
         index = 0
         if columns * rows == len(text):
@@ -110,11 +114,11 @@ class Table:
                 if row == 1:
                     table += column_align_string  # Row align, Example: '| :---: | :---: | ... | \n'
                 else:
-                    table += '|'
+                    table += "|"
                     for _ in range(columns):
-                        table += str(text[index]).replace("|", r"\|") + '|'
+                        table += str(text[index]).replace("|", r"\|") + "|"
                         index += 1
-                table += '\n'
+                table += "\n"
             return table
         else:
             raise ValueError("columns * rows is not equal to text length")

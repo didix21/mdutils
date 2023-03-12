@@ -11,12 +11,13 @@ from mdutils.tools.Link import Reference
 
 
 class TestReference(TestCase):
-
     def setUp(self):
         self.link = "https://github.com/didix21/mdutils"
         self.text = "mdutils library"
         self.reference_tag = "mdutils"
-        self.expected_reference_markdown = '[' + self.text + '][' + self.reference_tag + ']'
+        self.expected_reference_markdown = (
+            "[" + self.text + "][" + self.reference_tag + "]"
+        )
         self.expected_references = {self.reference_tag: self.link}
 
     def test_new_reference(self):
@@ -28,7 +29,7 @@ class TestReference(TestCase):
 
     def test_new_reference_without_defining_reference_tag(self):
         reference = Reference()
-        expected_link = '[' + self.text + ']'
+        expected_link = "[" + self.text + "]"
         expected_references = {self.text: self.link}
         actual_link = reference.new_link(self.link, self.text)
 
@@ -60,13 +61,23 @@ class TestReference(TestCase):
 
     def test_get_references_in_markdown_format_check_they_are_sorted(self):
         reference = Reference()
-        expected_references_markdown = "\n\n\n" \
-                                       "[1]: http://slashdot.org\n" \
-                                       "[arbitrary case-insensitive reference text]: https://www.mozilla.org\n" \
-                                       "[link text itself]: http://www.reddit.com\n"
+        expected_references_markdown = (
+            "\n\n\n"
+            "[1]: http://slashdot.org\n"
+            "[arbitrary case-insensitive reference text]: https://www.mozilla.org\n"
+            "[link text itself]: http://www.reddit.com\n"
+        )
 
-        references_tags = ["arbitrary case-insensitive reference text", "1", "link text itself"]
-        references_links = ["https://www.mozilla.org", "http://slashdot.org", "http://www.reddit.com"]
+        references_tags = [
+            "arbitrary case-insensitive reference text",
+            "1",
+            "link text itself",
+        ]
+        references_links = [
+            "https://www.mozilla.org",
+            "http://slashdot.org",
+            "http://www.reddit.com",
+        ]
 
         for i in range(3):
             reference.new_link(references_links[i], "text", references_tags[i])
@@ -84,23 +95,34 @@ class TestReference(TestCase):
 
     def test_tooltip_get_reference(self):
         reference = Reference()
-        references_tags = ["arbitrary case-insensitive reference text", "1", "link text itself"]
-        references_links = ["https://www.mozilla.org", "http://slashdot.org", "http://www.reddit.com"]
-        expected_references_markdown = "\n\n\n" \
-                                       "[1]: http://slashdot.org\n" \
-                                       "[arbitrary case-insensitive reference text]: https://www.mozilla.org\n" \
-                                       "[link text itself]: http://www.reddit.com \'my tooltip\'\n" \
-                                       "[my link text]: https://my.link.text.com \'my second tooltip\'\n"
+        references_tags = [
+            "arbitrary case-insensitive reference text",
+            "1",
+            "link text itself",
+        ]
+        references_links = [
+            "https://www.mozilla.org",
+            "http://slashdot.org",
+            "http://www.reddit.com",
+        ]
+        expected_references_markdown = (
+            "\n\n\n"
+            "[1]: http://slashdot.org\n"
+            "[arbitrary case-insensitive reference text]: https://www.mozilla.org\n"
+            "[link text itself]: http://www.reddit.com 'my tooltip'\n"
+            "[my link text]: https://my.link.text.com 'my second tooltip'\n"
+        )
 
         for i in range(2):
             reference.new_link(references_links[i], "text", references_tags[i])
 
-        reference.new_link(references_links[2], "text", references_tags[2], tooltip='my tooltip')
-        reference.new_link('https://my.link.text.com', 'my link text', tooltip='my second tooltip')
+        reference.new_link(
+            references_links[2], "text", references_tags[2], tooltip="my tooltip"
+        )
+        reference.new_link(
+            "https://my.link.text.com", "my link text", tooltip="my second tooltip"
+        )
 
         actual_reference_markdown = reference.get_references_as_markdown()
 
         self.assertEqual(expected_references_markdown, actual_reference_markdown)
-
-
-

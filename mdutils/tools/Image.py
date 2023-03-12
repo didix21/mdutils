@@ -10,7 +10,6 @@ from mdutils.tools.Link import Inline, Reference
 
 
 class Image:
-
     def __init__(self, reference: Reference):
         """
         :param reference:
@@ -30,9 +29,11 @@ class Image:
         :return: return the image in markdown format ``'![ + text + '](' + path + 'tooltip' + ')'``.
         :rtype: str
         """
-        return '!' + Inline.new_link(link=path, text=text, tooltip=tooltip)
+        return "!" + Inline.new_link(link=path, text=text, tooltip=tooltip)
 
-    def new_reference_image(self, text: str, path: str, reference_tag: str = None, tooltip: str = None) -> str:
+    def new_reference_image(
+        self, text: str, path: str, reference_tag: str = None, tooltip: str = None
+    ) -> str:
         """
         :param text: Text that is going to be displayed in the markdown file as a image.
         :type text: str
@@ -45,7 +46,9 @@ class Image:
         :return: return the image in markdown format ``'![ + text + '][' + reference_tag + ']'``.
         :rtype: str
         """
-        return '!' + self.reference.new_link(link=path, text=text, reference_tag=reference_tag, tooltip=tooltip)
+        return "!" + self.reference.new_link(
+            link=path, text=text, reference_tag=reference_tag, tooltip=tooltip
+        )
 
 
 if __name__ == "__main__":

@@ -5,7 +5,6 @@
 # This file is part of mdutils. https://github.com/didix21/mdutils
 #
 # MIT License: (C) 2020 Dídac Coll
-from typing import List
 import re
 
 
@@ -39,12 +38,21 @@ class MDListHelper:
         return md_list
 
     def _add_new_item(self, item: str, marker: str):
-        item_with_hyphen = item if self._is_there_marker_in_item(item) else self._add_hyphen(item, marker)
-        return self._n_spaces(4 * self.n_tabs) + item_with_hyphen + '\n'
+        item_with_hyphen = (
+            item
+            if self._is_there_marker_in_item(item)
+            else self._add_hyphen(item, marker)
+        )
+        return self._n_spaces(4 * self.n_tabs) + item_with_hyphen + "\n"
 
     @classmethod
     def _is_there_marker_in_item(cls, item: str) -> bool:
-        if item.startswith('-') or item.startswith('*') or item.startswith('+') or re.search(r"^(\d\.)", item):
+        if (
+            item.startswith("-")
+            or item.startswith("*")
+            or item.startswith("+")
+            or re.search(r"^(\d\.)", item)
+        ):
             return True
         return False
 
@@ -58,10 +66,9 @@ class MDListHelper:
 
 
 class MDList(MDListHelper):
-    """This class allows to create unordered or ordered MarkDown list.
+    """This class allows to create unordered or ordered MarkDown list."""
 
-    """
-    def __init__(self, items, marked_with: str = '-'):
+    def __init__(self, items, marked_with: str = "-"):
         """
 
         :param items: Array of items for generating the list.
@@ -71,8 +78,11 @@ class MDList(MDListHelper):
         :type marked_with: str
         """
         super().__init__()
-        self.md_list = self._get_ordered_markdown_list(items) if marked_with == '1' else \
-            self._get_unordered_markdown_list(items, marked_with)
+        self.md_list = (
+            self._get_ordered_markdown_list(items)
+            if marked_with == "1"
+            else self._get_unordered_markdown_list(items, marked_with)
+        )
 
     def get_md(self) -> str:
         """Get the list in markdown format.
@@ -84,9 +94,7 @@ class MDList(MDListHelper):
 
 
 class MDCheckbox(MDListHelper):
-    """This class allows to create checkbox MarkDown list.
-
-    """
+    """This class allows to create checkbox MarkDown list."""
 
     def __init__(self, items, checked: bool = False):
         """
@@ -97,17 +105,22 @@ class MDCheckbox(MDListHelper):
         :type checked: bool
         """
         super().__init__()
-        self.checked = " " if not checked else 'x'
-        self.md_list = self._get_unordered_markdown_list(items, marker=f'- [{self.checked}]')
+        self.checked = " " if not checked else "x"
+        self.md_list = self._get_unordered_markdown_list(
+            items, marker=f"- [{self.checked}]"
+        )
 
     def get_md(self) -> str:
         return self.md_list
 
     def _add_new_item(self, item: str, marker: str):
-        item_with_hyphen = self._add_hyphen(item[2:], '- [x]') if self.__is_checked(item) \
+        item_with_hyphen = (
+            self._add_hyphen(item[2:], "- [x]")
+            if self.__is_checked(item)
             else self._add_hyphen(item, marker)
-        return self._n_spaces(4 * self.n_tabs) + item_with_hyphen + '\n'
+        )
+        return self._n_spaces(4 * self.n_tabs) + item_with_hyphen + "\n"
 
     @classmethod
     def __is_checked(cls, item: str) -> bool:
-        return item.startswith('x')
+        return item.startswith("x")

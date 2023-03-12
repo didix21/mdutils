@@ -9,7 +9,6 @@ from mdutils.tools.TextUtils import TextUtils
 
 
 class Reference:
-
     def __init__(self):
         self.references = {}
 
@@ -26,14 +25,16 @@ class Reference:
         :rtype: str
         """
         if not bool(self.references):
-            return ''
+            return ""
 
-        references_as_markdown = ''
+        references_as_markdown = ""
         for key in sorted(self.references.keys()):
-            references_as_markdown += '[' + key + ']: ' + self.references[key] + '\n'
-        return '\n\n\n' + references_as_markdown
+            references_as_markdown += "[" + key + "]: " + self.references[key] + "\n"
+        return "\n\n\n" + references_as_markdown
 
-    def new_link(self, link: str, text: str, reference_tag: str = None, tooltip: str = None) -> str:
+    def new_link(
+        self, link: str, text: str, reference_tag: str = None, tooltip: str = None
+    ) -> str:
         """
         :param link:
         :type link: str
@@ -48,22 +49,23 @@ class Reference:
         """
         if reference_tag is None:
             self.__update_ref(link, text, tooltip)
-            return '[' + text + ']'
+            return "[" + text + "]"
 
         self.__update_ref(link, reference_tag, tooltip)
-        return '[' + text + '][' + reference_tag + ']'
+        return "[" + text + "][" + reference_tag + "]"
 
     def __update_ref(self, link: str, reference_tag: str, tooltip: str = None):
         if not (reference_tag in self.references.keys()):
             if tooltip is not None:
-                self.references.update({reference_tag: TextUtils.add_tooltip(link, tooltip)})
+                self.references.update(
+                    {reference_tag: TextUtils.add_tooltip(link, tooltip)}
+                )
                 return
 
             self.references.update({reference_tag: link})
 
 
 class Inline:
-
     @staticmethod
     def new_link(link: str, text: str = None, tooltip: str = None):
         """
@@ -79,12 +81,16 @@ class Inline:
 
         if tooltip:
             if text is None:
-                return Inline.__md_link(link=TextUtils.add_tooltip(link=link, tip=tooltip), text=link)
+                return Inline.__md_link(
+                    link=TextUtils.add_tooltip(link=link, tip=tooltip), text=link
+                )
 
-            return Inline.__md_link(link=TextUtils.add_tooltip(link=link, tip=tooltip), text=text)
+            return Inline.__md_link(
+                link=TextUtils.add_tooltip(link=link, tip=tooltip), text=text
+            )
 
         if text is None:
-            return '<' + link + '>'
+            return "<" + link + ">"
 
         return Inline.__md_link(link=link, text=text)
 
