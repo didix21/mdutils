@@ -1,5 +1,5 @@
 # mdutils
-[![Build Status](https://travis-ci.org/didix21/mdutils.svg?branch=master)](https://travis-ci.org/didix21/mdutils)
+![Build Status](https://github.com/didix21/mdutils/actions/workflows/main.yml/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/mdutils/badge/?version=latest)](http://mdutils.readthedocs.io/en/latest/?badge=latest)
 [![codecov](https://codecov.io/gh/didix21/mdutils/branch/master/graph/badge.svg?token=0DN72Z1B6V)](https://codecov.io/gh/didix21/mdutils)
 
