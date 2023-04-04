@@ -1,161 +1,115 @@
-# Python
-#
-# This module implements a text class that allows to modify and create text on Markdown files.
-#
-# This file is part of mdutils. https://github.com/didix21/mdutils
-#
-# MIT License: (C) 2020 Dídac Coll
+from enum import Enum, auto
+import warnings
+
+
+class AtxHeaderLevel(Enum):
+    TITLE = auto()          # H1 - Main title (largest and most important)
+    HEADING = auto()        # H2 - Section headings
+    SUBHEADING = auto()     # H3 - Subsection headings
+    SUBSUBHEADING = auto()  # H4 - Smaller subsection headings
+    MINORHEADING = auto()   # H5 - Even smaller headings
+    LEASTHEADING = auto()   # H6 - The smallest heading level
+
+
+class SetextHeaderLevel(Enum):
+    TITLE = auto()
+    HEADING = auto()
+
+
+class HeaderStyle(Enum):
+    ATX = auto()
+    SETEXT = auto()
 
 
 class Header:
     """Contain the main methods to define Headers on a Markdown file.
 
-    **Features available:**
+    Features available:
+    - Create Markdown Titles: *atx* and *setext* formats are available.
+    - Create Header Anchors.
 
-    * Create Markdown Titles: *atx* and *setext* formats are available.
-    * Create Header Hanchors.
-    * Auto generate a table of contents.
-    * Create Tables.
-    * **Bold**, *italics*, ``inline_code`` text converters.
-    * Align text to center.
-    * Add color to text.
+    :Example:
+    >>> str(Header(level=1, title='New Header', style=HeaderStyle.ATX))
     """
 
-    # ********************************************************************
-    # *                             Atx-Style                            *
-    # ********************************************************************
-    @staticmethod
-    def atx_level_1(title: str, header_id: str = "") -> str:
-        """Return a atx level 1 header.
+    def __init__(self, level: int, title: str, style: HeaderStyle, header_id: str = None) -> None:
+        """Choose and return the header based on the given level, style, and title.
 
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n#' + title + '\\n'``
-        :rtype: str
+        :param level: HeaderLevel enum member, e.g., TITLE, HEADING, SUBHEADING, etc.
+        :param title: Text title.
+        :param style: HeaderStyle enum member, e.g., ATX, SETEXT.
+        :param header_id: ID of the header for extended Markdown syntax (optional)
+        :return: a header string based on the given level, style, and title
         """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
+        self.level = level
+        self.title = title
+        self.style = style
+        self.header_id = header_id
 
-        return "\n# " + title + header_id + "\n"
-
-    @staticmethod
-    def atx_level_2(title: str, header_id: str = "") -> str:
-        """Return a atx level 2 header.
-
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n##' + title + '\\n'``
-        :rtype: str
-        """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
-
-        return "\n## " + title + header_id + "\n"
+    def __str__(self) -> str:
+        return self._new(self.level, self.title, self.style, self.header_id)
 
     @staticmethod
-    def atx_level_3(title: str, header_id: str = "") -> str:
-        """Return a atx level 3 header.
+    def atx(level: AtxHeaderLevel, title: str, header_id: str = None) -> str:
+        """Return an atx-style header.
 
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n###' + title + '\\n'``
-        :rtype: str
+        :param title: Text title.
+        :param level: HeaderLevel enum member, e.g., TITLE, HEADING, SUBHEADING, etc.
+        :param header_id: ID of the header for extended Markdown syntax (optional)
+        :return: an atx-style header string
         """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
-
-        return "\n### " + title + header_id + "\n"
+        header_id = Header._get_header_id(header_id)
+        return "\n" + "#" * level.value + " " + title + header_id + "\n"
 
     @staticmethod
-    def atx_level_4(title: str, header_id: str = "") -> str:
-        """Return a atx level 4 header.
+    def setext(level: SetextHeaderLevel, title: str) -> str:
+        """Return a setext-style header.
 
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n####' + title + '\\n'``
-        :rtype: str
+        :param title: Text title.
+        :param level: HeaderLevel enum member, e.g., TITLE, HEADING.
+        :return: a setext-style header string
         """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
-
-        return "\n#### " + title + header_id + "\n"
-
-    @staticmethod
-    def atx_level_5(title: str, header_id: str = "") -> str:
-        """Return a atx level 5 header.
-
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n#####' + title + '\\n'``
-        :rtype: str
-        """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
-
-        return "\n##### " + title + header_id + "\n"
-
-    @staticmethod
-    def atx_level_6(title: str, header_id: str = "") -> str:
-        """Return a atx level 6 header.
-
-        :param str title: text title.
-        :param header_id: ID of the header for extended Markdown syntax
-        :return: a header title of form: ``'\\n######' + title + '\\n'``
-        :rtype: str
-        """
-        if len(header_id):
-            header_id = " {#" + header_id + "}"
-
-        return "\n###### " + title + header_id + "\n"
-
-    # ********************************************************************
-    # *                          Setext-Style                            *
-    # ********************************************************************
-    @staticmethod
-    def setext_level_1(title: str) -> str:
-        """Return a setext level 1 header.
-
-        :param str title: text title.
-        :return: a header titlte of form: ``'\\n' + title +'\\n==========\\n'``.
-        :rtype: str
-        """
-
-        return "\n" + title + "\n" + "".join(["=" for _ in title]) + "\n"
-
-    @staticmethod
-    def setext_level_2(title: str) -> str:
-        """Return a setext level 1 header.
-
-        :param str title: text title.
-        :return: a header titlte of form: ``'\\n' + title +'\\n------------\\n'``.
-        :rtype: str
-        """
-
-        return "\n" + title + "\n" + "".join(["-" for _ in title]) + "\n"
-
-    @staticmethod
-    def header_anchor(text: str, link: str = "") -> str:
-        """Creates an internal link of a defined Header level 1 or level 2 in the markdown file.
-
-        Giving a text string an text link you can create an internal link of already existing header. If the ``link``
-        string does not contain '#', it will creates an automatic link of the type ``#title-1``.
-
-        :param text: it is the text that will be displayed.
-        :param link: it is the internal link.
-        :return: ``'[text](#link)'``
-        :type text: str
-        :type link: str
-        :rtype: string
-
-        **Example:** [Title 1](#title-1)
-        """
-        if link:
-            if link[0] != "#":
-                link = link.lower().replace(" ", "-")
-            else:
-                link = "#" + link
+        if level == SetextHeaderLevel.TITLE:
+            separator = "="
         else:
+            separator = "-"
+
+        return "\n" + title + "\n" + separator * len(title) + "\n"
+
+    @staticmethod
+    def header_anchor(text: str, link: str = None) -> str:
+        """Create an internal link to a defined header level in the markdown file.
+
+        :param text: Displayed text for the link.
+        :param link: Internal link (optional). If not provided, it is generated based on the text.
+        :return: a header anchor string
+
+        Examples:
+
+        1. Using the default generated link based on the text:
+        
+        >>> header_link = Header.header_anchor("Section 1")
+        >>> print(header_link)
+        [Section 1](#section-1)
+
+        2. Providing a custom link:
+
+        >>> header_link = Header.header_anchor("Section 1", "custom-link")
+        >>> print(header_link)
+        [Section 1](#custom-link)
+
+        3. Providing a link with an existing '#' symbol:
+
+        >>> header_link = Header.header_anchor("Section 1", "#existing-link")
+        >>> print(header_link)
+        [Section 1](#existing-link)
+        """
+        if not link:
             link = "#" + text.lower().replace(" ", "-")
+        elif link[0] != "#":
+            link = link.lower().replace(" ", "-")
+        else:
+            link = "#" + link
 
         return "[" + text + "](" + link + ")"
 
@@ -180,39 +134,26 @@ class Header:
         :param header_id: ID of the header for extended Markdown syntax
         :return:
         """
-        if style.lower() == "atx":
-            if level == 1:
-                return Header.atx_level_1(title, header_id)
-            elif level == 2:
-                return Header.atx_level_2(title, header_id)
-            elif level == 3:
-                return Header.atx_level_3(title, header_id)
-            elif level == 4:
-                return Header.atx_level_4(title, header_id)
-            elif level == 5:
-                return Header.atx_level_5(title, header_id)
-            elif level == 6:
-                return Header.atx_level_6(title, header_id)
-            else:
-                raise ValueError(
-                    "For 'atx' style, level's expected value: 1, 2, 3, 4, 5 or 6, but level = "
-                    + str(level)
-                )
-        elif style.lower() == "setext":
-            if level == 1:
-                return Header.setext_level_1(title)
-            elif level == 2:
-                return Header.setext_level_2(title)
-            else:
-                raise ValueError(
-                    "For 'setext' style, level's expected value: 1, 2, 3, 4, 5 or 6, but level = "
-                    + str(level)
-                )
+        warnings.warn(
+            "This method is deprecated. Use the Header class instead, `str(Header())`, this method will be removed on 3.0.0 version",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return str(Header(level, title, HeaderStyle[style.upper()], header_id))
+
+    def _new(self, level: int, title: str, style: HeaderStyle = HeaderStyle.ATX, header_id: str = None) -> str:
+        if style == HeaderStyle.ATX:
+            return Header.atx(AtxHeaderLevel(level), title, header_id)
+        elif style == HeaderStyle.SETEXT:
+            return Header.setext(SetextHeaderLevel(level), title)
         else:
-            raise ValueError(
-                "style's expected value: 'atx' or 'setext', but style = "
-                + style.lower()
-            )
+            raise ValueError("style's expected value: 'HeaderStyle.ATX' or 'HeaderStyle.SETEXT'")
+
+    @staticmethod
+    def _get_header_id(header_id: str = None) -> str:
+        if header_id:
+            return " {#" + header_id + "}"
+        return ""
 
 
 if __name__ == "__main__":
