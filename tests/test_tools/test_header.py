@@ -7,89 +7,82 @@
 # MIT License: (C) 2018 Dídac Coll
 
 from unittest import TestCase
-from mdutils.tools.Header import Header
+from mdutils.tools.Header import Header, AtxHeaderLevel, SetextHeaderLevel, HeaderStyle
 
 
 class TestHeader(TestCase):
-    def test_atx_level_1(self):
-        title = "Text Title Atx 1"
-        header_id = "myheader"
-        result = "\n# " + title + "\n"
-        result2 = "\n# " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_1(title), result)
-        self.assertEqual(Header().atx_level_1(title, header_id), result2)
 
-    def test_atx_level_2(self):
-        title = "Text Title Atx 2"
-        header_id = "myheader"
-        result = "\n## " + title + "\n"
-        result2 = "\n## " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_2(title), result)
-        self.assertEqual(Header().atx_level_2(title, header_id), result2)
+    def test_atx_without_header_id(self):
+        title = "Text Title Atx"
 
-    def test_atx_level_3(self):
-        title = "Text Title Atx 3"
-        header_id = "myheader"
-        result = "\n### " + title + "\n"
-        result2 = "\n### " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_3(title), result)
-        self.assertEqual(Header().atx_level_3(title, header_id), result2)
+        for level in AtxHeaderLevel:
+            result = f"\n{'#' * level.value} {title}\n"
+            self.assertEqual(Header.atx(level, title), result)
 
-    def test_atx_level_4(self):
-        title = "Text Title Atx 4"
+    def test_atx_with_header_id(self):
+        title = "Text Title Atx"
         header_id = "myheader"
-        result = "\n#### " + title + "\n"
-        result2 = "\n#### " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_4(title), result)
-        self.assertEqual(Header().atx_level_4(title, header_id), result2)
 
-    def test_atx_level_5(self):
-        title = "Text Title Atx 5"
-        header_id = "myheader"
-        result = "\n##### " + title + "\n"
-        result2 = "\n##### " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_5(title), result)
-        self.assertEqual(Header().atx_level_5(title, header_id), result2)
-
-    def test_atx_level_6(self):
-        title = "Text Title Atx 6"
-        header_id = "myheader"
-        result = "\n###### " + title + "\n"
-        result2 = "\n###### " + title + " {#myheader}" + "\n"
-        self.assertEqual(Header().atx_level_6(title), result)
-        self.assertEqual(Header().atx_level_6(title, header_id), result2)
+        for level in AtxHeaderLevel:
+            result = f"\n{'#' * level.value} {title} {{#myheader}}\n"
+            self.assertEqual(Header.atx(level, title, header_id), result)
 
     def test_setext_level_1(self):
         title = "Text Title Setext 1"
         result = "\n" + title + "\n" + "".join(["=" for _ in title]) + "\n"
-        self.assertEqual(Header().setext_level_1(title), result)
+        self.assertEqual(Header.setext(SetextHeaderLevel.TITLE, title), result)
 
     def test_setext_level_2(self):
         title = "Text Title Setext 2"
         result = "\n" + title + "\n" + "".join(["-" for _ in title]) + "\n"
-        self.assertEqual(Header().setext_level_2(title), result)
+        self.assertEqual(Header.setext(SetextHeaderLevel.HEADING, title), result)
+
+    def test_header(self):
+        atx_headers = [
+            Header.atx(AtxHeaderLevel.TITLE, "Atx Example"),
+            Header.atx(AtxHeaderLevel.HEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.SUBHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.SUBSUBHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.MINORHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.LEASTHEADING, "Atx Example"),
+        ]
+
+        setext_headers = [
+            Header.setext(SetextHeaderLevel.TITLE, "Setext Example"),
+            Header.setext(SetextHeaderLevel.HEADING, "Setext Example"),
+        ]
+
+        for level in AtxHeaderLevel:
+            title = "Atx Example"
+            header = str(Header(level.value, title, style=HeaderStyle.ATX))
+            self.assertEqual(header, atx_headers[level.value - 1])
+
+        for level in SetextHeaderLevel:
+            title = "Setext Example"  
+            header = str(Header(level.value, title, style=HeaderStyle.SETEXT))
+            self.assertEqual(header, setext_headers[level.value - 1])
 
     def test_choose_header(self):
-        header = Header()
-        func_list = [
-            header.atx_level_1("Atx Example"),
-            header.atx_level_2("Atx Example"),
-            header.atx_level_3("Atx Example"),
-            header.atx_level_4("Atx Example"),
-            header.atx_level_5("Atx Example"),
-            header.atx_level_6("Atx Example"),
-            header.setext_level_1("Setext Example"),
-            header.setext_level_2("Setext Example"),
+        atx_headers = [
+            Header.atx(AtxHeaderLevel.TITLE, "Atx Example"),
+            Header.atx(AtxHeaderLevel.HEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.SUBHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.SUBSUBHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.MINORHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.LEASTHEADING, "Atx Example"),
         ]
-        for x in range(8):
-            if x < 6:
-                title = "Atx Example"
-                chosen_header = header.choose_header(
-                    level=x + 1, title=title, style="atx"
-                )
-            else:
-                title = "Setext Example"
-                chosen_header = header.choose_header(
-                    level=x - 5, title=title, style="setext"
-                )
-            self.assertEqual(chosen_header, func_list[x])
+
+        setext_headers = [
+            Header.setext(SetextHeaderLevel.TITLE, "Setext Example"),
+            Header.setext(SetextHeaderLevel.HEADING, "Setext Example"),
+        ]
+
+        for level in AtxHeaderLevel:
+            title = "Atx Example"
+            header = Header.choose_header(level.value, title, style="atx")
+            self.assertEqual(header, atx_headers[level.value - 1])
+
+        for level in SetextHeaderLevel:
+            title = "Setext Example"
+            header = Header.choose_header(level.value, title, style="setext")
+            self.assertEqual(header, setext_headers[level.value - 1])
