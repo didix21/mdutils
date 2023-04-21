@@ -37,7 +37,7 @@ class TableOfContents:
                     + "* ["
                     + item
                     + "](#"
-                    + re.sub("[^a-z0-9_\-]", "", item.lower().replace(" ", "-"))
+                    + re.sub("[^a-z0-9_-]", "", item.lower().replace(" ", "-"))
                     + ")"
                 )
 
