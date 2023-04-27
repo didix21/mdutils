@@ -13,9 +13,10 @@ Please note we have a code of conduct, please follow it in all your interactions
 ## Deployment
 
 1. The versioning scheme we use is [SemVer](http://semver.org/).
-2. Increase the version number in `mdutils/doc/source/config.py` file.
-3. Increase the version number in `mdutils/setup.py` file.
-4. Increate the version number to `.github_changelog_generator` file.
+2. Increase the version number in the `mdutils/doc/source/config.py` file.
+3. Increase the version number in the `mdutils/setup.py` file.
+3. Increase the version number in the `mdutils/pyproject.toml` file.
+4. Increate the version number in the `.github_changelog_generator` file.
 5. Run `github_changelog_generator -u didix21 -p mdutils`.
 6. Run `python setup.py sdist --formats=gztar,zip`.
 7. Upload package to pypi: `twine upload dist/*`.

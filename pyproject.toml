@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.poetry]
+name = "mdutils"
+version = "1.5.1"
+description = "Useful package for creating Markdown files while executing python code."
+authors = ["Didac Coll <didaccoll_93@hotmail.com>"]
+maintainers = ["Didac Coll <didaccoll_93@hotmail.com>"]
+license = "MIT"
+readme = "./doc/source/README.rst"
+homepage = "https://github.com/didix21/mdutils"
+repository = "https://github.com/didix21/mdutils"
+documentation = "http://mdutils.readthedocs.io"
+keywords = ["Markdown"]
+include = ["mdutils/**"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup",
+    "License :: OSI Approved :: MIT License",
+]
+exclude = ["*.pyc", "*.pyo", "*.pyd", "Pyrex/*", "pyx/*", ".git/*", ".hg/*", ".bzr/*", "_darcs/*", "*.egg-info/*", ".svn/*", ".github/*", ".DS_Store", ".vscode"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+

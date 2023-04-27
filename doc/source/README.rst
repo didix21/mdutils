@@ -47,22 +47,32 @@ Markdown
 
 Installation
 ============
+
+Pip
+---
 Use pip to install mdutils:
 
 .. code:: bash
 
     $ pip install mdutils
 
+Poetry
+------
+Use poetry to install mdutils:
+
+.. code:: bash
+
+    $ poetry add mdutils
 
 
-.. |build-status| image:: https://travis-ci.org/didix21/mdutils.svg?branch=master
-    :target: https://travis-ci.org/didix21/mdutils
+.. |build-status| image:: https://github.com/didix21/mdutils/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/didix21/mdutils
     :alt: Build Status
 
 .. |documentation-status| image:: https://readthedocs.org/projects/mdutils/badge/?version=latest
     :target: http://mdutils.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. |coverage-status| image:: https://coveralls.io/repos/github/didix21/mdutils/badge.svg?branch=add-coveralls
-    :target: https://coveralls.io/github/didix21/mdutils?branch=add-coveralls
+.. |coverage-status| image:: https://codecov.io/gh/didix21/mdutils/branch/master/graph/badge.svg?token=0DN72Z1B6V
+    :target: https://codecov.io/gh/didix21/mdutils
     :alt: Coverage Status
