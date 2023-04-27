@@ -51,9 +51,19 @@ Markdown
 
 Installation
 ============
+
+Pip
+---
 Use pip to install mdutils:
 ```bash
 $ pip install mdutils
+```
+
+Poetry
+------
+Use poetry to install mdutils:
+```bash
+$ poetry add mdutils
 ```
 
 Markdown File Example

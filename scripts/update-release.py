@@ -2,6 +2,7 @@
 
 import getopt, sys
 import re
+import subprocess
 
 
 def usage():
@@ -21,21 +22,29 @@ def replace_on(file, pattern, new_value):
         file.write(new_content)
 
 
-def replace_version_on_config_py(version):
+def replace_version_on_config_py(version: str):
     file_name = "doc/source/conf.py"
     replace_on(file_name, r"release = '(\d+).(\d+).(\d+)'", f"release = '{version}'")
 
 
-def replace_version_on_setup_py(version):
+def replace_version_on_setup_py(version: str):
     file_name = "setup.py"
     replace_on(file_name, r"version='(\d+).(\d+).(\d+)'", f"version='{version}'")
 
 
-def replace_version_on_changelog_gen(version):
+def replace_version_on_changelog_gen(version: str):
     file_name = ".github_changelog_generator"
     replace_on(
         file_name, r"future-release=v(\d+).(\d+).(\d+)", f"future-release={version}"
     )
+
+
+def update_versiono_pyproject_toml(version: str):
+    shell(["poetry", "version", version])
+
+
+def shell(command):
+    return subprocess.run(command, text=True)
 
 
 def main():
@@ -58,6 +67,7 @@ def main():
     replace_version_on_setup_py(version_number)
     replace_version_on_config_py(version_number)
     replace_version_on_changelog_gen(version)
+    update_versiono_pyproject_toml(version_number)
 
 
 if __name__ == "__main__":
