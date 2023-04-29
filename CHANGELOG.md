@@ -1,5 +1,31 @@
 # Changelog
 
+## [v1.6.0](https://github.com/didix21/mdutils/tree/v1.6.0) (2023-04-29)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.5.1...v1.6.0)
+
+**Implemented enhancements:**
+
+- DEPRECATION on setup.py [\#80](https://github.com/didix21/mdutils/issues/80)
+- Code adherence to PEP 8 [\#46](https://github.com/didix21/mdutils/issues/46)
+- GH-80: Support poetry build system [\#93](https://github.com/didix21/mdutils/pull/93) ([didix21](https://github.com/didix21))
+- GH-84: Add types to mdutils methods [\#85](https://github.com/didix21/mdutils/pull/85) ([didix21](https://github.com/didix21))
+
+**Fixed bugs:**
+
+- DeprecationWarning with Python 3.11 [\#90](https://github.com/didix21/mdutils/issues/90)
+
+**Closed issues:**
+
+- Add types on mdutils methods [\#84](https://github.com/didix21/mdutils/issues/84)
+
+**Merged pull requests:**
+
+- GH-90: Avoid warning on python 3.11 [\#92](https://github.com/didix21/mdutils/pull/92) ([didix21](https://github.com/didix21))
+- Fix build badge [\#91](https://github.com/didix21/mdutils/pull/91) ([didix21](https://github.com/didix21))
+- GH-46: Add flake8 config [\#86](https://github.com/didix21/mdutils/pull/86) ([didix21](https://github.com/didix21))
+- Import coverage to codecov [\#66](https://github.com/didix21/mdutils/pull/66) ([didix21](https://github.com/didix21))
+
 ## [v1.5.1](https://github.com/didix21/mdutils/tree/v1.5.1) (2023-03-11)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.5.0...v1.5.1)
@@ -54,7 +80,6 @@
 
 **Merged pull requests:**
 
-- Import coverage to codecov [\#66](https://github.com/didix21/mdutils/pull/66) ([didix21](https://github.com/didix21))
 - 62: Move test workflow from travis to github actions [\#65](https://github.com/didix21/mdutils/pull/65) ([didix21](https://github.com/didix21))
 
 ## [v1.3.1](https://github.com/didix21/mdutils/tree/v1.3.1) (2021-07-09)
