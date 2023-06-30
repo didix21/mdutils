@@ -63,6 +63,10 @@ def main():
         else:
             assert False, "Unhandled option"
 
+    if not version:
+        usage()
+        sys.exit(2)
+
     version_number = version[1:] if "v" in version else version
     replace_version_on_setup_py(version_number)
     replace_version_on_config_py(version_number)
