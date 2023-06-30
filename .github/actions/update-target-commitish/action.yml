@@ -1,0 +1,34 @@
+name: "Update target commitish"
+description: Update target commitish from a provided release
+inputs:
+  github_token: 
+    description: Provide github token
+    required: true
+  release_id: 
+    description: Provide a valid release id
+    required: true
+  target_commitish:
+    description: Provide the new target commitish
+    required: true
+  tag_name:
+    description: Provide the tag name
+    required: true
+
+runs: 
+  using: "composite" # This is mandatory if we want to share the action between workflows.
+  steps:
+    - name: 'Update target commitish ${{ inputs.target_commitish }}'
+      shell: bash
+      run: |
+          gh api repos/$REPOSITORY/releases/$RELEASE_ID \
+            --method PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -f target_commitish="$TARGET_COMMITISH" \
+            -f tag_name="$TAG_NAME"
+      env:
+        GH_TOKEN: ${{ inputs.github_token }}
+        REPOSITORY: ${{ github.repository }}
+        RELEASE_ID: ${{ inputs.release_id }}
+        TARGET_COMMITISH: ${{ inputs.target_commitish }}
+        TAG_NAME: ${{ inputs.tag_name }}
+        
