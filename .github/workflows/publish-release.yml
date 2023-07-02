@@ -1,0 +1,32 @@
+name: Publish release
+
+on:
+  push:
+    branches:
+        - ut-publish-release
+  release:
+    types: [published]
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+    # if: github.event.release.published_at != null && github.event.release.prerelease == false
+    steps:
+      - name: "Get latest published release"
+        uses: cardinalby/git-get-release-action@v1
+        id: latest_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          latest: true
+          prerelease: false
+          draft: false
+      - name: "Download artifacts from latest release"
+        uses: robinraju/release-downloader@v1.8
+        with:
+          releaseId: ${{ steps.latest_release.outputs.id }}
+          tarBall: true
+          zipBall: false
+          out-file-path: "dist"
+      - name: "List the files downloaded"
+        run: ls -l dist
