@@ -14,7 +14,7 @@ jobs:
         python-version: '3.10'
     - name: "Get latest release draft"
       uses: cardinalby/git-get-release-action@v1
-      id: latest_prerelease
+      id: latest_draft
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -36,7 +36,7 @@ jobs:
 
     - name: Bump version on all needed files
       run: |
-        ./scripts/update-release.py -v ${{ steps.latest_prerelease.outputs.tag_name }}
+        ./scripts/update-release.py -v ${{ steps.latest_draft.outputs.tag_name }}
 
     - name: "✏️ Generate release changelog"
       uses: heinrichreimer/github-changelog-generator-action@v2.3
@@ -57,13 +57,13 @@ jobs:
       with:
         file: ./dist/*
         draft: true
-        release_id: ${{ steps.latest_prerelease.outputs.id }}
+        release_id: ${{ steps.latest_draft.outputs.id }}
 
-    - name: 'Bump version to ${{ steps.latest_prerelease.outputs.tag_name }}'
+    - name: 'Bump version to ${{ steps.latest_draft.outputs.tag_name }}'
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -m "Bump version to ${{ steps.latest_prerelease.outputs.tag_name }}" -a
+        git commit -m "Bump version to ${{ steps.latest_draft.outputs.tag_name }}" -a
     
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
@@ -75,6 +75,6 @@ jobs:
       uses: './.github/actions/update-target-commitish'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        release_id:  ${{ steps.latest_prerelease.outputs.id }}
+        release_id:  ${{ steps.latest_draft.outputs.id }}
         target_commitish: "refs/heads/master"
-        tag_name: ${{ steps.latest_prerelease.outputs.tag_name }}
+        tag_name: ${{ steps.latest_draft.outputs.tag_name }}
