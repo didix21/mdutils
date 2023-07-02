@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event.release.published_at != null && github.event.release.prerelease == false
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       - name: "Get latest published release"
         uses: cardinalby/git-get-release-action@v1
         id: latest_release
@@ -21,12 +26,16 @@ jobs:
           latest: true
           prerelease: false
           draft: false
+      - name: "Remove 'v' from the tag: ${{ steps.latest_release.outputs.tag_name }}"
+        id: set_tag
+        run: |
+          tag="${{ steps.latest_release.outputs.tag_name }}"
+          echo "tag_without_v=${tag#v}" >> $GITHUB_OUTPUT
       - name: "Download artifacts from latest release"
         uses: robinraju/release-downloader@v1.8
         with:
           releaseId: ${{ steps.latest_release.outputs.id }}
-          tarBall: true
-          zipBall: false
+          fileName: "mdutils-${{ steps.set_tag.outputs.tag_without_v }}.tar.gz"
           out-file-path: "dist"
       - name: "List the files downloaded"
         run: ls -l dist
