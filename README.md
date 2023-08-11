@@ -98,15 +98,18 @@ This is an example of a markdown file created using the mdutils python package. 
 ## Create Markdown files
 
 
-``create_md_file()`` is the last command that has to be called.
+Using the `MdUtils` class, we can define a new Markdown object by specifying its filename and optionally it's title and author. The filename is used as the path for creating the the Markdown file. From here, Markdown syntax can be created using the provided methods in the `MdUtils` class (see below for examples). Finally, `create_md_file()` is called to create the file at the specified path.
+
 
 ```python
 from mdutils.mdutils import MdUtils
 
 
 mdFile = MdUtils(file_name='Example_Markdown',title='Markdown File Example')
+# Additional Markdown syntax...
 mdFile.create_md_file()
 ```
+
 ## Create Headers
 
 
