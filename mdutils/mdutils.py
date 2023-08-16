@@ -58,7 +58,7 @@ class MdUtils:
         self.file_name = file_name
         self.author = author
         self.textUtils = TextUtils
-        self.title = str(Header(level=1, title=title, style=HeaderStyle.SETEXT))
+        self.title = "" if title == "" else str(Header(level=1, title=title, style=HeaderStyle.SETEXT)) 
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
