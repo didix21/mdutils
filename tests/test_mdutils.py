@@ -207,7 +207,7 @@ class TestMdUtils(TestCase):
         created_value = md_file.new_line(
             "This is a new line created using new_line method."
         )
-        expected_value = "  \nThis is a new line created using new_line method."
+        expected_value = "\nThis is a new line created using new_line method."
         self.assertEqual(created_value, expected_value)
 
     def test_wrap_text(self):
@@ -217,7 +217,7 @@ class TestMdUtils(TestCase):
             wrap_width=25,
         )
         expected_value = (
-            "  \nThis is a new line \ncreated using new_line \nmethod with wrapping."
+            "\nThis is a new line \ncreated using new_line \nmethod with wrapping."
         )
         self.assertEqual(created_value, expected_value)
 
@@ -465,8 +465,8 @@ class TestMdUtils(TestCase):
 
         expected_created_data = (
             "\n\n\n"
-            "  \n{}".format(expected_image_1)
-            + "  \n{}".format(expected_image_2)
+            "\n{}".format(expected_image_1)
+            + "\n{}".format(expected_image_2)
             + "\n\n\n"
             "[image_2]: ../image_2.png\n"
             "[reference]: ../image.png\n"

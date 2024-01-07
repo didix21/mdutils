@@ -338,11 +338,11 @@ class MdUtils:
 
         if bold_italics_code or color != "black" or align:
             self.___update_file_data(
-                "  \n"
+                "\n"
                 + self.textUtils.text_format(text, bold_italics_code, color, align)
             )
         else:
-            self.___update_file_data("  \n" + text)
+            self.___update_file_data("\n" + text)
 
         return self.file_data_text
 
