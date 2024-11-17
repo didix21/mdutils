@@ -259,14 +259,13 @@ Moreover, you can add bold, italics or code in the link text. Check the followin
 
 
 ```python
-mdFile.new_line('  - Inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils')) 
-mdFile.new_line('  - Bold inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='b') 
-mdFile.new_line('  - Italics inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i') 
-mdFile.new_line('  - Code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i') 
-mdFile.new_line('  - Bold italics code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='cbi') 
-mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils') 
-
-```  
+mdFile.new_line('  - Inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils'))
+mdFile.new_line('  - Bold inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='b'))
+mdFile.new_line('  - Italics inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i'))
+mdFile.new_line('  - Code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='i'))
+mdFile.new_line('  - Bold italics code inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils', text='mdutils', bold_italics_code='cbi'))
+mdFile.new_line('  - Another inline link: ' + mdFile.new_inline_link(link='https://github.com/didix21/mdutils'))
+```
   - Inline link: [mdutils](https://github.com/didix21/mdutils)  
   - Bold inline link: [**mdutils**](https://github.com/didix21/mdutils)  
   - Italics inline link: [*mdutils*](https://github.com/didix21/mdutils)  
@@ -287,11 +286,10 @@ Lets check some examples:
 
 
 ```python
-mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='mdutils', reference_tag='1')
-mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='another reference', reference_tag='md')
-mdFile.write('\n  - Bold link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='bold', bold_italics_code='b')
-mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='italics', bold_italics_code='i')
-
+mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='mdutils', reference_tag='1'))
+mdFile.write('\n  - Reference link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='another reference', reference_tag='md'))
+mdFile.write('\n  - Bold link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='bold', bold_italics_code='b'))
+mdFile.write('\n  - Italics link: ' + mdFile.new_reference_link(link='https://github.com/didix21/mdutils', text='Bold reference', reference_tag='italics', bold_italics_code='i'))
 ```
   - Reference link: [mdutils][1]
   - Reference link: [another reference][md]
