@@ -206,7 +206,7 @@ class MdUtils:
         columns: int,
         rows: int,
         text: List[str],
-        text_align: str = "center",
+        text_align: Optional[Union[str, list]] = "center",
         marker: str = "",
     ) -> str:
         """This method takes a list of strings and creates a table.
