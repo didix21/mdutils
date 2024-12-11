@@ -26,13 +26,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install twine
         pip install coverage
-        pip install -U pytest
+        pip install pytest
+        pip install pytest-cov
         pip install poetry
 
     - name: Run unit tests
       run: |
-        coverage run -m pytest
-        coverage xml
+        pytest --cov --junitxml=junit.xml -o junit_family=legacy
 
     - name: Bump version on all needed files
       run: |
