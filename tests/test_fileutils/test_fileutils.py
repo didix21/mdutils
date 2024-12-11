@@ -7,7 +7,7 @@
 # MIT License: (C) 2020 Dídac Coll
 
 from unittest import TestCase
-from mdutils.fileutils import MarkDownFile
+from mdutils.fileutils.fileutils import MarkDownFile
 import tempfile
 
 

@@ -20,14 +20,18 @@ jobs:
         python-version: '3.10'
     - name: Install dependencies
       run: | 
-        pip install coverage
-        pip install -U pytest
+        pip install pytest
+        pip install pytest-cov
     - name: Test unittest
       run: |
-        coverage run -m pytest
-        coverage xml
+        pytest --cov --junitxml=junit.xml -o junit_family=legacy
+    - name: Upload test results to Codecov
+      if: ${{ !cancelled() }}
+      uses: codecov/test-results-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
     - name: "Upload coverage to Codecov"
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v5
       with:
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
