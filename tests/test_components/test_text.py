@@ -69,7 +69,3 @@ class TestTextClass(TestCase):
         """Test applying the same style multiple times"""
         text = Text("Repeated").bold().bold()
         self.assertEqual(text.render(), "**Repeated**")  # Styles shouldn't stack if redundant
-
-
-if __name__ == "__main__":
-    unittest.main()
