@@ -40,12 +40,12 @@ class MdUtils:
     - **author:** it is the author fo the Markdown file.
     - **header:** it is an instance of Header Class.
     - **textUtils:** it is an instance of TextUtils Class.
-    - **title:** it is the title of the Markdown file. It is written with Setext-style.
+    - **title:** it is the title of the Markdown file. It is written with Setext-style unless otherwise specified.
     - **table_of_contents:** it is the table of contents, it can be optionally created.
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name: str, title: str = "", author: str = ""):
+    def __init__(self, file_name: str, title: str = "", author: str = "", title_header_style: str = "setext"):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -58,7 +58,7 @@ class MdUtils:
         self.file_name = file_name
         self.author = author
         self.textUtils = TextUtils
-        self.title = str(Header(level=1, title=title, style=HeaderStyle.SETEXT))
+        self.title = str(Header(level=1, title=title, style=HeaderStyle[title_header_style.upper()]))
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
