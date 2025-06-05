@@ -1,5 +1,36 @@
 # Changelog
 
+## [v1.7.0](https://github.com/didix21/mdutils/tree/v1.7.0) (2025-06-05)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.6.0...v1.7.0)
+
+**Implemented enhancements:**
+
+- Enable specifying title header style, default being setext [\#112](https://github.com/didix21/mdutils/pull/112) ([tonur](https://github.com/tonur))
+- Refactor Header [\#94](https://github.com/didix21/mdutils/pull/94) ([didix21](https://github.com/didix21))
+
+**Fixed bugs:**
+
+- Cannot specify style of title, so the style of the first header is always "setext" even though the default style of other headers is "atx" [\#111](https://github.com/didix21/mdutils/issues/111)
+- fix: add IDE support for List argument of text\_align in new\_table [\#109](https://github.com/didix21/mdutils/pull/109) ([natebwangsut](https://github.com/natebwangsut))
+- Remove extra spaces added by new\_line\(\) [\#103](https://github.com/didix21/mdutils/pull/103) ([bbodenmiller](https://github.com/bbodenmiller))
+
+**Closed issues:**
+
+- Fix example for example provided [\#106](https://github.com/didix21/mdutils/issues/106)
+- README.md Broken examples in Create Links section [\#105](https://github.com/didix21/mdutils/issues/105)
+- . [\#102](https://github.com/didix21/mdutils/issues/102)
+- Clarifying documentation around MdUtils filename param [\#98](https://github.com/didix21/mdutils/issues/98)
+- Implement automated releases [\#88](https://github.com/didix21/mdutils/issues/88)
+
+**Merged pull requests:**
+
+- Update codecov github action and add analytics [\#110](https://github.com/didix21/mdutils/pull/110) ([didix21](https://github.com/didix21))
+- GH-105: README.md Broken examples in Create Links section [\#108](https://github.com/didix21/mdutils/pull/108) ([didix21](https://github.com/didix21))
+- GH-106: Fix example for example provided [\#107](https://github.com/didix21/mdutils/pull/107) ([didix21](https://github.com/didix21))
+- Update documentation for MdUtils filename param [\#99](https://github.com/didix21/mdutils/pull/99) ([3sbwya](https://github.com/3sbwya))
+- GH-88: Automate release candidate [\#97](https://github.com/didix21/mdutils/pull/97) ([didix21](https://github.com/didix21))
+
 ## [v1.6.0](https://github.com/didix21/mdutils/tree/v1.6.0) (2023-04-29)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.5.1...v1.6.0)
@@ -24,7 +55,6 @@
 - GH-90: Avoid warning on python 3.11 [\#92](https://github.com/didix21/mdutils/pull/92) ([didix21](https://github.com/didix21))
 - Fix build badge [\#91](https://github.com/didix21/mdutils/pull/91) ([didix21](https://github.com/didix21))
 - GH-46: Add flake8 config [\#86](https://github.com/didix21/mdutils/pull/86) ([didix21](https://github.com/didix21))
-- Import coverage to codecov [\#66](https://github.com/didix21/mdutils/pull/66) ([didix21](https://github.com/didix21))
 
 ## [v1.5.1](https://github.com/didix21/mdutils/tree/v1.5.1) (2023-03-11)
 
@@ -41,7 +71,7 @@
 
 **Implemented enhancements:**
 
-- Introduce `header\_id` as parameter for headers [\#78](https://github.com/didix21/mdutils/pull/78) ([kieferro](https://github.com/kieferro))
+- Introduce `header_id` as parameter for headers [\#78](https://github.com/didix21/mdutils/pull/78) ([kieferro](https://github.com/kieferro))
 
 **Fixed bugs:**
 
@@ -65,7 +95,7 @@
 **Implemented enhancements:**
 
 - Add fontsize increase option for Paragraph [\#54](https://github.com/didix21/mdutils/issues/54)
-- Added `get\_md\_text` method to `MdUtils` class. [\#61](https://github.com/didix21/mdutils/pull/61) ([Patitotective](https://github.com/Patitotective))
+- Added `get_md_text` method to `MdUtils` class. [\#61](https://github.com/didix21/mdutils/pull/61) ([Patitotective](https://github.com/Patitotective))
 
 **Fixed bugs:**
 
@@ -80,6 +110,7 @@
 
 **Merged pull requests:**
 
+- Import coverage to codecov [\#66](https://github.com/didix21/mdutils/pull/66) ([didix21](https://github.com/didix21))
 - 62: Move test workflow from travis to github actions [\#65](https://github.com/didix21/mdutils/pull/65) ([didix21](https://github.com/didix21))
 
 ## [v1.3.1](https://github.com/didix21/mdutils/tree/v1.3.1) (2021-07-09)
