@@ -24,6 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install build
         pip install twine
         pip install coverage
         pip install pytest
@@ -41,14 +42,14 @@ jobs:
     - name: "✏️ Generate release changelog"
       uses: heinrichreimer/github-changelog-generator-action@v2.3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }} 
-    
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Check commit has been updated
       run: |
         git diff
 
     - name: Build package
-      run: python setup.py sdist --formats=gztar,zip
+      run: python -m build
 
     - name: Upload binaries to release
       uses: xresloader/upload-to-github-release@v1
@@ -64,7 +65,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "Bump version to ${{ steps.latest_prerelease.outputs.tag_name }}" -a
-    
+
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
       with:

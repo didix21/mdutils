@@ -16,7 +16,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 2. Increase the version number in the `mdutils/doc/source/config.py` file.
 3. Increase the version number in the `mdutils/setup.py` file.
 3. Increase the version number in the `mdutils/pyproject.toml` file.
-4. Increate the version number in the `.github_changelog_generator` file.
+4. Increase the version number in the `.github_changelog_generator` file.
 5. Run `github_changelog_generator -u didix21 -p mdutils`.
-6. Run `python setup.py sdist --formats=gztar,zip`.
+6. Run `python -m build`.
 7. Upload package to pypi: `twine upload dist/*`.
