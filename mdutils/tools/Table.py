@@ -123,6 +123,60 @@ class Table:
         else:
             raise ValueError("columns * rows is not equal to text length")
 
+    def create_table_array(self, data: List[List[str]], text_align: Optional[Union[str, list]] = None):
+        """
+        Create a table from a list of lists.
+        
+        This method takes a 2D array (list of lists) and creates a markdown table.
+        It normalizes the data by converting all elements to strings and ensuring
+        all rows have the same number of columns by padding with empty strings.
+        
+        :param data: A 2D list where each inner list represents a row
+        :type data: List[List[str]]
+        :param text_align: text align argument, same as create_table.
+                          Values available are: 'right', 'center', 'left' and None (default).
+                          If text_align is a list then individual alignment can be set for each column.
+        :type text_align: Optional[Union[str, list]]
+        :return: a markdown table string
+        :rtype: str
+        
+        :Example:
+        >>> from mdutils.tools.Table import Table
+        >>> data = [['Header 1', 'Header 2'], ['Row 1 Col 1', 'Row 1 Col 2'], ['Row 2 Col 1']]
+        >>> table = Table().create_table_array(data=data, text_align='center')
+        >>> print(repr(table))
+        '\\n|Header 1|Header 2|\\n| :---: | :---: |\\n|Row 1 Col 1|Row 1 Col 2|\\n|Row 2 Col 1||\\n'
+        """
+        if not data:
+            return ""
+        
+        # Find the maximum column count across all rows
+        max_columns = max(len(row) for row in data) if data else 0
+        
+        if max_columns == 0:
+            return ""
+        
+        # Normalize the data: convert all elements to strings and pad rows
+        normalized_data = []
+        for row in data:
+            # Convert all elements to strings
+            str_row = [str(cell) for cell in row]
+            # Pad with empty strings if the row is shorter than max_columns
+            while len(str_row) < max_columns:
+                str_row.append("")
+            normalized_data.append(str_row)
+        
+        # Flatten the 2D array into a 1D list
+        flattened_text = []
+        for row in normalized_data:
+            flattened_text.extend(row)
+        
+        # Calculate dimensions
+        rows = len(normalized_data)
+        columns = max_columns
+        
+        # Call the existing create_table method
+        return self.create_table(columns=columns, rows=rows, text=flattened_text, text_align=text_align)
 
 if __name__ == "__main__":
     import doctest
