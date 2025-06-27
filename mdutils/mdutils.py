@@ -254,6 +254,19 @@ class MdUtils:
             self.___update_file_data(text_table)
 
         return text_table
+    
+    def new_table_array(self, data: List[List[str]], text_align: Optional[Union[str, list]] = None, marker: str = ""):
+        """
+        Create a table from a list of lists.
+        """
+        new_table = mdutils.tools.Table.Table()
+        text_table = new_table.create_table_array(data, text_align)
+        if marker:
+            self.file_data_text = self.place_text_using_marker(text_table, marker)
+        else:
+            self.___update_file_data(text_table)
+
+        return text_table
 
     def new_paragraph(
         self,
