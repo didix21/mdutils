@@ -1,0 +1,27 @@
+name: Publish release to PyPI
+
+on:
+  release:
+    types: [published]
+
+###############################################################################
+#  ⬇️  Default permissions for the whole workflow: pull code + request OIDC
+###############################################################################
+permissions:
+  contents: read        # required by gh release download
+  id-token: write       # 🔑 enables token-less “Trusted Publisher” uploads
+
+jobs:
+  publish-to-pypi:
+    if: ${{ github.event.release.prerelease == false }}      # skip prereleases
+    runs-on: ubuntu-latest
+    environment: pypi  
+
+    steps:
+      - name: Download release assets
+        env:
+          GH_TOKEN: ${{ github.token }}                      # granted automatically
+        run: gh release download "${{ github.event.release.tag_name }}" --dir dist
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
