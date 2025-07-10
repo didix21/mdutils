@@ -1,0 +1,61 @@
+name: Publish release to PyPI
+
+on:
+  # Manual trigger – requires a tag input
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to publish (e.g. v1.8.0)'
+        required: true
+  # Automatic trigger when a draft becomes “published”
+  release:
+    types: [published]
+
+###############################################################################
+#  ⬇️  Default permissions for the whole workflow: pull code + request OIDC
+###############################################################################
+permissions:
+  contents: read        # required by gh release download
+  id-token: write       # 🔑 enables token-less “Trusted Publisher” uploads
+
+jobs:
+  publish-to-pypi:
+    if: |
+      (github.event_name == 'release' && github.event.release.prerelease == false) ||
+      (github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    environment: pypi        # GitHub Environment gate (reviewers etc.)
+
+    steps:
+      - uses: actions/checkout@v3   # makes refs/tags/* available for validation
+
+      ########################################################################
+      # Resolve which tag to use and expose it via “outputs.tag”
+      ########################################################################
+      - name: Determine tag
+        id: tag
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "tag=${{ github.event.release.tag_name }}" >>"$GITHUB_OUTPUT"
+          else
+            echo "tag=${{ github.event.inputs.tag }}" >>"$GITHUB_OUTPUT"
+          fi
+
+      ########################################################################
+      # Download the assets that were attached to that tag’s release
+      ########################################################################
+      - name: Download release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download \
+            "${{ steps.tag.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --dir dist
+
+      ########################################################################
+      # Publish everything in ./dist to PyPI via OIDC (no API token needed)
+      ########################################################################
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # default packages_dir is "dist/"
