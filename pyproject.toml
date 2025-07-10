@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [tool.poetry]
 name = "mdutils"
-version = "1.7.0"
+version = "1.8.0"
 description = "Useful package for creating Markdown files while executing python code."
 authors = ["Didac Coll <didaccoll_93@hotmail.com>"]
 maintainers = ["Didac Coll <didaccoll_93@hotmail.com>"]

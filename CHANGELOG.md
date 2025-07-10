@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.8.0](https://github.com/didix21/mdutils/tree/v1.8.0) (2025-07-10)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.7.0...v1.8.0)
+
+**Implemented enhancements:**
+
+- Generate tables from 2D string arrays [\#114](https://github.com/didix21/mdutils/pull/114) ([skelsec](https://github.com/skelsec))
+
+**Merged pull requests:**
+
+- build and publish wheel [\#113](https://github.com/didix21/mdutils/pull/113) ([dimbleby](https://github.com/dimbleby))
+
 ## [v1.7.0](https://github.com/didix21/mdutils/tree/v1.7.0) (2025-06-05)
 
 [Full Changelog](https://github.com/didix21/mdutils/compare/v1.6.0...v1.7.0)
