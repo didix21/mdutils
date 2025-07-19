@@ -30,26 +30,26 @@ class TestHeader(TestCase):
     def test_setext_level_1(self):
         title = "Text Title Setext 1"
         result = "\n" + title + "\n" + "".join(["=" for _ in title]) + "\n"
-        self.assertEqual(Header.setext(SetextHeaderLevel.TITLE, title), result)
+        self.assertEqual(Header.setext(SetextHeaderLevel.H1, title), result)
 
     def test_setext_level_2(self):
         title = "Text Title Setext 2"
         result = "\n" + title + "\n" + "".join(["-" for _ in title]) + "\n"
-        self.assertEqual(Header.setext(SetextHeaderLevel.HEADING, title), result)
+        self.assertEqual(Header.setext(SetextHeaderLevel.H2, title), result)
 
     def test_header(self):
         atx_headers = [
-            Header.atx(AtxHeaderLevel.TITLE, "Atx Example"),
-            Header.atx(AtxHeaderLevel.HEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.SUBHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.SUBSUBHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.MINORHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.LEASTHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H1, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H2, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H3, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H4, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H5, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H6, "Atx Example"),
         ]
 
         setext_headers = [
-            Header.setext(SetextHeaderLevel.TITLE, "Setext Example"),
-            Header.setext(SetextHeaderLevel.HEADING, "Setext Example"),
+            Header.setext(SetextHeaderLevel.H1, "Setext Example"),
+            Header.setext(SetextHeaderLevel.H2, "Setext Example"),
         ]
 
         for level in AtxHeaderLevel:
@@ -64,17 +64,17 @@ class TestHeader(TestCase):
 
     def test_choose_header(self):
         atx_headers = [
-            Header.atx(AtxHeaderLevel.TITLE, "Atx Example"),
-            Header.atx(AtxHeaderLevel.HEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.SUBHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.SUBSUBHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.MINORHEADING, "Atx Example"),
-            Header.atx(AtxHeaderLevel.LEASTHEADING, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H1, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H2, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H3, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H4, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H5, "Atx Example"),
+            Header.atx(AtxHeaderLevel.H6, "Atx Example"),
         ]
 
         setext_headers = [
-            Header.setext(SetextHeaderLevel.TITLE, "Setext Example"),
-            Header.setext(SetextHeaderLevel.HEADING, "Setext Example"),
+            Header.setext(SetextHeaderLevel.H1, "Setext Example"),
+            Header.setext(SetextHeaderLevel.H2, "Setext Example"),
         ]
 
         for level in AtxHeaderLevel:
