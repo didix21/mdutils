@@ -26,6 +26,7 @@ from mdutils.tools.Image import Image
 from mdutils.tools.Link import Inline, Reference
 from mdutils.tools.TextUtils import TextUtils
 from mdutils.tools.MDList import MDList, MDCheckbox
+from mdutils.tools.RawHeader import RawHeader
 from textwrap import fill
 from typing import Union, Optional, List
 
@@ -45,7 +46,7 @@ class MdUtils:
     - **file_data_text:** contains all the file data that will be written on the markdown file.
     """
 
-    def __init__(self, file_name: str, title: str = "", author: str = "", title_header_style: str = "setext"):
+    def __init__(self, file_name: str, title: Optional[str] = None, author: str = "", title_header_style: str = "setext"):
         """
 
         :param file_name: it is the name of the Markdown file.
@@ -58,7 +59,7 @@ class MdUtils:
         self.file_name = file_name
         self.author = author
         self.textUtils = TextUtils
-        self.title = str(Header(level=1, title=title, style=HeaderStyle[title_header_style.upper()]))
+        self.title = str(RawHeader(level=1, title=f"{title}\n", style=HeaderStyle[title_header_style.upper()])) if title  else None 
         self.table_of_contents = ""
         self.file_data_text = ""
         self._table_titles = []
