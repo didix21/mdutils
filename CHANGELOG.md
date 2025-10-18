@@ -1,16 +1,25 @@
 # Changelog
 
-## [v1.8.0](https://github.com/didix21/mdutils/tree/v1.8.0) (2025-07-10)
+## [v1.8.1](https://github.com/didix21/mdutils/tree/v1.8.1) (2025-10-18)
 
-[Full Changelog](https://github.com/didix21/mdutils/compare/v1.7.0...v1.8.0)
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.8.0...v1.8.1)
 
 **Implemented enhancements:**
 
 - Generate tables from 2D string arrays [\#114](https://github.com/didix21/mdutils/pull/114) ([skelsec](https://github.com/skelsec))
 
+**Fixed bugs:**
+
+- Text starting with `**` \(bold\) breaks `new_list` method [\#116](https://github.com/didix21/mdutils/issues/116)
+- fix: Text starting with \*\* \(bold\) breaks new\_list method [\#117](https://github.com/didix21/mdutils/pull/117) ([didix21](https://github.com/didix21))
+
 **Merged pull requests:**
 
 - build and publish wheel [\#113](https://github.com/didix21/mdutils/pull/113) ([dimbleby](https://github.com/dimbleby))
+
+## [v1.8.0](https://github.com/didix21/mdutils/tree/v1.8.0) (2025-07-10)
+
+[Full Changelog](https://github.com/didix21/mdutils/compare/v1.7.0...v1.8.0)
 
 ## [v1.7.0](https://github.com/didix21/mdutils/tree/v1.7.0) (2025-06-05)
 
