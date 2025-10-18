@@ -49,7 +49,7 @@ class MDListHelper:
     def _is_there_marker_in_item(cls, item: str) -> bool:
         if (
             item.startswith("-")
-            or item.startswith("*")
+            or item.startswith("*") and not item.startswith("**")
             or item.startswith("+")
             or re.search(r"^(\d\.)", item)
         ):
