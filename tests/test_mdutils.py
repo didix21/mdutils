@@ -45,6 +45,34 @@ class TestMdUtils(TestCase):
             ],
             "Item 5",
         ]
+        self.expected_bold_list = (
+            "\n\n\n"
+            "\n- **Item 1**\n"
+            "- **Item 2**\n"
+            "- **Item 3**\n"
+            "- **Item 4**\n"
+            "    - **Item 4.1**\n"
+            "    - **Item 4.2**\n"
+            "        - **Item 4.2.1**\n"
+            "        - **Item 4.2.2**\n"
+            "    - **Item 4.3**\n"
+            "        - **Item 4.3.1**\n"
+            "- **Item 5**\n"
+        )
+        self.complex_bold_items = [
+            "**Item 1**",
+            "**Item 2**",
+            "**Item 3**",
+            "**Item 4**",
+            [
+                "**Item 4.1**",
+                "**Item 4.2**",
+                ["**Item 4.2.1**", "**Item 4.2.2**"],
+                "**Item 4.3**",
+                ["**Item 4.3.1**"],
+            ],
+            "**Item 5**",
+        ]
 
     def tearDown(self):
         md_file = Path("Test_file.md")
@@ -486,6 +514,13 @@ class TestMdUtils(TestCase):
         md_file.create_md_file()
 
         self.assertEqual(self.expected_list, MarkDownFile.read_file("Test_file.md"))
+    
+    def test_new_list_bold_items(self):
+        md_file = MdUtils(file_name="Test_file", title="")
+        md_file.new_list(self.complex_bold_items)
+        md_file.create_md_file()
+
+        self.assertEqual(self.expected_bold_list, MarkDownFile.read_file("Test_file.md"))
 
     def test_new_checkbox_list(self):
         md_file = MdUtils(file_name="Test_file", title="")
