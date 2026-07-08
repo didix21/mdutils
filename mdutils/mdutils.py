@@ -152,6 +152,8 @@ class MdUtils:
         curr = self._table_titles
 
         for i in range(level - 1):
+            if not curr or len(curr) == 0:
+                curr.append([])
             curr = curr[-1]
 
         curr.append(item)
